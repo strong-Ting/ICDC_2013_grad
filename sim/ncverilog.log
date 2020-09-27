@@ -1,0 +1,75 @@
+ncverilog: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	ncverilog	15.20-s039: Started on Sep 27, 2020 at 23:06:47 CST
+ncverilog
+	testfixture1.v
+	../src/FAS.v
+	+access+r
+Recompiling... reason: file '../src/FAS.v' is newer than expected.
+	expected: Sun Sep 27 23:05:50 2020
+	actual:   Sun Sep 27 23:06:43 2020
+file: ../src/FAS.v
+	module worklib.FAS:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+ncelab: *W,CUSNOF: No SDF file specified in SDF System Task..
+initial $sdf_annotate(`SDFFILE, DUT);
+                    |
+ncelab: *W,CUSSTI (./testfixture1.v,49|20): This SDF System Task will be Ignored..
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.FAS:v <0x52794653>
+			streams:  76, words: 36972
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                  2       2
+		Registers:               65      65
+		Scalar wires:             7       -
+		Vectored wires:         114       -
+		Always blocks:           15      15
+		Initial blocks:          10      10
+		Cont. assignments:       64      95
+		Pseudo assignments:       3       3
+		Simulation timescale:  10ps
+	Writing initial simulation snapshot: worklib.testfixture1:v
+Loading snapshot worklib.testfixture1:v .................... Done
+*Verdi* Loading libsscore_ius152.so
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
+(C) 1996 - 2020 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'FAS.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+*Verdi* : Begin traversing the MDAs, layer (0).
+*Verdi* : Enable +mda and +packedmda dumping.
+*Verdi* : End of traversing the MDAs.
+FIR dataout on pattern           0 ~         100 !!, PASS !!
+-----------------------------------------------------
+FIR dataout on pattern         100 ~         200 !!, PASS !!
+-----------------------------------------------------
+FIR dataout on pattern         200 ~         300 !!, PASS !!
+-----------------------------------------------------
+FIR dataout on pattern         300 ~         400 !!, PASS !!
+-----------------------------------------------------
+ERROR at FIR cycle 496: The real response output ffff != expectd 0000 
+-----------------------------------------------------
+FIR dataout on pattern         400 ~         500 !!, FAIL !!
+FIR dataout on pattern         500 ~         600 !!, FAIL !!
+ERROR at FIR cycle 764: The real response output ffff != expectd 0000 
+-----------------------------------------------------
+FIR dataout on pattern         700 ~         800 !!, FAIL !!
+FIR dataout on pattern         800 ~         900 !!, FAIL !!
+ERROR at FIR cycle 1018: The real response output ffff != expectd 0000 
+-----------------------------------------------------
+-----------------------------------------------------
+Error!!! Somethings' wrong with your code ...!!
+-------------------------FAIL------------------------
+-----------------------------------------------------
+Simulation complete via $finish(1) at time 10 MS + 0
+./testfixture1.v:207  $finish;
+ncsim> exit
+TOOL:	ncverilog	15.20-s039: Exiting on Sep 27, 2020 at 23:06:53 CST  (total: 00:00:06)

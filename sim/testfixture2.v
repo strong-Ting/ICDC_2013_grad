@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 `define CYCLE     10                 // Modify your clock period here
 `define SDFFILE    ""    // Modify your sdf file name
-`define End_CYCLE  100000          // Modify cycle times once your design need more cycle times!
+`define End_CYCLE  1100          // Modify cycle times once your design need more cycle times!
 
 `define fir_fail_limit 48
 `define fft_fail_limit 48

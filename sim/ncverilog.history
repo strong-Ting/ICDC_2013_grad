@@ -1,0 +1,56 @@
+s1(27Sep2020:16:47:25):  ncverilog testfixture1.v ../src/FAS.v 
+s2(27Sep2020:16:47:52):  ncverilog testfixture1.v ../src/FAS.v 
+s3(27Sep2020:16:48:19):  ncverilog testfixture1.v ../src/FAS.v 
+s4(27Sep2020:16:49:13):  ncverilog testfixture1.v ../src/FAS.v 
+s5(27Sep2020:16:52:54):  ncverilog testfixture1.v ../src/FAS.v 
+s6(27Sep2020:17:07:01):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s7(27Sep2020:17:11:03):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s8(27Sep2020:17:16:00):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s9(27Sep2020:17:21:38):  ncverilog testfixture1.v ../src/FAS.v +access+r +MDA 
+s10(27Sep2020:17:23:08):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s11(27Sep2020:17:31:48):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s12(27Sep2020:17:32:25):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s13(27Sep2020:22:00:06):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s14(27Sep2020:22:01:50):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s15(27Sep2020:22:05:04):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s16(27Sep2020:22:06:39):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s17(27Sep2020:22:09:18):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s18(27Sep2020:22:10:10):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s19(27Sep2020:22:28:14):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s20(27Sep2020:22:30:29):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s21(27Sep2020:22:30:38):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s22(27Sep2020:22:31:03):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s23(27Sep2020:22:31:22):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s24(27Sep2020:22:31:37):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s25(27Sep2020:22:31:53):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s26(27Sep2020:22:33:39):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s27(27Sep2020:22:33:55):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s28(27Sep2020:22:34:05):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s29(27Sep2020:22:38:13):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s30(27Sep2020:22:40:01):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s31(27Sep2020:22:40:26):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s32(27Sep2020:22:40:43):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s33(27Sep2020:22:42:20):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s34(27Sep2020:22:42:44):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s35(27Sep2020:22:43:11):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s36(27Sep2020:22:45:51):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s37(27Sep2020:22:49:13):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s38(27Sep2020:22:49:45):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s39(27Sep2020:22:51:33):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s40(27Sep2020:22:51:53):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s41(27Sep2020:22:52:16):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s42(27Sep2020:22:52:31):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s43(27Sep2020:22:53:22):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s44(27Sep2020:22:53:32):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s45(27Sep2020:22:53:54):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s46(27Sep2020:22:54:08):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s47(27Sep2020:22:55:18):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s48(27Sep2020:22:55:31):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s49(27Sep2020:22:55:43):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s50(27Sep2020:22:57:53):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s51(27Sep2020:22:58:14):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s52(27Sep2020:22:58:35):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s53(27Sep2020:23:04:33):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s54(27Sep2020:23:04:46):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s55(27Sep2020:23:05:52):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s56(27Sep2020:23:06:47):  ncverilog testfixture1.v ../src/FAS.v +access+r 

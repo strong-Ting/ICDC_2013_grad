@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 `define CYCLE     10                 // Modify your clock period here
 `define SDFFILE    ""    // Modify your sdf file name
-`define End_CYCLE  100000          // Modify cycle times once your design need more cycle times!
+`define End_CYCLE  1000000          // Modify cycle times once your design need more cycle times!
 
 `define fir_fail_limit 48
 `define fft_fail_limit 48
@@ -27,15 +27,15 @@ wire [3:0] freq;
 reg en;
 
 reg [15:0] data_mem [0:1023];
-initial $readmemh("./dat/Pattern1.dat", data_mem);
+initial $readmemh("./dat/Pattern3.dat", data_mem);
 
 reg [15:0] fir_mem [0:1023];
-initial $readmemh("./dat/Golden1_FIR.dat", fir_mem);
+initial $readmemh("./dat/Golden3_FIR.dat", fir_mem);
 
 reg [15:0] fftr_mem [0:1023];
-initial $readmemh("./dat/Golden1_FFT_real.dat", fftr_mem);
+initial $readmemh("./dat/Golden3_FFT_real.dat", fftr_mem);
 reg [15:0] ffti_mem [0:1023];
-initial $readmemh("./dat/Golden1_FFT_imag.dat", ffti_mem);
+initial $readmemh("./dat/Golden3_FFT_imag.dat", ffti_mem);
 
 integer i, j ,k, l;
 integer fir_fail, fft_fail;
@@ -53,6 +53,7 @@ initial $sdf_annotate(`SDFFILE, DUT);
 initial begin
 $fsdbDumpfile("FAS.fsdb");
 $fsdbDumpvars;
+ $fsdbDumpMDA;
 end
 
 
