@@ -13,7 +13,7 @@ output done;
 output [3:0] freq;
 
 reg fir_valid, fft_valid;
-reg [15:0] fir_d;
+reg signed [15:0] fir_d;
 reg [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
 reg done;
@@ -200,7 +200,7 @@ begin
     if(rst) fir_d <= 16'd0;
     else
     begin
-        fir_d <= {SUM[36],SUM[31:16]};
+        fir_d <= SUM[32:16] + 15'd1;
     end
 end
 

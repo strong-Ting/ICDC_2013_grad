@@ -502,3 +502,137 @@ wvSearchNext -win $_nWave1
 wvSearchPrev -win $_nWave1
 wvSearchNext -win $_nWave1
 wvSelectSignal -win $_nWave1 {( "G1" 3 )} 
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvGetSignalOpen -win $_nWave1
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
+{/testfixture1/DUT/data_valid} \
+{/testfixture1/DUT/counter\[5:0\]} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/SUM\[36:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
+{/testfixture1/DUT/data_valid} \
+{/testfixture1/DUT/counter\[5:0\]} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/SUM\[36:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvGetSignalClose -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvSetCursor -win $_nWave1 1053524.784662 -snap {("G1" 8)}
+wvSetCursor -win $_nWave1 1053013.637386 -snap {("G1" 8)}
+wvSetCursor -win $_nWave1 1053026.104393 -snap {("G1" 8)}
+wvSetCursor -win $_nWave1 1053886.327858 -snap {("G1" 8)}
+wvSetCursor -win $_nWave1 1054272.805067 -snap {("G1" 6)}
+wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetCursor -win $_nWave1 1054161.113504 -snap {("G1" 0)}
+wvSetCursor -win $_nWave1 1054019.820761
+wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
+wvCut -win $_nWave1
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 7)}
+wvGetSignalOpen -win $_nWave1
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
+{/testfixture1/DUT/data_valid} \
+{/testfixture1/DUT/counter\[5:0\]} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/SUM\[50:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -clear
+wvAddSignal -win $_nWave1 -group {"G1" \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
+{/testfixture1/DUT/data_valid} \
+{/testfixture1/DUT/counter\[5:0\]} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/SUM\[50:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G2" \
+}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetPosition -win $_nWave1 {("G1" 8)}
+wvGetSignalClose -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
+wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
+wvSetRadix -win $_nWave1 -format Hex
+wvSetCursor -win $_nWave1 1053263.489019 -snap {("G1" 9)}
+wvSetCursor -win $_nWave1 1053039.082898 -snap {("G1" 9)}
+wvSetCursor -win $_nWave1 1046626.885764
+wvSearchNext -win $_nWave1
+wvSearchNext -win $_nWave1
+wvSearchNext -win $_nWave1
+wvSearchNext -win $_nWave1
+wvSetCursor -win $_nWave1 1049856.932846 -snap {("G1" 7)}
+wvSetCursor -win $_nWave1 1049424.743279 -snap {("G1" 8)}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetRadix -win $_nWave1 -2Com
+wvSetCursor -win $_nWave1 1045759.443297 -snap {("G1" 6)}
+wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
+wvSetRadix -win $_nWave1 -Unsigned
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvSetCursor -win $_nWave1 55957.357208 -snap {("G1" 9)}
+wvSetCursor -win $_nWave1 56028.003579 -snap {("G1" 9)}
+wvSetCursor -win $_nWave1 56028.003579 -snap {("G1" 9)}
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1
+wvDisplayGridCount -win $_nWave1 -off
+wvGetSignalClose -win $_nWave1
+wvReloadFile -win $_nWave1

@@ -1,12 +1,12 @@
 ncverilog: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s039: Started on Sep 27, 2020 at 23:06:47 CST
+TOOL:	ncverilog	15.20-s039: Started on Sep 27, 2020 at 23:32:58 CST
 ncverilog
 	testfixture1.v
 	../src/FAS.v
 	+access+r
-Recompiling... reason: file '../src/FAS.v' is newer than expected.
-	expected: Sun Sep 27 23:05:50 2020
-	actual:   Sun Sep 27 23:06:43 2020
+file: testfixture1.v
+	module worklib.testfixture1:v
+		errors: 0, warnings: 0
 file: ../src/FAS.v
 	module worklib.FAS:v
 		errors: 0, warnings: 0
@@ -19,7 +19,9 @@ ncelab: *W,CUSSTI (./testfixture1.v,49|20): This SDF System Task will be Ignored
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
 		worklib.FAS:v <0x52794653>
-			streams:  76, words: 36972
+			streams:  76, words: 36946
+		worklib.testfixture1:v <0x3f9dfebd>
+			streams:  24, words: 30029
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
@@ -55,15 +57,13 @@ FIR dataout on pattern         200 ~         300 !!, PASS !!
 -----------------------------------------------------
 FIR dataout on pattern         300 ~         400 !!, PASS !!
 -----------------------------------------------------
-ERROR at FIR cycle 496: The real response output ffff != expectd 0000 
+FIR dataout on pattern         400 ~         500 !!, PASS !!
 -----------------------------------------------------
-FIR dataout on pattern         400 ~         500 !!, FAIL !!
-FIR dataout on pattern         500 ~         600 !!, FAIL !!
-ERROR at FIR cycle 764: The real response output ffff != expectd 0000 
+FIR dataout on pattern         500 ~         600 !!, PASS !!
 -----------------------------------------------------
-FIR dataout on pattern         700 ~         800 !!, FAIL !!
-FIR dataout on pattern         800 ~         900 !!, FAIL !!
-ERROR at FIR cycle 1018: The real response output ffff != expectd 0000 
+FIR dataout on pattern         700 ~         800 !!, PASS !!
+-----------------------------------------------------
+FIR dataout on pattern         800 ~         900 !!, PASS !!
 -----------------------------------------------------
 -----------------------------------------------------
 Error!!! Somethings' wrong with your code ...!!
@@ -72,4 +72,4 @@ Error!!! Somethings' wrong with your code ...!!
 Simulation complete via $finish(1) at time 10 MS + 0
 ./testfixture1.v:207  $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s039: Exiting on Sep 27, 2020 at 23:06:53 CST  (total: 00:00:06)
+TOOL:	ncverilog	15.20-s039: Exiting on Sep 27, 2020 at 23:33:05 CST  (total: 00:00:07)
