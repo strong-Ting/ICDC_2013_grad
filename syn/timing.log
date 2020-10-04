@@ -1,0 +1,105 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FAS
+Version: Q-2019.12
+Date   : Sun Oct  4 23:21:34 2020
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: f_Y_reg[6][33]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: f_Y_reg[6][24]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FAS                tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  f_Y_reg[6][33]/CK (DFFRX4)                              0.00 #     1.00 r
+  f_Y_reg[6][33]/Q (DFFRX4)                               0.49       1.49 f
+  genblk1[6].fb/Y[33] (fft_butterFly_2)                   0.00       1.49 f
+  genblk1[6].fb/sub_550/B[1] (fft_butterFly_2_DW01_sub_3)
+                                                          0.00       1.49 f
+  genblk1[6].fb/sub_550/U462/Y (INVX4)                    0.12       1.61 r
+  genblk1[6].fb/sub_550/U557/Y (NOR2X6)                   0.08       1.69 f
+  genblk1[6].fb/sub_550/U617/Y (OAI21X4)                  0.17       1.86 r
+  genblk1[6].fb/sub_550/U538/Y (AND2X8)                   0.16       2.02 r
+  genblk1[6].fb/sub_550/U533/Y (NOR2X8)                   0.07       2.09 f
+  genblk1[6].fb/sub_550/U403/Y (INVX12)                   0.07       2.16 r
+  genblk1[6].fb/sub_550/U523/Y (XNOR2X2)                  0.15       2.31 f
+  genblk1[6].fb/sub_550/DIFF[4] (fft_butterFly_2_DW01_sub_3)
+                                                          0.00       2.31 f
+  genblk1[6].fb/U13/Y (BUFX6)                             0.18       2.49 f
+  genblk1[6].fb/U29/Y (BUFX12)                            0.15       2.64 f
+  genblk1[6].fb/mult_555/a[4] (fft_butterFly_2_DW_mult_tc_10)
+                                                          0.00       2.64 f
+  genblk1[6].fb/mult_555/U4382/Y (BUFX16)                 0.11       2.75 f
+  genblk1[6].fb/mult_555/U3774/Y (BUFX16)                 0.17       2.93 f
+  genblk1[6].fb/mult_555/U5458/Y (AOI222XL)               0.48       3.40 r
+  genblk1[6].fb/mult_555/U3919/Y (OA21XL)                 0.39       3.80 r
+  genblk1[6].fb/mult_555/U3918/Y (XNOR2X1)                0.31       4.10 f
+  genblk1[6].fb/mult_555/U5457/CO (ADDFX2)                0.51       4.61 f
+  genblk1[6].fb/mult_555/U5655/CO (ADDFX2)                0.38       4.99 f
+  genblk1[6].fb/mult_555/U3148/S (ADDFHX4)                0.33       5.32 r
+  genblk1[6].fb/mult_555/U3629/Y (NAND2X2)                0.15       5.47 f
+  genblk1[6].fb/mult_555/U3626/Y (OA21X2)                 0.35       5.82 f
+  genblk1[6].fb/mult_555/U4903/Y (OA21X4)                 0.19       6.01 f
+  genblk1[6].fb/mult_555/U4378/Y (OAI21X4)                0.19       6.20 r
+  genblk1[6].fb/mult_555/U4660/Y (AOI21X4)                0.14       6.35 f
+  genblk1[6].fb/mult_555/U4900/Y (OAI21X4)                0.17       6.51 r
+  genblk1[6].fb/mult_555/U3352/Y (INVX8)                  0.10       6.61 f
+  genblk1[6].fb/mult_555/U4894/Y (OA21X4)                 0.26       6.87 f
+  genblk1[6].fb/mult_555/U4893/Y (OAI21X4)                0.20       7.07 r
+  genblk1[6].fb/mult_555/U4812/Y (AOI21X4)                0.15       7.22 f
+  genblk1[6].fb/mult_555/U4834/Y (OAI21X4)                0.25       7.47 r
+  genblk1[6].fb/mult_555/U3726/Y (INVX12)                 0.16       7.63 f
+  genblk1[6].fb/mult_555/U3179/Y (OAI21X4)                0.15       7.78 r
+  genblk1[6].fb/mult_555/U4709/Y (XNOR2X4)                0.18       7.96 f
+  genblk1[6].fb/mult_555/product[34] (fft_butterFly_2_DW_mult_tc_10)
+                                                          0.00       7.96 f
+  genblk1[6].fb/add_555/A[34] (fft_butterFly_2_DW01_add_6)
+                                                          0.00       7.96 f
+  genblk1[6].fb/add_555/U573/Y (NAND2X6)                  0.14       8.09 r
+  genblk1[6].fb/add_555/U571/Y (CLKINVX1)                 0.14       8.23 f
+  genblk1[6].fb/add_555/U528/Y (AOI21X2)                  0.24       8.47 r
+  genblk1[6].fb/add_555/U770/Y (OAI21X4)                  0.16       8.64 f
+  genblk1[6].fb/add_555/U723/Y (AOI21X4)                  0.17       8.81 r
+  genblk1[6].fb/add_555/U798/Y (OAI21X4)                  0.14       8.94 f
+  genblk1[6].fb/add_555/U544/Y (INVX6)                    0.21       9.15 r
+  genblk1[6].fb/add_555/U610/Y (XOR2X2)                   0.22       9.37 r
+  genblk1[6].fb/add_555/SUM[40] (fft_butterFly_2_DW01_add_6)
+                                                          0.00       9.37 r
+  genblk1[6].fb/fft_b[24] (fft_butterFly_2)               0.00       9.37 r
+  U9669/Y (INVX4)                                         0.13       9.50 f
+  U6834/Y (OAI222X1)                                      0.26       9.76 r
+  f_Y_reg[6][24]/D (DFFRX4)                               0.00       9.76 r
+  data arrival time                                                  9.76
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             1.00      11.00
+  clock uncertainty                                      -1.00      10.00
+  f_Y_reg[6][24]/CK (DFFRX4)                              0.00      10.00 r
+  library setup time                                     -0.24       9.76
+  data required time                                                 9.76
+  --------------------------------------------------------------------------
+  data required time                                                 9.76
+  data arrival time                                                 -9.76
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 `define CYCLE     10                 // Modify your clock period here
-`define SDFFILE    ""    // Modify your sdf file name
-`define End_CYCLE  1000000          // Modify cycle times once your design need more cycle times!
+`define SDFFILE    "./FAS_syn.sdf"    // Modify your sdf file name
+`define End_CYCLE  1200          // Modify cycle times once your design need more cycle times!
 
 `define fir_fail_limit 48
 `define fft_fail_limit 48
@@ -45,9 +45,9 @@ FAS DUT(.data_valid(en), .data(data), .clk(clk), .rst(reset), .fir_d(fir_d), .fi
  	.fft_d9(fft_d9), .fft_d10(fft_d10), .fft_d11(fft_d11), .fft_d12(fft_d12), .fft_d13(fft_d13), .fft_d14(fft_d14), .fft_d15(fft_d15) );
 
 
-`ifdef SDFFILE
+//`ifdef SDFFILE
 initial $sdf_annotate(`SDFFILE, DUT);
-`endif
+//`endif
 
 
 initial begin

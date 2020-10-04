@@ -5,9 +5,10 @@
 -XLMODE
 ./INCA_libs/irun.lnx86.15.20.nc
 -RUNMODE
--sv
-testfixture2.v
-../src/FAS.v
+testfixture1.v
+../syn/FAS_syn.v
+-VFILE
+../../tsmc13_neg.v
 -CDSLIB
 ./INCA_libs/irun.lnx86.15.20.nc/cdsrun.lib
 -HDLVAR

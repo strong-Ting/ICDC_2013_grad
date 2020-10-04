@@ -19,38 +19,38 @@ reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
 reg done;
 reg [3:0] freq;
 //`include "./dat/FIR_coefficient.dat"
-wire signed [19:0] FIR_C00 = 20'hFFF9E ;     //The FIR_coefficient value 0: -1.495361e-003
-wire signed [19:0] FIR_C01 = 20'hFFF86 ;     //The FIR_coefficient value 1: -1.861572e-003
-wire signed [19:0] FIR_C02 = 20'hFFFA7 ;     //The FIR_coefficient value 2: -1.358032e-003
-wire signed [19:0] FIR_C03 = 20'h0003B ;    //The FIR_coefficient value 3: 9.002686e-004
-wire signed [19:0] FIR_C04 = 20'h0014B ;    //The FIR_coefficient value 4: 5.050659e-003
-wire signed [19:0] FIR_C05 = 20'h0024A ;    //The FIR_coefficient value 5: 8.941650e-003
-wire signed [19:0] FIR_C06 = 20'h00222 ;    //The FIR_coefficient value 6: 8.331299e-003
-wire signed [19:0] FIR_C07 = 20'hFFFE4 ;     //The FIR_coefficient value 7: -4.272461e-004
-wire signed [19:0] FIR_C08 = 20'hFFBC5 ;     //The FIR_coefficient value 8: -1.652527e-002
-wire signed [19:0] FIR_C09 = 20'hFF7CA ;     //The FIR_coefficient value 9: -3.207397e-002
-wire signed [19:0] FIR_C10 = 20'hFF74E ;     //The FIR_coefficient value 10: -3.396606e-002
-wire signed [19:0] FIR_C11 = 20'hFFD74 ;     //The FIR_coefficient value 11: -9.948730e-003
-wire signed [19:0] FIR_C12 = 20'h00B1A ;    //The FIR_coefficient value 12: 4.336548e-002
-wire signed [19:0] FIR_C13 = 20'h01DAC ;    //The FIR_coefficient value 13: 1.159058e-001
-wire signed [19:0] FIR_C14 = 20'h02F9E ;    //The FIR_coefficient value 14: 1.860046e-001
-wire signed [19:0] FIR_C15 = 20'h03AA9 ;    //The FIR_coefficient value 15: 2.291412e-001
-wire signed [19:0] FIR_C16 = 20'h03AA9 ;    //The FIR_coefficient value 16: 2.291412e-001
-wire signed [19:0] FIR_C17 = 20'h02F9E ;    //The FIR_coefficient value 17: 1.860046e-001
-wire signed [19:0] FIR_C18 = 20'h01DAC ;    //The FIR_coefficient value 18: 1.159058e-001
-wire signed [19:0] FIR_C19 = 20'h00B1A ;    //The FIR_coefficient value 19: 4.336548e-002
-wire signed [19:0] FIR_C20 = 20'hFFD74 ;     //The FIR_coefficient value 20: -9.948730e-003
-wire signed [19:0] FIR_C21 = 20'hFF74E ;     //The FIR_coefficient value 21: -3.396606e-002
-wire signed [19:0] FIR_C22 = 20'hFF7CA ;     //The FIR_coefficient value 22: -3.207397e-002
-wire signed [19:0] FIR_C23 = 20'hFFBC5 ;     //The FIR_coefficient value 23: -1.652527e-002
-wire signed [19:0] FIR_C24 = 20'hFFFE4 ;     //The FIR_coefficient value 24: -4.272461e-004
-wire signed [19:0] FIR_C25 = 20'h00222 ;    //The FIR_coefficient value 25: 8.331299e-003
-wire signed [19:0] FIR_C26 = 20'h0024A ;    //The FIR_coefficient value 26: 8.941650e-003
-wire signed [19:0] FIR_C27 = 20'h0014B ;    //The FIR_coefficient value 27: 5.050659e-003
-wire signed [19:0] FIR_C28 = 20'h0003B ;    //The FIR_coefficient value 28: 9.002686e-004
-wire signed [19:0] FIR_C29 = 20'hFFFA7 ;     //The FIR_coefficient value 29: -1.358032e-003
-wire signed [19:0] FIR_C30 = 20'hFFF86 ;     //The FIR_coefficient value 30: -1.861572e-003
-wire signed [19:0] FIR_C31 = 20'hFFF9E ;     //The FIR_coefficient value 31: -1.495361e-003
+parameter signed [19:0] FIR_C00 = 20'hFFF9E ;     //The FIR_coefficient value 0: -1.495361e-003
+parameter signed [19:0] FIR_C01 = 20'hFFF86 ;     //The FIR_coefficient value 1: -1.861572e-003
+parameter signed [19:0] FIR_C02 = 20'hFFFA7 ;     //The FIR_coefficient value 2: -1.358032e-003
+parameter signed [19:0] FIR_C03 = 20'h0003B ;    //The FIR_coefficient value 3: 9.002686e-004
+parameter signed [19:0] FIR_C04 = 20'h0014B ;    //The FIR_coefficient value 4: 5.050659e-003
+parameter signed [19:0] FIR_C05 = 20'h0024A ;    //The FIR_coefficient value 5: 8.941650e-003
+parameter signed [19:0] FIR_C06 = 20'h00222 ;    //The FIR_coefficient value 6: 8.331299e-003
+parameter signed [19:0] FIR_C07 = 20'hFFFE4 ;     //The FIR_coefficient value 7: -4.272461e-004
+parameter signed [19:0] FIR_C08 = 20'hFFBC5 ;     //The FIR_coefficient value 8: -1.652527e-002
+parameter signed [19:0] FIR_C09 = 20'hFF7CA ;     //The FIR_coefficient value 9: -3.207397e-002
+parameter signed [19:0] FIR_C10 = 20'hFF74E ;     //The FIR_coefficient value 10: -3.396606e-002
+parameter signed [19:0] FIR_C11 = 20'hFFD74 ;     //The FIR_coefficient value 11: -9.948730e-003
+parameter signed [19:0] FIR_C12 = 20'h00B1A ;    //The FIR_coefficient value 12: 4.336548e-002
+parameter signed [19:0] FIR_C13 = 20'h01DAC ;    //The FIR_coefficient value 13: 1.159058e-001
+parameter signed [19:0] FIR_C14 = 20'h02F9E ;    //The FIR_coefficient value 14: 1.860046e-001
+parameter signed [19:0] FIR_C15 = 20'h03AA9 ;    //The FIR_coefficient value 15: 2.291412e-001
+parameter signed [19:0] FIR_C16 = 20'h03AA9 ;    //The FIR_coefficient value 16: 2.291412e-001
+parameter signed [19:0] FIR_C17 = 20'h02F9E ;    //The FIR_coefficient value 17: 1.860046e-001
+parameter signed [19:0] FIR_C18 = 20'h01DAC ;    //The FIR_coefficient value 18: 1.159058e-001
+parameter signed [19:0] FIR_C19 = 20'h00B1A ;    //The FIR_coefficient value 19: 4.336548e-002
+parameter signed [19:0] FIR_C20 = 20'hFFD74 ;     //The FIR_coefficient value 20: -9.948730e-003
+parameter signed [19:0] FIR_C21 = 20'hFF74E ;     //The FIR_coefficient value 21: -3.396606e-002
+parameter signed [19:0] FIR_C22 = 20'hFF7CA ;     //The FIR_coefficient value 22: -3.207397e-002
+parameter signed [19:0] FIR_C23 = 20'hFFBC5 ;     //The FIR_coefficient value 23: -1.652527e-002
+parameter signed [19:0] FIR_C24 = 20'hFFFE4 ;     //The FIR_coefficient value 24: -4.272461e-004
+parameter signed [19:0] FIR_C25 = 20'h00222 ;    //The FIR_coefficient value 25: 8.331299e-003
+parameter signed [19:0] FIR_C26 = 20'h0024A ;    //The FIR_coefficient value 26: 8.941650e-003
+parameter signed [19:0] FIR_C27 = 20'h0014B ;    //The FIR_coefficient value 27: 5.050659e-003
+parameter signed [19:0] FIR_C28 = 20'h0003B ;    //The FIR_coefficient value 28: 9.002686e-004
+parameter signed [19:0] FIR_C29 = 20'hFFFA7 ;     //The FIR_coefficient value 29: -1.358032e-003
+parameter signed [19:0] FIR_C30 = 20'hFFF86 ;     //The FIR_coefficient value 30: -1.861572e-003
+parameter signed [19:0] FIR_C31 = 20'hFFF9E ;     //The FIR_coefficient value 31: -1.495361e-003
 
 //data_buffer
 reg signed [15:0] data_buffer[31:0];
@@ -136,15 +136,15 @@ wire signed [38:0] sum_2_5 = sum_1_10 + sum_1_11;
 wire signed [38:0] sum_2_6 = sum_1_12 + sum_1_13;
 wire signed [38:0] sum_2_7 = sum_1_14 + sum_1_15;
 //sum_3
-wire signed [39:0] sum_3_0 = {sum_2_0[38],sum_2_0} + {sum_2_1[38],sum_2_1};
-wire signed [39:0] sum_3_1 = {sum_2_2[38],sum_2_2} + {sum_2_3[38],sum_2_3};
-wire signed [39:0] sum_3_2 = {sum_2_4[38],sum_2_4} + {sum_2_5[38],sum_2_5};
-wire signed [39:0] sum_3_3 = {sum_2_6[38],sum_2_6} + {sum_2_7[38],sum_2_7};
+wire signed [39:0] sum_3_0 = sum_2_0 + sum_2_1;
+wire signed [39:0] sum_3_1 = sum_2_2 + sum_2_3;
+wire signed [39:0] sum_3_2 = sum_2_4 + sum_2_5;
+wire signed [39:0] sum_3_3 = sum_2_6 + sum_2_7;
 //sum_4
-wire signed [40:0] sum_4_0 = {sum_3_0[39],sum_3_0} + {sum_3_1[39],sum_3_1};
-wire signed [40:0] sum_4_1 = {sum_3_2[39],sum_3_2} + {sum_3_3[39],sum_3_3};
+wire signed [40:0] sum_4_0 = sum_3_0 + sum_3_1;
+wire signed [40:0] sum_4_1 = sum_3_2 + sum_3_3;
 //sum_5
-wire signed [41:0] SUM = {sum_4_0[40],sum_4_0} + {sum_4_1[40],sum_4_1};
+wire signed [41:0] SUM = sum_4_0 + sum_4_1;
 
 reg [5:0] counter_fir; //32
 reg [3:0] counter_p; // counter_parallel 1 to 16
@@ -282,6 +282,22 @@ reg [31:0] f_WI[7:0];
 wire [63:0] f_A[7:0];
 wire [63:0] f_B[7:0];
 
+wire [32:0] pow2_add_0= (fft_d0[31:16]*fft_d0[31:16]) + (fft_d0[15:0]*fft_d0[15:0]);
+wire [32:0] pow2_add_1 = (fft_d1[31:16]*fft_d1[31:16]) + (fft_d1[15:0]*fft_d1[15:0]);
+wire [32:0] pow2_add_2 = (fft_d2[31:16]*fft_d2[31:16]) + (fft_d2[15:0]*fft_d2[15:0]);
+wire [32:0] pow2_add_3 = (fft_d3[31:16]*fft_d3[31:16]) + (fft_d3[15:0]*fft_d3[15:0]);
+wire [32:0] pow2_add_4 = (fft_d4[31:16]*fft_d4[31:16]) + (fft_d4[15:0]*fft_d4[15:0]);
+wire [32:0] pow2_add_5 = (fft_d5[31:16]*fft_d5[31:16]) + (fft_d5[15:0]*fft_d5[15:0]);
+wire [32:0] pow2_add_6 = (fft_d6[31:16]*fft_d6[31:16]) + (fft_d6[15:0]*fft_d6[15:0]);
+wire [32:0] pow2_add_7 = (fft_d7[31:16]*fft_d7[31:16]) + (fft_d7[15:0]*fft_d7[15:0]);
+wire [32:0] pow2_add_8 = (fft_d8[31:16]*fft_d8[31:16]) + (fft_d8[15:0]*fft_d8[15:0]);
+wire [32:0] pow2_add_9 = (fft_d9[31:16]*fft_d9[31:16]) + (fft_d9[15:0]*fft_d9[15:0]);
+wire [32:0] pow2_add_10 = (fft_d10[31:16]*fft_d10[31:16]) + (fft_d10[15:0]*fft_d10[15:0]);
+wire [32:0] pow2_add_11 = (fft_d11[31:16]*fft_d11[31:16]) + (fft_d11[15:0]*fft_d11[15:0]);
+wire [32:0] pow2_add_12 = (fft_d12[31:16]*fft_d12[31:16]) + (fft_d12[15:0]*fft_d12[15:0]);
+wire [32:0] pow2_add_13 = (fft_d13[31:16]*fft_d13[31:16]) + (fft_d13[15:0]*fft_d13[15:0]);
+wire [32:0] pow2_add_14 = (fft_d14[31:16]*fft_d14[31:16]) + (fft_d14[15:0]*fft_d14[15:0]);
+wire [32:0] pow2_add_15 = (fft_d15[31:16]*fft_d15[31:16]) + (fft_d15[15:0]*fft_d15[15:0]);
 
 always@(posedge clk or posedge rst)
 begin
@@ -303,7 +319,7 @@ begin
         fft_d13 <= 32'd0;
         fft_d14 <= 32'd0;
         fft_d15 <= 32'd0;
-        for(i=1;i<8;i++)
+        for(i=1;i<8;i=i+1)
         begin
             f_X[i] <= 64'd0;
             f_Y[i] <= 64'd0;
@@ -504,7 +520,7 @@ end
 
 genvar j;
 generate
-    for(j=0;j<8;j++)
+    for(j=0;j<8;j=j+1)
     begin
         fft_butterFly fb(.X(f_X[j]),.Y(f_Y[j]),.W_R(f_WR[j]),.W_I(f_WI[j]),
                         .fft_a(f_A[j]),
@@ -535,8 +551,8 @@ wire signed [32:0] a_minus_c = a - c;
 wire signed [32:0] d_minus_b = d - b;
 wire signed [32:0] b_minus_d = b - d;
 
-wire signed [64:0] fft_b_R = a_minus_c*W_R + d_minus_b*W_I;
-wire signed [64:0] fft_b_I = a_minus_c*W_I + b_minus_d*W_R;
+wire signed [64:0] fft_b_R = ((a_minus_c*W_R) + (d_minus_b*W_I));
+wire signed [64:0] fft_b_I = ((a_minus_c*W_I) + (b_minus_d*W_R));
 
 assign fft_a[63:32] = {fft_a_R[32],fft_a_R[30:0]}; 
 assign fft_a[31:0] =  {fft_a_I[32],fft_a_I[30:0]};

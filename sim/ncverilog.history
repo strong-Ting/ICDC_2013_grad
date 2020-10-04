@@ -238,3 +238,43 @@ s237(04Oct2020:21:25:28):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r
 s238(04Oct2020:21:25:48):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
 s239(04Oct2020:21:26:23):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
 s240(04Oct2020:21:26:36):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s241(04Oct2020:21:31:05):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s242(04Oct2020:21:47:12):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +access+r 
+s243(04Oct2020:21:47:52):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +access+r 
+s244(04Oct2020:21:48:13):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +access+r 
+s245(04Oct2020:21:49:09):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s246(04Oct2020:21:50:02):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s247(04Oct2020:21:50:48):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s248(04Oct2020:21:51:18):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s249(04Oct2020:21:52:32):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s250(04Oct2020:21:54:12):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE +access+r 
+s251(04Oct2020:21:56:36):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s252(04Oct2020:21:57:11):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s253(04Oct2020:21:57:35):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s254(04Oct2020:21:57:48):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s255(04Oct2020:21:58:06):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s256(04Oct2020:21:58:24):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s257(04Oct2020:22:11:50):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s258(04Oct2020:22:13:56):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s259(04Oct2020:22:14:51):  ncverilog -sv testfixture2.v ../syn/FAS.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s260(04Oct2020:22:15:01):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s261(04Oct2020:22:16:09):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s262(04Oct2020:22:16:59):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s263(04Oct2020:22:18:18):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s264(04Oct2020:22:22:48):  ncverilog -sv testfixture2.v ../src/FAS.v 
+s265(04Oct2020:22:22:58):  ncverilog -sv testfixture2.v ../src/FAS.v 
+s266(04Oct2020:22:23:25):  ncverilog -sv testfixture1.v ../src/FAS.v 
+s267(04Oct2020:22:38:53):  ncverilog -sv testfixture1.v ../src/FAS.v 
+s268(04Oct2020:22:38:57):  ncverilog -sv testfixture1.v ../src/FAS.v 
+s269(04Oct2020:22:39:21):  ncverilog -sv testfixture1.v ../src/FAS.v 
+s270(04Oct2020:22:39:29):  ncverilog -sv testfixture1.v ../src/FAS.v 
+s271(04Oct2020:22:39:52):  ncverilog -sv testfixture2.v ../src/FAS.v 
+s272(04Oct2020:23:37:10):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s273(04Oct2020:23:38:31):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s274(04Oct2020:23:40:45):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDFFILE 
+s275(04Oct2020:23:41:47):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 
+s276(04Oct2020:23:42:23):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 
+s277(04Oct2020:23:43:47):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 
+s278(04Oct2020:23:44:36):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 
+s279(04Oct2020:23:47:37):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 
+s280(04Oct2020:23:48:43):  ncverilog testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v 

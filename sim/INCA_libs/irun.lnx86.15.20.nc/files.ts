@@ -1,3 +1,5 @@
-1601785269 /home/lin/github/CIC_2013_grad/sim/testfixture1.v
-1601817995 /home/lin/github/CIC_2013_grad/src/FAS.v
-1601817821 /home/lin/github/CIC_2013_grad/sim/testfixture2.v
+1600251382 /home/lin/github/tsmc13_neg.v
+1601826519 /home/lin/github/CIC_2013_grad/sim/testfixture1.v
+1601822431 /home/lin/github/CIC_2013_grad/src/FAS.v
+1601826454 /home/lin/github/CIC_2013_grad/sim/testfixture2.v
+1601824894 /home/lin/github/CIC_2013_grad/syn/FAS_syn.v

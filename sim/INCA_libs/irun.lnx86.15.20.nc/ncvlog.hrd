@@ -2,4 +2,5 @@
 // File created by:  ncverilog
 // Do not modify this file
 //
--sv
+-VFILE
+../../tsmc13_neg.v

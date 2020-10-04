@@ -1,10 +1,10 @@
 `timescale 1ns/10ps
-`define CYCLE     10                 // Modify your clock period here
-`define SDFFILE    ""    // Modify your sdf file name
-`define End_CYCLE  1100          // Modify cycle times once your design need more cycle times!
+`define CYCLE     10                // Modify your clock period here
+`define SDFFILE    "./FAS_syn.sdf"  // Modify your sdf file name
+`define End_CYCLE  1200          // Modify cycle times once your design need more cycle times!
 
 `define fir_fail_limit 48
-`define fft_fail_limit 40
+`define fft_fail_limit 48
 
 
 
@@ -27,15 +27,15 @@ wire [3:0] freq;
 reg en;
 
 reg [15:0] data_mem [0:1023];
-initial $readmemh("./dat/Pattern1.dat", data_mem);
+initial $readmemh("./dat/Pattern2.dat", data_mem);
 
 reg [15:0] fir_mem [0:1023];
-initial $readmemh("./dat/Golden1_FIR.dat", fir_mem);
+initial $readmemh("./dat/Golden2_FIR.dat", fir_mem);
 
 reg [15:0] fftr_mem [0:1023];
-initial $readmemh("./dat/Golden1_FFT_real.dat", fftr_mem);
+initial $readmemh("./dat/Golden2_FFT_real.dat", fftr_mem);
 reg [15:0] ffti_mem [0:1023];
-initial $readmemh("./dat/Golden1_FFT_imag.dat", ffti_mem);
+initial $readmemh("./dat/Golden2_FFT_imag.dat", ffti_mem);
 
 integer i, j ,k, l;
 integer fir_fail, fft_fail;
@@ -45,9 +45,9 @@ FAS DUT(.data_valid(en), .data(data), .clk(clk), .rst(reset), .fir_d(fir_d), .fi
  	.fft_d9(fft_d9), .fft_d10(fft_d10), .fft_d11(fft_d11), .fft_d12(fft_d12), .fft_d13(fft_d13), .fft_d14(fft_d14), .fft_d15(fft_d15) );
 
 
-`ifdef SDFFILE
+//`ifdef SDFFILE
 initial $sdf_annotate(`SDFFILE, DUT);
-`endif
+//`endif
 
 
 initial begin
