@@ -1,350 +1,304 @@
-wvSetPosition -win $_nWave1 {("G1" 0)}
-wvOpenFile -win $_nWave1 {/home/lin/github/CIC_2013_grad/sim/FAS.fsdb}
-wvResizeWindow -win $_nWave1 1920 23 1680 987
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvSetPosition -win $_nWave1 {("G1" 1)}
-wvSetPosition -win $_nWave1 {("G1" 1)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 1 )} 
-wvSetPosition -win $_nWave1 {("G1" 1)}
-wvSetPosition -win $_nWave1 {("G1" 2)}
-wvSetPosition -win $_nWave1 {("G1" 2)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/data\[15:0\]} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 2 )} 
-wvSetPosition -win $_nWave1 {("G1" 2)}
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/done} \
-{/testfixture1/fir_valid} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 3 4 )} 
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/done} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/data_valid} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/done} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/data_valid} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvGetSignalClose -win $_nWave1
-wvResizeWindow -win $_nWave1 315 39 960 332
 wvResizeWindow -win $_nWave1 0 23 1920 1017
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvSetPosition -win $_nWave1 {("G1" 3)}
-wvSetPosition -win $_nWave1 {("G1" 2)}
-wvSetPosition -win $_nWave1 {("G1" 1)}
-wvMoveSelected -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 1)}
-wvSetPosition -win $_nWave1 {("G1" 2)}
-wvSetCursor -win $_nWave1 1135.564923 -snap {("G2" 0)}
-wvSelectSignal -win $_nWave1 {( "G1" 4 )} 
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetPosition -win $_nWave1 {("G2" 0)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvMoveSelected -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 5)}
+wvRestoreSignal -win $_nWave1 "/home/lin/github/CIC_2013_grad/sim/signal.rc" \
+           -overWriteAutoAlias on -appendSignals on
+wvResizeWindow -win $_nWave1 0 23 1920 1017
+wvSetCursor -win $_nWave1 53784.516308 -snap {("G2" 8)}
+wvSelectSignal -win $_nWave1 {( "G2" 6 )} 
 wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
+wvSetPosition -win $_nWave1 {("G3" 21)}
+wvSetPosition -win $_nWave1 {("G3" 21)}
 wvAddSignal -win $_nWave1 -clear
 wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
 {/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/done} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/done} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-}
-wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvGetSignalClose -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvMoveSelected -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 4)}
-wvSetPosition -win $_nWave1 {("G1" 5)}
-wvSetCursor -win $_nWave1 2174.713956 -snap {("G2" 0)}
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/done} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
 }
 wvAddSignal -win $_nWave1 -group {"G2" \
+{/testfixture1/DUT/fft_run} \
+{/testfixture1/DUT/counter_fir\[5:0\]} \
+{/testfixture1/DUT/fft_valid} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_R\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_I\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/X\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/Y\[31:0\]} \
+{/testfixture1/DUT/SUM\[41:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/counter_fft\[2:0\]} \
+{/testfixture1/DUT/counter_p\[3:0\]} \
 }
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvSetPosition -win $_nWave1 {("G1" 6)}
+wvAddSignal -win $_nWave1 -group {"G3" \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/fft_d2\[31:0\]} \
+{/testfixture1/DUT/fft_d3\[31:0\]} \
+{/testfixture1/DUT/fft_d4\[31:0\]} \
+{/testfixture1/DUT/fft_d5\[31:0\]} \
+{/testfixture1/DUT/fft_d6\[31:0\]} \
+{/testfixture1/DUT/fft_d7\[31:0\]} \
+{/testfixture1/DUT/fft_d8\[31:0\]} \
+{/testfixture1/DUT/fft_d9\[31:0\]} \
+{/testfixture1/DUT/fft_d10\[31:0\]} \
+{/testfixture1/DUT/fft_d11\[31:0\]} \
+{/testfixture1/DUT/fft_d12\[31:0\]} \
+{/testfixture1/DUT/fft_d13\[31:0\]} \
+{/testfixture1/DUT/fft_d14\[31:0\]} \
+{/testfixture1/DUT/fft_d15\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/a\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/b\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/c\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/d\[15:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G4" \
+}
+wvSelectSignal -win $_nWave1 {( "G3" 18 19 20 21 )} 
+wvSetPosition -win $_nWave1 {("G3" 21)}
+wvSetPosition -win $_nWave1 {("G3" 23)}
+wvSetPosition -win $_nWave1 {("G3" 23)}
 wvAddSignal -win $_nWave1 -clear
 wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
 {/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/done} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
 }
 wvAddSignal -win $_nWave1 -group {"G2" \
+{/testfixture1/DUT/fft_run} \
+{/testfixture1/DUT/counter_fir\[5:0\]} \
+{/testfixture1/DUT/fft_valid} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_R\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_I\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/X\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/Y\[31:0\]} \
+{/testfixture1/DUT/SUM\[41:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/counter_fft\[2:0\]} \
+{/testfixture1/DUT/counter_p\[3:0\]} \
 }
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSetPosition -win $_nWave1 {("G1" 6)}
-wvGetSignalClose -win $_nWave1
-wvSelectSignal -win $_nWave1 {( "G1" 4 5 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSetPosition -win $_nWave1 {("G1" 7)}
-wvMoveSelected -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 7)}
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalClose -win $_nWave1
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSetRadix -win $_nWave1 -format Bin
-wvZoomIn -win $_nWave1
-wvZoomIn -win $_nWave1
-wvSelectSignal -win $_nWave1 {( "G1" 4 )} 
-wvSetCursor -win $_nWave1 41289.641507
-wvSetCursor -win $_nWave1 34505.712381 -snap {("G1" 1)}
-wvResizeWindow -win $_nWave1 1892 297 960 332
-wvResizeWindow -win $_nWave1 1920 23 1680 987
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetRadix -win $_nWave1 -format Bin
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 6 )} 
-wvDisplayGridCount -win $_nWave1 -off
-wvGetSignalClose -win $_nWave1
-wvReloadFile -win $_nWave1
-wvGetSignalOpen -win $_nWave1
-wvGetSignalClose -win $_nWave1
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvDisplayGridCount -win $_nWave1 -off
-wvGetSignalClose -win $_nWave1
-wvReloadFile -win $_nWave1
-wvGetSignalOpen -win $_nWave1
-wvDisplayGridCount -win $_nWave1 -off
-wvGetSignalClose -win $_nWave1
-wvReloadFile -win $_nWave1
-wvGetSignalOpen -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -group {"G3" \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/fft_d2\[31:0\]} \
+{/testfixture1/DUT/fft_d3\[31:0\]} \
+{/testfixture1/DUT/fft_d4\[31:0\]} \
+{/testfixture1/DUT/fft_d5\[31:0\]} \
+{/testfixture1/DUT/fft_d6\[31:0\]} \
+{/testfixture1/DUT/fft_d7\[31:0\]} \
+{/testfixture1/DUT/fft_d8\[31:0\]} \
+{/testfixture1/DUT/fft_d9\[31:0\]} \
+{/testfixture1/DUT/fft_d10\[31:0\]} \
+{/testfixture1/DUT/fft_d11\[31:0\]} \
+{/testfixture1/DUT/fft_d12\[31:0\]} \
+{/testfixture1/DUT/fft_d13\[31:0\]} \
+{/testfixture1/DUT/fft_d14\[31:0\]} \
+{/testfixture1/DUT/fft_d15\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/a\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/b\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/c\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/d\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_I\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_R\[48:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G4" \
+}
+wvSelectSignal -win $_nWave1 {( "G3" 22 23 )} 
+wvSetPosition -win $_nWave1 {("G3" 23)}
+wvSetPosition -win $_nWave1 {("G3" 24)}
+wvSetPosition -win $_nWave1 {("G3" 24)}
 wvAddSignal -win $_nWave1 -clear
 wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
 {/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-{/testfixture1/done} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/DUT/data_buffer\[31:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
 }
 wvAddSignal -win $_nWave1 -group {"G2" \
+{/testfixture1/DUT/fft_run} \
+{/testfixture1/DUT/counter_fir\[5:0\]} \
+{/testfixture1/DUT/fft_valid} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_R\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_I\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/X\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/Y\[31:0\]} \
+{/testfixture1/DUT/SUM\[41:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/counter_fft\[2:0\]} \
+{/testfixture1/DUT/counter_p\[3:0\]} \
 }
-wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvSetPosition -win $_nWave1 {("G1" 8)}
+wvAddSignal -win $_nWave1 -group {"G3" \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/fft_d2\[31:0\]} \
+{/testfixture1/DUT/fft_d3\[31:0\]} \
+{/testfixture1/DUT/fft_d4\[31:0\]} \
+{/testfixture1/DUT/fft_d5\[31:0\]} \
+{/testfixture1/DUT/fft_d6\[31:0\]} \
+{/testfixture1/DUT/fft_d7\[31:0\]} \
+{/testfixture1/DUT/fft_d8\[31:0\]} \
+{/testfixture1/DUT/fft_d9\[31:0\]} \
+{/testfixture1/DUT/fft_d10\[31:0\]} \
+{/testfixture1/DUT/fft_d11\[31:0\]} \
+{/testfixture1/DUT/fft_d12\[31:0\]} \
+{/testfixture1/DUT/fft_d13\[31:0\]} \
+{/testfixture1/DUT/fft_d14\[31:0\]} \
+{/testfixture1/DUT/fft_d15\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/a\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/b\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/c\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/d\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_I\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_R\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G4" \
+}
+wvSelectSignal -win $_nWave1 {( "G3" 24 )} 
+wvSetPosition -win $_nWave1 {("G3" 24)}
+wvSetPosition -win $_nWave1 {("G3" 26)}
+wvSetPosition -win $_nWave1 {("G3" 26)}
 wvAddSignal -win $_nWave1 -clear
 wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
 {/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-{/testfixture1/done} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/DUT/data_buffer\[31:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
 }
 wvAddSignal -win $_nWave1 -group {"G2" \
+{/testfixture1/DUT/fft_run} \
+{/testfixture1/DUT/counter_fir\[5:0\]} \
+{/testfixture1/DUT/fft_valid} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_R\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_I\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/X\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/Y\[31:0\]} \
+{/testfixture1/DUT/SUM\[41:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/counter_fft\[2:0\]} \
+{/testfixture1/DUT/counter_p\[3:0\]} \
 }
-wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvGetSignalClose -win $_nWave1
-wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
-wvExpandBus -win $_nWave1
-wvSetCursor -win $_nWave1 869.578480 -snap {("G1" 39)}
-wvSelectSignal -win $_nWave1 {( "G1" 40 )} 
-wvZoom -win $_nWave1 72625.440362 73523.969745
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetPosition -win $_nWave1 {("G1" 9)}
-wvExpandBus -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 56)}
-wvSelectSignal -win $_nWave1 {( "G1" 8 )} 
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvCollapseBus -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 8)}
-wvResizeWindow -win $_nWave1 1920 23 1680 987
-wvSelectSignal -win $_nWave1 {( "G1" 4 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetRadix -win $_nWave1 -format Hex
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetRadix -win $_nWave1 -format UDec
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetRadix -win $_nWave1 -format 754
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSetRadix -win $_nWave1 -format Hex
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSetRadix -win $_nWave1 -format Bin
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSetRadix -win $_nWave1 -format Oct
-wvSetRadix -win $_nWave1 -2Com
-wvSetRadix -win $_nWave1 -Mag
-wvSetRadix -win $_nWave1 -Unsigned
-wvSelectSignal -win $_nWave1 {( "G1" 7 )} 
-wvSetRadix -win $_nWave1 -format UDec
-wvSetRadix -win $_nWave1 -2Com
-wvSetRadix -win $_nWave1 -2Com
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSelectSignal -win $_nWave1 {( "G1" 5 )} 
-wvSetRadix -win $_nWave1 -format 754_16
-wvGetSignalOpen -win $_nWave1
-wvGetSignalSetScope -win $_nWave1 "/testfixture1"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalSetScope -win $_nWave1 "/testfixture1/DUT"
-wvGetSignalClose -win $_nWave1
-wvDisplayGridCount -win $_nWave1 -off
-wvGetSignalClose -win $_nWave1
-wvReloadFile -win $_nWave1
-wvGetSignalOpen -win $_nWave1
-wvSetPosition -win $_nWave1 {("G1" 9)}
-wvSetPosition -win $_nWave1 {("G1" 9)}
+wvAddSignal -win $_nWave1 -group {"G3" \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/fft_d2\[31:0\]} \
+{/testfixture1/DUT/fft_d3\[31:0\]} \
+{/testfixture1/DUT/fft_d4\[31:0\]} \
+{/testfixture1/DUT/fft_d5\[31:0\]} \
+{/testfixture1/DUT/fft_d6\[31:0\]} \
+{/testfixture1/DUT/fft_d7\[31:0\]} \
+{/testfixture1/DUT/fft_d8\[31:0\]} \
+{/testfixture1/DUT/fft_d9\[31:0\]} \
+{/testfixture1/DUT/fft_d10\[31:0\]} \
+{/testfixture1/DUT/fft_d11\[31:0\]} \
+{/testfixture1/DUT/fft_d12\[31:0\]} \
+{/testfixture1/DUT/fft_d13\[31:0\]} \
+{/testfixture1/DUT/fft_d14\[31:0\]} \
+{/testfixture1/DUT/fft_d15\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/a\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/b\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/c\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/d\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_I\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_R\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a_I\[16:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a_R\[16:0\]} \
+}
+wvAddSignal -win $_nWave1 -group {"G4" \
+}
+wvSelectSignal -win $_nWave1 {( "G3" 25 26 )} 
+wvSetPosition -win $_nWave1 {("G3" 26)}
+wvSetPosition -win $_nWave1 {("G3" 26)}
+wvSetPosition -win $_nWave1 {("G3" 26)}
 wvAddSignal -win $_nWave1 -clear
 wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
+{/testfixture1/DUT/clk} \
+{/testfixture1/DUT/rst} \
+{/testfixture1/DUT/data\[15:0\]} \
 {/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-{/testfixture1/done} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/DUT/data_buffer\[31:0\]} \
-{/testfixture1/DUT/FIR_C00\[19:0\]} \
+{/testfixture1/DUT/fir_d\[15:0\]} \
 }
 wvAddSignal -win $_nWave1 -group {"G2" \
-}
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetPosition -win $_nWave1 {("G1" 9)}
-wvSetPosition -win $_nWave1 {("G1" 9)}
-wvSetPosition -win $_nWave1 {("G1" 9)}
-wvAddSignal -win $_nWave1 -clear
-wvAddSignal -win $_nWave1 -group {"G1" \
-{/testfixture1/clk} \
-{/testfixture1/DUT/data_valid} \
-{/testfixture1/data\[15:0\]} \
-{/testfixture1/fir_valid} \
-{/testfixture1/DUT/fir_d\[15:0\]} \
-{/testfixture1/done} \
+{/testfixture1/DUT/fft_run} \
+{/testfixture1/DUT/counter_fir\[5:0\]} \
+{/testfixture1/DUT/fft_valid} \
+{/testfixture1/DUT/fir_valid} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_R\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/W_I\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/X\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/Y\[31:0\]} \
 {/testfixture1/DUT/SUM\[41:0\]} \
-{/testfixture1/DUT/data_buffer\[31:0\]} \
-{/testfixture1/DUT/FIR_C00\[19:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/counter_fft\[2:0\]} \
+{/testfixture1/DUT/counter_p\[3:0\]} \
 }
-wvAddSignal -win $_nWave1 -group {"G2" \
+wvAddSignal -win $_nWave1 -group {"G3" \
+{/testfixture1/DUT/fir_d\[15:0\]} \
+{/testfixture1/DUT/fft_d0\[31:0\]} \
+{/testfixture1/DUT/fft_d1\[31:0\]} \
+{/testfixture1/DUT/fft_d2\[31:0\]} \
+{/testfixture1/DUT/fft_d3\[31:0\]} \
+{/testfixture1/DUT/fft_d4\[31:0\]} \
+{/testfixture1/DUT/fft_d5\[31:0\]} \
+{/testfixture1/DUT/fft_d6\[31:0\]} \
+{/testfixture1/DUT/fft_d7\[31:0\]} \
+{/testfixture1/DUT/fft_d8\[31:0\]} \
+{/testfixture1/DUT/fft_d9\[31:0\]} \
+{/testfixture1/DUT/fft_d10\[31:0\]} \
+{/testfixture1/DUT/fft_d11\[31:0\]} \
+{/testfixture1/DUT/fft_d12\[31:0\]} \
+{/testfixture1/DUT/fft_d13\[31:0\]} \
+{/testfixture1/DUT/fft_d14\[31:0\]} \
+{/testfixture1/DUT/fft_d15\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/a\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/b\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/c\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/d\[15:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_I\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b_R\[48:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_b\[31:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a_I\[16:0\]} \
+{/testfixture1/DUT/genblk1\[0\]/fb/fft_a_R\[16:0\]} \
 }
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetPosition -win $_nWave1 {("G1" 9)}
+wvAddSignal -win $_nWave1 -group {"G4" \
+}
+wvSelectSignal -win $_nWave1 {( "G3" 25 26 )} 
+wvSetPosition -win $_nWave1 {("G3" 26)}
 wvGetSignalClose -win $_nWave1
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format Bin
-wvSetRadix -win $_nWave1 -2Com
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format UDec
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format 754
-wvSetRadix -win $_nWave1 -Unsigned
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format Ascii
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format Bin
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format Oct
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format UDec
-wvSetRadix -win $_nWave1 -2Com
-wvSetRadix -win $_nWave1 -Mag
-wvSetRadix -win $_nWave1 -2Com
-wvSelectSignal -win $_nWave1 {( "G1" 9 )} 
-wvSetRadix -win $_nWave1 -format Bin
+wvSelectSignal -win $_nWave1 {( "G3" 24 )} 
+wvSelectSignal -win $_nWave1 {( "G3" 23 )} 
+wvSelectSignal -win $_nWave1 {( "G3" 22 )} 
+wvSelectSignal -win $_nWave1 {( "G3" 23 )} 
+wvSelectSignal -win $_nWave1 {( "G3" 25 )} 
+wvSelectSignal -win $_nWave1 {( "G3" 24 )} 

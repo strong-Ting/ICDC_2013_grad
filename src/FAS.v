@@ -75,7 +75,7 @@ begin
 end
 
 //mul
-wire signed [50:0] mul[31:0];
+wire signed [36:0] mul[31:0];
 assign mul[0] = data_buffer[0] * FIR_C00;
 assign mul[1] = data_buffer[1] * FIR_C01;
 assign mul[2] = data_buffer[2] * FIR_C02;
@@ -110,88 +110,109 @@ assign mul[30] = data_buffer[30] * FIR_C30;
 assign mul[31] = data_buffer[31] * FIR_C31;
 
 //sum_1
-wire signed [50:0] sum_1_0 = mul[0] + mul[1];
-wire signed [50:0] sum_1_1 = mul[2] + mul[3];
-wire signed [50:0] sum_1_2 = mul[4] + mul[5];
-wire signed [50:0] sum_1_3 = mul[6] + mul[7];
-wire signed [50:0] sum_1_4 = mul[8] + mul[9];
-wire signed [50:0] sum_1_5 = mul[10] + mul[11];
-wire signed [50:0] sum_1_6 = mul[12] + mul[13];
-wire signed [50:0] sum_1_7 = mul[14] + mul[15];
-wire signed [50:0] sum_1_8 = mul[16] + mul[17];
-wire signed [50:0] sum_1_9 = mul[18] + mul[19];
-wire signed [50:0] sum_1_10 = mul[20] + mul[21];
-wire signed [50:0] sum_1_11 = mul[22] + mul[23];
-wire signed [50:0] sum_1_12 = mul[24] + mul[25];
-wire signed [50:0] sum_1_13 = mul[26] + mul[27];
-wire signed [50:0] sum_1_14 = mul[28] + mul[29];
-wire signed [50:0] sum_1_15 = mul[30] + mul[31];
+wire signed [37:0] sum_1_0 = mul[0] + mul[1];
+wire signed [37:0] sum_1_1 = mul[2] + mul[3];
+wire signed [37:0] sum_1_2 = mul[4] + mul[5];
+wire signed [37:0] sum_1_3 = mul[6] + mul[7];
+wire signed [37:0] sum_1_4 = mul[8] + mul[9];
+wire signed [37:0] sum_1_5 = mul[10] + mul[11];
+wire signed [37:0] sum_1_6 = mul[12] + mul[13];
+wire signed [37:0] sum_1_7 = mul[14] + mul[15];
+wire signed [37:0] sum_1_8 = mul[16] + mul[17];
+wire signed [37:0] sum_1_9 = mul[18] + mul[19];
+wire signed [37:0] sum_1_10 = mul[20] + mul[21];
+wire signed [37:0] sum_1_11 = mul[22] + mul[23];
+wire signed [37:0] sum_1_12 = mul[24] + mul[25];
+wire signed [37:0] sum_1_13 = mul[26] + mul[27];
+wire signed [37:0] sum_1_14 = mul[28] + mul[29];
+wire signed [37:0] sum_1_15 = mul[30] + mul[31];
 //sum_2
-wire signed [50:0] sum_2_0 = sum_1_0 + sum_1_1;
-wire signed [50:0] sum_2_1 = sum_1_2 + sum_1_3;
-wire signed [50:0] sum_2_2 = sum_1_4 + sum_1_5;
-wire signed [50:0] sum_2_3 = sum_1_6 + sum_1_7;
-wire signed [50:0] sum_2_4 = sum_1_8 + sum_1_9;
-wire signed [50:0] sum_2_5 = sum_1_10 + sum_1_11;
-wire signed [50:0] sum_2_6 = sum_1_12 + sum_1_13;
-wire signed [50:0] sum_2_7 = sum_1_14 + sum_1_15;
+wire signed [38:0] sum_2_0 = sum_1_0 + sum_1_1;
+wire signed [38:0] sum_2_1 = sum_1_2 + sum_1_3;
+wire signed [38:0] sum_2_2 = sum_1_4 + sum_1_5;
+wire signed [38:0] sum_2_3 = sum_1_6 + sum_1_7;
+wire signed [38:0] sum_2_4 = sum_1_8 + sum_1_9;
+wire signed [38:0] sum_2_5 = sum_1_10 + sum_1_11;
+wire signed [38:0] sum_2_6 = sum_1_12 + sum_1_13;
+wire signed [38:0] sum_2_7 = sum_1_14 + sum_1_15;
 //sum_3
-wire signed [50:0] sum_3_0 = sum_2_0 + sum_2_1;
-wire signed [50:0] sum_3_1 = sum_2_2 + sum_2_3;
-wire signed [50:0] sum_3_2 = sum_2_4 + sum_2_5;
-wire signed [50:0] sum_3_3 = sum_2_6 + sum_2_7;
+wire signed [39:0] sum_3_0 = {sum_2_0[38],sum_2_0} + {sum_2_1[38],sum_2_1};
+wire signed [39:0] sum_3_1 = {sum_2_2[38],sum_2_2} + {sum_2_3[38],sum_2_3};
+wire signed [39:0] sum_3_2 = {sum_2_4[38],sum_2_4} + {sum_2_5[38],sum_2_5};
+wire signed [39:0] sum_3_3 = {sum_2_6[38],sum_2_6} + {sum_2_7[38],sum_2_7};
 //sum_4
-wire signed [50:0] sum_4_0 = sum_3_0 + sum_3_1;
-wire signed [50:0] sum_4_1 = sum_3_2 + sum_3_3;
+wire signed [40:0] sum_4_0 = {sum_3_0[39],sum_3_0} + {sum_3_1[39],sum_3_1};
+wire signed [40:0] sum_4_1 = {sum_3_2[39],sum_3_2} + {sum_3_3[39],sum_3_3};
 //sum_5
-wire signed [50:0] SUM = sum_4_0 + sum_4_1;
+wire signed [41:0] SUM = {sum_4_0[40],sum_4_0} + {sum_4_1[40],sum_4_1};
 
-reg [2:0] cs,ns; //current state , next state 
-parameter IDLE = 3'd0;
-parameter DATA_IN = 3'd1;
-parameter DATA_IN_AF32 = 3'd2; //data in after 32 clk
-//switch state
-always@(posedge clk or posedge rst)
-begin
-    if(rst) cs <= IDLE;
-    else cs <= ns;
-end
-//next state logic 
-/*
-always@(*)
-begin
-    case(cs)
-    endcase
-end
-*/
+reg [5:0] counter_fir; //32
+reg [3:0] counter_p; // counter_parallel 1 to 16
+reg [3:0] counter_fft;
+reg fft_run;
+
+reg signed [31:0] y_buffer [0:15];
+
+
+
+
 //cout 32
-reg [10:0] counter;
 always@(posedge clk or posedge rst)
 begin
-    if(rst) counter <= 10'd0;
-    else if(data_valid == 1'd1) counter <= counter + 10'd1;
+    if(rst) counter_fir <= 6'd0;
+    else if(counter_fir == 6'd33) counter_fir <= counter_fir;
+    else if(data_valid) counter_fir <= counter_fir + 6'd1;
 end
 
+//count 16 fir 
+always@(posedge clk or posedge rst)
+begin
+    if(rst) counter_p <= 4'd0;
+    else if(fir_valid) counter_p <= counter_p + 4'd1;
+end
+
+//count fft , fft_run
+always@(posedge clk or posedge rst)
+begin
+    if(rst) 
+    begin
+        counter_fft <= 4'd0;
+        fft_run <= 1'd0;
+    end
+    else if(counter_fft == 4'd9)
+    begin
+        counter_fft <= 4'd0;
+        fft_run <= 1'd0;
+    end
+    else if(counter_p == 4'd15 || fft_run == 1'd1) 
+    begin
+        counter_fft <= counter_fft + 4'd1;
+        fft_run <= 1'd1;
+    end
+    
+end
 
 //output logic
 //fir_valid
 always@(posedge clk or posedge rst)
 begin
     if(rst) fir_valid <= 1'd0;
-    else if(data_valid== 1'd1 && counter == 6'd33) fir_valid <= 1'd1;
+    else if(data_valid && counter_fir == 6'd33) fir_valid <= 1'd1;
 end
 
 //fft_valid
 always@(posedge clk or posedge rst)
 begin
-
+    if(rst) fft_valid <= 1'd0;
+    else if(counter_fft == 4'd9) fft_valid <= 1'd1;
+    else fft_valid <= 1'd0;
 end
 
 //done
 always@(posedge clk or posedge rst)
 begin
     if(rst) done <= 1'd0;
-   // else if(fir_valid == 1'd1) done <= 1'd1;
+   
 end
 
 //fir_d
@@ -200,8 +221,327 @@ begin
     if(rst) fir_d <= 16'd0;
     else
     begin
-        fir_d <= SUM[32:16] + 15'd1;
+        if(SUM[41] == 1'd1) fir_d <= {SUM[41],SUM[30:16]} + 16'd1;
+        else fir_d <= {SUM[41],SUM[30:16]};
     end
 end
+
+//y_buffer
+always@(posedge clk or posedge rst)
+begin
+    if(rst) 
+    begin
+        for(i=0;i<16;i=i+1)
+        begin
+            y_buffer[i] <= 32'd0;
+        end
+    end
+    else 
+    begin
+        y_buffer[15] <= { {8{fir_d[15]}},fir_d,8'd0};
+        for(i=1;i<16;i=i+1)
+        begin
+            y_buffer[i-1] <= y_buffer[i];
+        end
+    end
+end
+
+
+parameter signed [31:0] W_r_0 = 32'h00010000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 0: 001
+parameter signed [31:0] W_r_1 = 32'h0000EC83;      //The real part of the reference table about COS(x)+i*SIN(x) value , 1: 9.238739e-001
+parameter signed [31:0] W_r_2 = 32'h0000B504;      //The real part of the reference table about COS(x)+i*SIN(x) value , 2: 7.070923e-001
+parameter signed [31:0] W_r_3 = 32'h000061F7;      //The real part of the reference table about COS(x)+i*SIN(x) value , 3: 3.826752e-001
+parameter signed [31:0] W_r_4 = 32'h00000000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 4: 000
+parameter signed [31:0] W_r_5 = 32'hFFFF9E09;      //The real part of the reference table about COS(x)+i*SIN(x) value , 5: -3.826752e-001
+parameter signed [31:0] W_r_6 = 32'hFFFF4AFC;      //The real part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
+parameter signed [31:0] W_r_7 = 32'hFFFF137D;      //The real part of the reference table about COS(x)+i*SIN(x) value , 7: -9.238739e-001
+
+
+
+parameter signed [31:0] W_i_0 = 32'h00000000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 0: 000
+parameter signed [31:0] W_i_1 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 1: -3.826752e-001
+parameter signed [31:0] W_i_2 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 2: -7.070923e-001
+parameter signed [31:0] W_i_3 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 3: -9.238739e-001
+parameter signed [31:0] W_i_4 = 32'hFFFF0000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 4: -01
+parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 5: -9.238739e-001
+parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
+parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
+
+/*
+reg [31:0] f0_X,f1_X,f2_X,f3_X,f4_X,f5_X,f6_X,f7_X,
+            f0_Y,f1_Y,f2_Y,f3_Y,f4_Y,f5_Y,f6_Y,f7_Y,
+            f0_WR,f1_WR,f2_WR,f3_WR,f4_WR,f5_WR,f6_WR,f7_WR,
+            f0_WI,f1_WI,f2_WI,f3_WI,f4_WI,f5_WI,f6_WI,f7_WI,
+            f0_a,f1_a,f2_a,f3_a,f4_a,f5_a,f6_a,f7_a,
+            f0_b,f1_b,f2_b,f3_b,f4_b,f5_b,f6_b,f7_b;
+*/
+reg [63:0] f_X[7:0];
+reg [63:0] f_Y[7:0];
+reg [31:0] f_WR[7:0];
+reg [31:0] f_WI[7:0];
+wire [63:0] f_A[7:0];
+wire [63:0] f_B[7:0];
+
+
+always@(posedge clk or posedge rst)
+begin
+    if(rst)
+    begin
+        fft_d0 <= 32'd0;
+        fft_d1 <= 32'd0;
+        fft_d2 <= 32'd0;
+        fft_d3 <= 32'd0;
+        fft_d4 <= 32'd0;
+        fft_d5 <= 32'd0;
+        fft_d6 <= 32'd0;
+        fft_d7 <= 32'd0;
+        fft_d8 <= 32'd0;
+        fft_d9 <= 32'd0;
+        fft_d10 <= 32'd0;
+        fft_d11 <= 32'd0;
+        fft_d12 <= 32'd0;
+        fft_d13 <= 32'd0;
+        fft_d14 <= 32'd0;
+        fft_d15 <= 32'd0;
+        for(i=1;i<8;i++)
+        begin
+            f_X[i] <= 64'd0;
+            f_Y[i] <= 64'd0;
+            f_WR[i] <= 32'd0;
+            f_WI[i] <= 32'd0;
+            //f_A[i] <= 32'd0;
+            //f_B[i] <= 32'd0;
+        end
+    end
+    else if(counter_fft == 4'd1)
+    begin
+        f_X[0] <= {y_buffer[0],32'd0};
+        f_Y[0] <= {y_buffer[8],32'd0};
+        f_WR[0] <= W_r_0;
+        f_WI[0] <= W_i_0; 
+
+        f_X[1] <= {y_buffer[1],32'd0};
+        f_Y[1] <= {y_buffer[9],32'd0};
+        f_WR[1] <= W_r_1;
+        f_WI[1] <= W_i_1; 
+
+        f_X[2] <= {y_buffer[2],32'd0};
+        f_Y[2] <= {y_buffer[10],32'd0};
+        f_WR[2] <= W_r_2;
+        f_WI[2] <= W_i_2; 
+
+        f_X[3] <= {y_buffer[3],32'd0};
+        f_Y[3] <= {y_buffer[11],32'd0};
+        f_WR[3] <= W_r_3;
+        f_WI[3] <= W_i_3; 
+
+        f_X[4] <= {y_buffer[4],32'd0};
+        f_Y[4] <= {y_buffer[12],32'd0};
+        f_WR[4] <= W_r_4;
+        f_WI[4] <= W_i_4; 
+
+        f_X[5] <= {y_buffer[5],32'd0};
+        f_Y[5] <= {y_buffer[13],32'd0};
+        f_WR[5] <= W_r_5;
+        f_WI[5] <= W_i_5; 
+
+        f_X[6] <= {y_buffer[6],32'd0};
+        f_Y[6] <= {y_buffer[14],32'd0};
+        f_WR[6] <= W_r_6;
+        f_WI[6] <= W_i_6; 
+
+        f_X[7] <= {y_buffer[7],32'd0};
+        f_Y[7] <= {y_buffer[15],32'd0};
+        f_WR[7] <= W_r_7;
+        f_WI[7] <= W_i_7; 
+    end
+    else if(counter_fft == 4'd3)
+    begin
+        f_X[0] <= f_A[0];
+        f_Y[0] <= f_A[4];
+        f_WR[0] <= W_r_0;
+        f_WI[0] <= W_i_0; 
+
+        f_X[1] <= f_A[1];
+        f_Y[1] <= f_A[5];
+        f_WR[1] <= W_r_2;
+        f_WI[1] <= W_i_2; 
+
+        f_X[2] <= f_A[2];
+        f_Y[2] <= f_A[6];
+        f_WR[2] <= W_r_4;
+        f_WI[2] <= W_i_4; 
+
+        f_X[3] <= f_A[3];
+        f_Y[3] <= f_A[7];
+        f_WR[3] <= W_r_6;
+        f_WI[3] <= W_i_6; 
+
+        f_X[4] <= f_B[0];
+        f_Y[4] <= f_B[4];
+        f_WR[4] <= W_r_0;
+        f_WI[4] <= W_i_0; 
+
+        f_X[5] <= f_B[1];
+        f_Y[5] <= f_B[5];
+        f_WR[5] <= W_r_2;
+        f_WI[5] <= W_i_2; 
+
+        f_X[6] <= f_B[2];
+        f_Y[6] <= f_B[6];
+        f_WR[6] <= W_r_4;
+        f_WI[6] <= W_i_4; 
+
+        f_X[7] <= f_B[3];
+        f_Y[7] <= f_B[7];
+        f_WR[7] <= W_r_6;
+        f_WI[7] <= W_i_6;
+    end
+    else if(counter_fft == 4'd5)
+    begin
+        f_X[0] <= f_A[0];
+        f_Y[0] <= f_A[2];
+        f_WR[0] <= W_r_0;
+        f_WI[0] <= W_i_0; 
+
+        f_X[1] <= f_A[1];
+        f_Y[1] <= f_A[3];
+        f_WR[1] <= W_r_4;
+        f_WI[1] <= W_i_4; 
+
+        f_X[2] <= f_B[0];
+        f_Y[2] <= f_B[2];
+        f_WR[2] <= W_r_0;
+        f_WI[2] <= W_i_0; 
+
+        f_X[3] <= f_B[1];
+        f_Y[3] <= f_B[3];
+        f_WR[3] <= W_r_4;
+        f_WI[3] <= W_i_4; 
+
+        f_X[4] <= f_A[4];
+        f_Y[4] <= f_A[6];
+        f_WR[4] <= W_r_0;
+        f_WI[4] <= W_i_0; 
+
+        f_X[5] <= f_A[5];
+        f_Y[5] <= f_A[7];
+        f_WR[5] <= W_r_4;
+        f_WI[5] <= W_i_4; 
+
+        f_X[6] <= f_B[4];
+        f_Y[6] <= f_B[6];
+        f_WR[6] <= W_r_0;
+        f_WI[6] <= W_i_0; 
+
+        f_X[7] <= f_B[5];
+        f_Y[7] <= f_B[7];
+        f_WR[7] <= W_r_4;
+        f_WI[7] <= W_i_4;
+    end
+    else if(counter_fft == 4'd7)
+    begin
+        f_X[0] <= f_A[0];
+        f_Y[0] <= f_A[1];
+        f_WR[0] <= W_r_0;
+        f_WI[0] <= W_i_0; 
+
+        f_X[1] <= f_B[0];
+        f_Y[1] <= f_B[1];
+        f_WR[1] <= W_r_0;
+        f_WI[1] <= W_i_0; 
+
+        f_X[2] <= f_A[2];
+        f_Y[2] <= f_A[3];
+        f_WR[2] <= W_r_0;
+        f_WI[2] <= W_i_0; 
+
+        f_X[3] <= f_B[2];
+        f_Y[3] <= f_B[3];
+        f_WR[3] <= W_r_0;
+        f_WI[3] <= W_i_0; 
+
+        f_X[4] <= f_A[4];
+        f_Y[4] <= f_A[5];
+        f_WR[4] <= W_r_0;
+        f_WI[4] <= W_i_0; 
+
+        f_X[5] <= f_B[4];
+        f_Y[5] <= f_B[5];
+        f_WR[5] <= W_r_0;
+        f_WI[5] <= W_i_0; 
+
+        f_X[6] <= f_A[6];
+        f_Y[6] <= f_A[7];
+        f_WR[6] <= W_r_0;
+        f_WI[6] <= W_i_0; 
+
+        f_X[7] <= f_B[6];
+        f_Y[7] <= f_B[7];
+        f_WR[7] <= W_r_0;
+        f_WI[7] <= W_i_0;
+    end
+    else if(counter_fft == 4'd9)
+    begin
+        fft_d0 <= {f_A[0][55:40],f_A[0][23:8]};
+        fft_d8 <= {f_B[0][55:40],f_B[0][23:8]};
+        fft_d4 <= {f_A[1][55:40],f_A[1][23:8]};
+        fft_d12 <= {f_B[1][55:40],f_B[1][23:8]};
+        fft_d2 <= {f_A[2][55:40],f_A[2][23:8]};
+        fft_d10 <= {f_B[2][55:40],f_B[2][23:8]};
+        fft_d6 <= {f_A[3][55:40],f_A[3][23:8]};
+        fft_d14 <= {f_B[3][55:40],f_B[3][23:8]};
+        fft_d1 <= {f_A[4][55:40],f_A[4][23:8]};
+        fft_d9 <= {f_B[4][55:40],f_B[4][23:8]};
+        fft_d5 <= {f_A[5][55:40],f_A[5][23:8]};
+        fft_d13 <= {f_B[5][55:40],f_B[5][23:8]};
+        fft_d3 <= {f_A[6][55:40],f_A[6][23:8]};
+        fft_d11 <= {f_B[6][55:40],f_B[6][23:8]};
+        fft_d7 <= {f_A[7][55:40],f_A[7][23:8]};
+        fft_d15 <= {f_B[7][55:40],f_B[7][23:8]};
+    end
+end
+
+genvar j;
+generate
+    for(j=0;j<8;j++)
+    begin
+        fft_butterFly fb(.X(f_X[j]),.Y(f_Y[j]),.W_R(f_WR[j]),.W_I(f_WI[j]),
+                        .fft_a(f_A[j]),
+                        .fft_b(f_B[j])
+                        );
+    end
+endgenerate
+
+endmodule
+
+module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
+input [63:0] X;
+input [63:0] Y;
+input signed [31:0] W_R;
+input signed [31:0] W_I;
+output signed [63:0] fft_a;
+output signed [63:0] fft_b;
+
+wire signed [31:0] a = X[63:32];
+wire signed [31:0] b = X[31:0];
+wire signed [31:0] c = Y[63:32];
+wire signed [31:0] d = Y[31:0];
+
+wire signed [32:0] fft_a_R = a + c;
+wire signed [32:0] fft_a_I = b + d;
+
+wire signed [32:0] a_minus_c = a - c;
+wire signed [32:0] d_minus_b = d - b;
+wire signed [32:0] b_minus_d = b - d;
+
+wire signed [64:0] fft_b_R = a_minus_c*W_R + d_minus_b*W_I;
+wire signed [64:0] fft_b_I = a_minus_c*W_I + b_minus_d*W_R;
+
+assign fft_a[63:32] = {fft_a_R[32],fft_a_R[30:0]}; 
+assign fft_a[31:0] =  {fft_a_I[32],fft_a_I[30:0]};
+
+assign fft_b[63:32] = {fft_b_R[64],fft_b_R[46:16]};
+assign fft_b[31:0] =  {fft_b_I[64],fft_b_I[46:16]};
 
 endmodule

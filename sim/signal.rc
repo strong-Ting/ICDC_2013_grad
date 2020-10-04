@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_Q-2020.03
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 1920 23 1680 987 183 65
+viewPort 0 23 1920 1017 183 65
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 0.000000 6790.151862
-cursor 3500.000000
+zoom 305406.250000 322593.750000
+cursor 313500.000000
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 7
+markerPos 34
 
 ; event list
 ; addEvent event_name event_expression
@@ -51,10 +51,38 @@ addSignal -h 15 /testfixture1/DUT/clk
 addSignal -h 15 -holdScope rst
 addSignal -h 15 -holdScope data[15:0]
 addSignal -h 15 -holdScope data_valid
-addSignal -h 15 -holdScope counter[4:0]
 addSignal -h 15 -holdScope SUM[41:0]
 addSignal -h 15 -holdScope fir_d[15:0]
 addGroup "G2"
+addSignal -h 15 /testfixture1/DUT/fft_run
+addSignal -h 15 -UNSIGNED -UDEC -holdScope counter_fir[5:0]
+addSignal -h 15 -holdScope fft_valid
+addSignal -h 15 -holdScope fir_valid
+addSignal -h 15 /testfixture1/DUT/genblk1[0]/fb/fft_a[31:0]
+addSignal -h 15 -holdScope fft_b[31:0]
+addSignal -h 15 -holdScope W_R[31:0]
+addSignal -h 15 -holdScope W_I[31:0]
+addSignal -h 15 -holdScope X[31:0]
+addSignal -h 15 -holdScope Y[31:0]
+addSignal -h 15 /testfixture1/DUT/SUM[41:0]
+addSignal -h 15 -holdScope fft_d0[31:0]
+addSignal -h 15 -holdScope fft_d1[31:0]
+addSignal -h 15 -holdScope counter_fft[2:0]
+addSignal -h 15 -holdScope counter_p[3:0]
+addGroup "G3"
+addSignal -h 15 /testfixture1/DUT/genblk1[4]/fb/X[31:0]
+addSignal -h 15 -holdScope Y[31:0]
+addSignal -h 15 -holdScope a[15:0]
+addSignal -h 15 -holdScope b[15:0]
+addSignal -h 15 -holdScope c[15:0]
+addSignal -h 15 -holdScope d[15:0]
+addSignal -h 15 -holdScope fft_a[31:0]
+addSignal -h 15 -holdScope fft_b[31:0]
+addSignal -h 15 -holdScope fft_a_R[16:0]
+addSignal -h 15 -holdScope fft_a_I[16:0]
+addSignal -h 15 -holdScope fft_b_R[48:0]
+addSignal -h 15 -holdScope fft_b_I[48:0]
+addGroup "G4"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
@@ -65,10 +93,15 @@ getSignalForm close
 
 "/testfixture1"
 "/testfixture1/DUT"
+"/testfixture1/DUT/genblk1[4]"
 
 SCOPE_LIST_BEGIN
 "/testfixture1"
 "/testfixture1/DUT"
+"/testfixture1/DUT/genblk1[0]"
+"/testfixture1/DUT/genblk1[0]/fb"
+"/testfixture1/DUT/genblk1[4]"
+"/testfixture1/DUT/genblk1[4]/fb"
 SCOPE_LIST_END
 
 GETSIGNALFORM_SCOPE_HIERARCHY_END

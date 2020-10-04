@@ -27,15 +27,15 @@ wire [3:0] freq;
 reg en;
 
 reg [15:0] data_mem [0:1023];
-initial $readmemh("./dat/Pattern3.dat", data_mem);
+initial $readmemh("./dat/Pattern1.dat", data_mem);
 
 reg [15:0] fir_mem [0:1023];
-initial $readmemh("./dat/Golden3_FIR.dat", fir_mem);
+initial $readmemh("./dat/Golden1_FIR.dat", fir_mem);
 
 reg [15:0] fftr_mem [0:1023];
-initial $readmemh("./dat/Golden3_FFT_real.dat", fftr_mem);
+initial $readmemh("./dat/Golden1_FFT_real.dat", fftr_mem);
 reg [15:0] ffti_mem [0:1023];
-initial $readmemh("./dat/Golden3_FFT_imag.dat", ffti_mem);
+initial $readmemh("./dat/Golden1_FFT_imag.dat", ffti_mem);
 
 integer i, j ,k, l;
 integer fir_fail, fft_fail;

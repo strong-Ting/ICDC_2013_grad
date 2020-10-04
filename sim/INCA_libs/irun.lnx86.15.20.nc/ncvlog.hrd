@@ -3,6 +3,3 @@
 // Do not modify this file
 //
 -sv
-testfixture2.v
-../src/FAS.v
-+access+r

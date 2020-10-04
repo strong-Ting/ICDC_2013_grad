@@ -1,42 +1,46 @@
 ncverilog: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s039: Started on Sep 27, 2020 at 23:32:58 CST
+TOOL:	ncverilog	15.20-s039: Started on Oct 04, 2020 at 21:26:36 CST
 ncverilog
-	testfixture1.v
+	-sv
+	testfixture2.v
 	../src/FAS.v
 	+access+r
-file: testfixture1.v
-	module worklib.testfixture1:v
-		errors: 0, warnings: 0
 file: ../src/FAS.v
 	module worklib.FAS:v
 		errors: 0, warnings: 0
+	module worklib.fft_butterFly:v
+		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
+ncelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 ncelab: *W,CUSNOF: No SDF file specified in SDF System Task..
 initial $sdf_annotate(`SDFFILE, DUT);
                     |
-ncelab: *W,CUSSTI (./testfixture1.v,49|20): This SDF System Task will be Ignored..
+ncelab: *W,CUSSTI (./testfixture2.v,49|20): This SDF System Task will be Ignored..
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.FAS:v <0x52794653>
-			streams:  76, words: 36946
-		worklib.testfixture1:v <0x3f9dfebd>
-			streams:  24, words: 30029
+		worklib.FAS:v <0x4ad837e1>
+			streams:  95, words: 95678
+		worklib.fft_butterFly:v <0x7e025a98>
+			streams:   8, words:  3706
+		worklib.testfixture1:v <0x06989b14>
+			streams:  24, words: 30204
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                  Instances  Unique
-		Modules:                  2       2
-		Registers:               65      65
+		Modules:                 10       3
+		Registers:               71      71
 		Scalar wires:             7       -
-		Vectored wires:         114       -
-		Always blocks:           15      15
+		Vectored wires:         266       -
+		Always blocks:           18      18
 		Initial blocks:          10      10
-		Cont. assignments:       64      95
-		Pseudo assignments:       3       3
+		Cont. assignments:      128     110
+		Pseudo assignments:      35       7
 		Simulation timescale:  10ps
 	Writing initial simulation snapshot: worklib.testfixture1:v
 Loading snapshot worklib.testfixture1:v .................... Done
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
 *Verdi* Loading libsscore_ius152.so
 ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
 ncsim> run
@@ -49,27 +53,92 @@ FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
 *Verdi* : Begin traversing the MDAs, layer (0).
 *Verdi* : Enable +mda and +packedmda dumping.
 *Verdi* : End of traversing the MDAs.
+FFT dataout on pattern           0 ~          15, PASS!!
+FFT dataout on pattern          16 ~          31, PASS!!
+FFT dataout on pattern          32 ~          47, PASS!!
+FFT dataout on pattern          48 ~          63, PASS!!
+FFT dataout on pattern          64 ~          79, PASS!!
 FIR dataout on pattern           0 ~         100 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern          80 ~          95, PASS!!
+FFT dataout on pattern          96 ~         111, PASS!!
+FFT dataout on pattern         112 ~         127, PASS!!
+FFT dataout on pattern         128 ~         143, PASS!!
+FFT dataout on pattern         144 ~         159, PASS!!
+FFT dataout on pattern         160 ~         175, PASS!!
 FIR dataout on pattern         100 ~         200 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         176 ~         191, PASS!!
+FFT dataout on pattern         192 ~         207, PASS!!
+FFT dataout on pattern         208 ~         223, PASS!!
+FFT dataout on pattern         224 ~         239, PASS!!
+FFT dataout on pattern         240 ~         255, PASS!!
+FFT dataout on pattern         256 ~         271, PASS!!
+FFT dataout on pattern         272 ~         287, PASS!!
 FIR dataout on pattern         200 ~         300 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         288 ~         303, PASS!!
+FFT dataout on pattern         304 ~         319, PASS!!
+FFT dataout on pattern         320 ~         335, PASS!!
+FFT dataout on pattern         336 ~         351, PASS!!
+FFT dataout on pattern         352 ~         367, PASS!!
+FFT dataout on pattern         368 ~         383, PASS!!
 FIR dataout on pattern         300 ~         400 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         384 ~         399, PASS!!
+FFT dataout on pattern         400 ~         415, PASS!!
+FFT dataout on pattern         416 ~         431, PASS!!
+FFT dataout on pattern         432 ~         447, PASS!!
+FFT dataout on pattern         448 ~         463, PASS!!
+FFT dataout on pattern         464 ~         479, PASS!!
 FIR dataout on pattern         400 ~         500 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         480 ~         495, PASS!!
+FFT dataout on pattern         496 ~         511, PASS!!
+FFT dataout on pattern         512 ~         527, PASS!!
+FFT dataout on pattern         528 ~         543, PASS!!
+FFT dataout on pattern         544 ~         559, PASS!!
+FFT dataout on pattern         560 ~         575, PASS!!
 FIR dataout on pattern         500 ~         600 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         576 ~         591, PASS!!
+FFT dataout on pattern         592 ~         607, PASS!!
+FFT dataout on pattern         608 ~         623, PASS!!
+FFT dataout on pattern         624 ~         639, PASS!!
+FFT dataout on pattern         640 ~         655, PASS!!
+FFT dataout on pattern         656 ~         671, PASS!!
+FFT dataout on pattern         672 ~         687, PASS!!
+FFT dataout on pattern         688 ~         703, PASS!!
+FFT dataout on pattern         704 ~         719, PASS!!
+FFT dataout on pattern         720 ~         735, PASS!!
+FFT dataout on pattern         736 ~         751, PASS!!
+FFT dataout on pattern         752 ~         767, PASS!!
+FFT dataout on pattern         768 ~         783, PASS!!
 FIR dataout on pattern         700 ~         800 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         784 ~         799, PASS!!
+FFT dataout on pattern         800 ~         815, PASS!!
+FFT dataout on pattern         816 ~         831, PASS!!
+FFT dataout on pattern         832 ~         847, PASS!!
+FFT dataout on pattern         848 ~         863, PASS!!
+FFT dataout on pattern         864 ~         879, PASS!!
 FIR dataout on pattern         800 ~         900 !!, PASS !!
 -----------------------------------------------------
+FFT dataout on pattern         880 ~         895, PASS!!
+FFT dataout on pattern         896 ~         911, PASS!!
+FFT dataout on pattern         912 ~         927, PASS!!
+FFT dataout on pattern         928 ~         943, PASS!!
+FFT dataout on pattern         944 ~         959, PASS!!
+FFT dataout on pattern         960 ~         975, PASS!!
+FFT dataout on pattern         976 ~         991, PASS!!
+FFT dataout on pattern         992 ~        1007, PASS!!
+FFT dataout on pattern        1008 ~        1023, PASS!!
+FFT dataout on pattern        1024 ~        1039, PASS!!
 -----------------------------------------------------
 Error!!! Somethings' wrong with your code ...!!
 -------------------------FAIL------------------------
 -----------------------------------------------------
-Simulation complete via $finish(1) at time 10 MS + 0
-./testfixture1.v:207  $finish;
+Simulation complete via $finish(1) at time 11 US + 0
+./testfixture2.v:208  $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s039: Exiting on Sep 27, 2020 at 23:33:05 CST  (total: 00:00:07)
+TOOL:	ncverilog	15.20-s039: Exiting on Oct 04, 2020 at 21:26:41 CST  (total: 00:00:05)
