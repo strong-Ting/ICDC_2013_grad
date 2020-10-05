@@ -12,13 +12,6 @@ output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_
 output done;
 output [3:0] freq;
 
-reg fir_valid, fft_valid;
-reg signed [15:0] fir_d;
-reg [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
-reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
-reg done;
-//reg [3:0] freq;
-//`include "./dat/FIR_coefficient.dat"
 parameter signed [19:0] FIR_C00 = 20'hFFF9E ;     //The FIR_coefficient value 0: -1.495361e-003
 parameter signed [19:0] FIR_C01 = 20'hFFF86 ;     //The FIR_coefficient value 1: -1.861572e-003
 parameter signed [19:0] FIR_C02 = 20'hFFFA7 ;     //The FIR_coefficient value 2: -1.358032e-003
@@ -179,7 +172,7 @@ begin
         counter_fft <= 4'd0;
         fft_run <= 1'd0;
     end
-    else if(counter_fft == 4'd11)
+    else if(counter_fft == 4'd12)
     begin
         counter_fft <= 4'd0;
         fft_run <= 1'd0;
@@ -194,38 +187,17 @@ end
 
 //output logic
 //fir_valid
-always@(posedge clk or posedge rst)
-begin
-    if(rst) fir_valid <= 1'd0;
-    else if(data_valid && counter_fir == 6'd33) fir_valid <= 1'd1;
-end
+wire fir_valid = (data_valid && counter_fir == 6'd33) ? 1'd1 : 1'd0;
 
 //fft_valid
-always@(posedge clk or posedge rst)
-begin
-    if(rst) fft_valid <= 1'd0;
-    else if(counter_fft == 4'd9) fft_valid <= 1'd1;
-    else fft_valid <= 1'd0;
-end
+wire fft_valid = (counter_fft == 4'd10) ? 1'd1 : 1'd0;
 
 //done
-always@(posedge clk or posedge rst)
-begin
-    if(rst) done <= 1'd0;
-    else if(counter_fft == 4'd11) done <= 1'd1;
-    else done <= 1'd0;
-end
+wire done = (counter_fft == 4'd12) ? 1'd1 : 1'd0;
 
 //fir_d
-always@(posedge clk or posedge rst)
-begin
-    if(rst) fir_d <= 16'd0;
-    else
-    begin
-        if(SUM[41] == 1'd1) fir_d <= {SUM[41],SUM[30:16]} + 16'd1;
-        else fir_d <= {SUM[41],SUM[30:16]};
-    end
-end
+wire [15:0] fir_d = (SUM[41] == 1'd1) ? {SUM[41],SUM[30:16]} + 16'd1 : {SUM[41],SUM[30:16]};
+
 
 //y_buffer
 always@(posedge clk or posedge rst)
@@ -276,6 +248,23 @@ reg [31:0] f_WI[7:0];
 wire [63:0] f_A[7:0];
 wire [63:0] f_B[7:0];
 
+wire [31:0] fft_d0 = {f_A[0][55:40],f_A[0][23:8]};
+wire [31:0] fft_d8 = {f_B[0][55:40],f_B[0][23:8]};
+wire [31:0] fft_d4 = {f_A[1][55:40],f_A[1][23:8]};
+wire [31:0] fft_d12 = {f_B[1][55:40],f_B[1][23:8]};
+wire [31:0] fft_d2 = {f_A[2][55:40],f_A[2][23:8]};
+wire [31:0] fft_d10 = {f_B[2][55:40],f_B[2][23:8]};
+wire [31:0] fft_d6 = {f_A[3][55:40],f_A[3][23:8]};
+wire [31:0] fft_d14 = {f_B[3][55:40],f_B[3][23:8]};
+wire [31:0] fft_d1 = {f_A[4][55:40],f_A[4][23:8]};
+wire [31:0] fft_d9 = {f_B[4][55:40],f_B[4][23:8]};
+wire [31:0] fft_d5 = {f_A[5][55:40],f_A[5][23:8]};
+wire [31:0] fft_d13 = {f_B[5][55:40],f_B[5][23:8]};
+wire [31:0] fft_d3 = {f_A[6][55:40],f_A[6][23:8]};
+wire [31:0] fft_d11 = {f_B[6][55:40],f_B[6][23:8]};
+wire [31:0] fft_d7 = {f_A[7][55:40],f_A[7][23:8]};
+wire [31:0] fft_d15 = {f_B[7][55:40],f_B[7][23:8]};
+
 
 wire signed [32:0] pow2_add_0= ($signed(fft_d0[31:16])*$signed(fft_d0[31:16])) + ($signed(fft_d0[15:0])*$signed(fft_d0[15:0]));
 wire signed [32:0] pow2_add_1= ($signed(fft_d1[31:16])*$signed(fft_d1[31:16])) + ($signed(fft_d1[15:0])*$signed(fft_d1[15:0]));
@@ -312,27 +301,11 @@ wire [36:0] cmp_3_0 = (cmp_2_0[32:0] > cmp_2_1[32:0]) ? cmp_2_0 : cmp_2_1;
 wire [36:0] cmp_3_1 = (cmp_2_2[32:0] > cmp_2_3[32:0]) ? cmp_2_2 : cmp_2_3;
 
 wire [3:0] freq = (cmp_3_0[32:0] > cmp_3_1[32:0]) ? cmp_3_0[36:33] : cmp_3_1[36:33];
-wire signed [4:0] test = $signed(3)*$signed(-3);
+
 always@(posedge clk or posedge rst)
 begin
     if(rst)
     begin
-        fft_d0 <= 32'd0;
-        fft_d1 <= 32'd0;
-        fft_d2 <= 32'd0;
-        fft_d3 <= 32'd0;
-        fft_d4 <= 32'd0;
-        fft_d5 <= 32'd0;
-        fft_d6 <= 32'd0;
-        fft_d7 <= 32'd0;
-        fft_d8 <= 32'd0;
-        fft_d9 <= 32'd0;
-        fft_d10 <= 32'd0;
-        fft_d11 <= 32'd0;
-        fft_d12 <= 32'd0;
-        fft_d13 <= 32'd0;
-        fft_d14 <= 32'd0;
-        fft_d15 <= 32'd0;
         for(i=1;i<8;i=i+1)
         begin
             f_X[i] <= 64'd0;
@@ -509,26 +482,9 @@ begin
         f_WR[7] <= W_r_0;
         f_WI[7] <= W_i_0;
     end
-    else if(counter_fft == 4'd9)
-    begin
-        fft_d0 <= {f_A[0][55:40],f_A[0][23:8]};
-        fft_d8 <= {f_B[0][55:40],f_B[0][23:8]};
-        fft_d4 <= {f_A[1][55:40],f_A[1][23:8]};
-        fft_d12 <= {f_B[1][55:40],f_B[1][23:8]};
-        fft_d2 <= {f_A[2][55:40],f_A[2][23:8]};
-        fft_d10 <= {f_B[2][55:40],f_B[2][23:8]};
-        fft_d6 <= {f_A[3][55:40],f_A[3][23:8]};
-        fft_d14 <= {f_B[3][55:40],f_B[3][23:8]};
-        fft_d1 <= {f_A[4][55:40],f_A[4][23:8]};
-        fft_d9 <= {f_B[4][55:40],f_B[4][23:8]};
-        fft_d5 <= {f_A[5][55:40],f_A[5][23:8]};
-        fft_d13 <= {f_B[5][55:40],f_B[5][23:8]};
-        fft_d3 <= {f_A[6][55:40],f_A[6][23:8]};
-        fft_d11 <= {f_B[6][55:40],f_B[6][23:8]};
-        fft_d7 <= {f_A[7][55:40],f_A[7][23:8]};
-        fft_d15 <= {f_B[7][55:40],f_B[7][23:8]};
-    end
 end
+
+
 
 genvar j;
 generate

@@ -1,3 +1,5 @@
+
+set_host_options -max_cores 6
 #Read All Files
 read_verilog ../src/FAS.v
 current_design FAS
@@ -7,8 +9,8 @@ link
 source -echo -verbose FAS.sdc
 
 #Synthesis all design
-compile -map_effort high -area_effort high
-compile -map_effort high -area_effort high -inc
+compile -map_effort medium -area_effort medium
+compile -map_effort medium -area_effort medium -inc
 
 write -format ddc     -hierarchy -output "FAS_syn.ddc"
 write_sdf FAS_syn.sdf
