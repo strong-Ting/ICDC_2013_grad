@@ -17,7 +17,7 @@ reg signed [15:0] fir_d;
 reg [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
 reg done;
-reg [3:0] freq;
+//reg [3:0] freq;
 //`include "./dat/FIR_coefficient.dat"
 parameter signed [19:0] FIR_C00 = 20'hFFF9E ;     //The FIR_coefficient value 0: -1.495361e-003
 parameter signed [19:0] FIR_C01 = 20'hFFF86 ;     //The FIR_coefficient value 1: -1.861572e-003
@@ -179,7 +179,7 @@ begin
         counter_fft <= 4'd0;
         fft_run <= 1'd0;
     end
-    else if(counter_fft == 4'd9)
+    else if(counter_fft == 4'd11)
     begin
         counter_fft <= 4'd0;
         fft_run <= 1'd0;
@@ -212,7 +212,8 @@ end
 always@(posedge clk or posedge rst)
 begin
     if(rst) done <= 1'd0;
-   
+    else if(counter_fft == 4'd11) done <= 1'd1;
+    else done <= 1'd0;
 end
 
 //fir_d
@@ -267,14 +268,7 @@ parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the refere
 parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
 parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
 
-/*
-reg [31:0] f0_X,f1_X,f2_X,f3_X,f4_X,f5_X,f6_X,f7_X,
-            f0_Y,f1_Y,f2_Y,f3_Y,f4_Y,f5_Y,f6_Y,f7_Y,
-            f0_WR,f1_WR,f2_WR,f3_WR,f4_WR,f5_WR,f6_WR,f7_WR,
-            f0_WI,f1_WI,f2_WI,f3_WI,f4_WI,f5_WI,f6_WI,f7_WI,
-            f0_a,f1_a,f2_a,f3_a,f4_a,f5_a,f6_a,f7_a,
-            f0_b,f1_b,f2_b,f3_b,f4_b,f5_b,f6_b,f7_b;
-*/
+
 reg [63:0] f_X[7:0];
 reg [63:0] f_Y[7:0];
 reg [31:0] f_WR[7:0];
@@ -282,23 +276,43 @@ reg [31:0] f_WI[7:0];
 wire [63:0] f_A[7:0];
 wire [63:0] f_B[7:0];
 
-wire [32:0] pow2_add_0= (fft_d0[31:16]*fft_d0[31:16]) + (fft_d0[15:0]*fft_d0[15:0]);
-wire [32:0] pow2_add_1 = (fft_d1[31:16]*fft_d1[31:16]) + (fft_d1[15:0]*fft_d1[15:0]);
-wire [32:0] pow2_add_2 = (fft_d2[31:16]*fft_d2[31:16]) + (fft_d2[15:0]*fft_d2[15:0]);
-wire [32:0] pow2_add_3 = (fft_d3[31:16]*fft_d3[31:16]) + (fft_d3[15:0]*fft_d3[15:0]);
-wire [32:0] pow2_add_4 = (fft_d4[31:16]*fft_d4[31:16]) + (fft_d4[15:0]*fft_d4[15:0]);
-wire [32:0] pow2_add_5 = (fft_d5[31:16]*fft_d5[31:16]) + (fft_d5[15:0]*fft_d5[15:0]);
-wire [32:0] pow2_add_6 = (fft_d6[31:16]*fft_d6[31:16]) + (fft_d6[15:0]*fft_d6[15:0]);
-wire [32:0] pow2_add_7 = (fft_d7[31:16]*fft_d7[31:16]) + (fft_d7[15:0]*fft_d7[15:0]);
-wire [32:0] pow2_add_8 = (fft_d8[31:16]*fft_d8[31:16]) + (fft_d8[15:0]*fft_d8[15:0]);
-wire [32:0] pow2_add_9 = (fft_d9[31:16]*fft_d9[31:16]) + (fft_d9[15:0]*fft_d9[15:0]);
-wire [32:0] pow2_add_10 = (fft_d10[31:16]*fft_d10[31:16]) + (fft_d10[15:0]*fft_d10[15:0]);
-wire [32:0] pow2_add_11 = (fft_d11[31:16]*fft_d11[31:16]) + (fft_d11[15:0]*fft_d11[15:0]);
-wire [32:0] pow2_add_12 = (fft_d12[31:16]*fft_d12[31:16]) + (fft_d12[15:0]*fft_d12[15:0]);
-wire [32:0] pow2_add_13 = (fft_d13[31:16]*fft_d13[31:16]) + (fft_d13[15:0]*fft_d13[15:0]);
-wire [32:0] pow2_add_14 = (fft_d14[31:16]*fft_d14[31:16]) + (fft_d14[15:0]*fft_d14[15:0]);
-wire [32:0] pow2_add_15 = (fft_d15[31:16]*fft_d15[31:16]) + (fft_d15[15:0]*fft_d15[15:0]);
 
+wire signed [32:0] pow2_add_0= ($signed(fft_d0[31:16])*$signed(fft_d0[31:16])) + ($signed(fft_d0[15:0])*$signed(fft_d0[15:0]));
+wire signed [32:0] pow2_add_1= ($signed(fft_d1[31:16])*$signed(fft_d1[31:16])) + ($signed(fft_d1[15:0])*$signed(fft_d1[15:0]));
+wire signed [32:0] pow2_add_2= ($signed(fft_d2[31:16])*$signed(fft_d2[31:16])) + ($signed(fft_d2[15:0])*$signed(fft_d2[15:0]));
+wire signed [32:0] pow2_add_3= ($signed(fft_d3[31:16])*$signed(fft_d3[31:16])) + ($signed(fft_d3[15:0])*$signed(fft_d3[15:0]));
+wire signed [32:0] pow2_add_4= ($signed(fft_d4[31:16])*$signed(fft_d4[31:16])) + ($signed(fft_d4[15:0])*$signed(fft_d4[15:0]));
+wire signed [32:0] pow2_add_5= ($signed(fft_d5[31:16])*$signed(fft_d5[31:16])) + ($signed(fft_d5[15:0])*$signed(fft_d5[15:0]));
+wire signed [32:0] pow2_add_6= ($signed(fft_d6[31:16])*$signed(fft_d6[31:16])) + ($signed(fft_d6[15:0])*$signed(fft_d6[15:0]));
+wire signed [32:0] pow2_add_7= ($signed(fft_d7[31:16])*$signed(fft_d7[31:16])) + ($signed(fft_d7[15:0])*$signed(fft_d7[15:0]));
+wire signed [32:0] pow2_add_8= ($signed(fft_d8[31:16])*$signed(fft_d8[31:16])) + ($signed(fft_d8[15:0])*$signed(fft_d8[15:0]));
+wire signed [32:0] pow2_add_9= ($signed(fft_d9[31:16])*$signed(fft_d9[31:16])) + ($signed(fft_d9[15:0])*$signed(fft_d9[15:0]));
+wire signed [32:0] pow2_add_10= ($signed(fft_d10[31:16])*$signed(fft_d10[31:16])) + ($signed(fft_d10[15:0])*$signed(fft_d10[15:0]));
+wire signed [32:0] pow2_add_11= ($signed(fft_d11[31:16])*$signed(fft_d11[31:16])) + ($signed(fft_d11[15:0])*$signed(fft_d11[15:0]));
+wire signed [32:0] pow2_add_12= ($signed(fft_d12[31:16])*$signed(fft_d12[31:16])) + ($signed(fft_d12[15:0])*$signed(fft_d12[15:0]));
+wire signed [32:0] pow2_add_13= ($signed(fft_d13[31:16])*$signed(fft_d13[31:16])) + ($signed(fft_d13[15:0])*$signed(fft_d13[15:0]));
+wire signed [32:0] pow2_add_14= ($signed(fft_d14[31:16])*$signed(fft_d14[31:16])) + ($signed(fft_d14[15:0])*$signed(fft_d14[15:0]));
+wire signed [32:0] pow2_add_15= ($signed(fft_d15[31:16])*$signed(fft_d15[31:16])) + ($signed(fft_d15[15:0])*$signed(fft_d15[15:0]));
+
+wire [36:0] cmp_1_0 = (pow2_add_0 >= pow2_add_1) ? {4'd0,pow2_add_0} : {4'd1,pow2_add_1};
+wire [36:0] cmp_1_1 = (pow2_add_2 >= pow2_add_3) ? {4'd2,pow2_add_2} : {4'd3,pow2_add_3};
+wire [36:0] cmp_1_2 = (pow2_add_4 >= pow2_add_5) ? {4'd4,pow2_add_4} : {4'd5,pow2_add_5};
+wire [36:0] cmp_1_3 = (pow2_add_6 >= pow2_add_7) ? {4'd6,pow2_add_6} : {4'd7,pow2_add_7};
+wire [36:0] cmp_1_4 = (pow2_add_8 >= pow2_add_9) ? {4'd8,pow2_add_8} : {4'd9,pow2_add_9};
+wire [36:0] cmp_1_5 = (pow2_add_10 >= pow2_add_11) ? {4'd10,pow2_add_10} : {4'd11,pow2_add_11};
+wire [36:0] cmp_1_6 = (pow2_add_12 >= pow2_add_13) ? {4'd12,pow2_add_12} : {4'd13,pow2_add_13};
+wire [36:0] cmp_1_7 = (pow2_add_14 >= pow2_add_15) ? {4'd14,pow2_add_14} : {4'd15,pow2_add_15};
+
+wire [36:0] cmp_2_0 = (cmp_1_0[32:0] > cmp_1_1[32:0]) ? cmp_1_0 : cmp_1_1;
+wire [36:0] cmp_2_1 = (cmp_1_2[32:0] > cmp_1_3[32:0]) ? cmp_1_2 : cmp_1_3;
+wire [36:0] cmp_2_2 = (cmp_1_4[32:0] > cmp_1_5[32:0]) ? cmp_1_4 : cmp_1_5;
+wire [36:0] cmp_2_3 = (cmp_1_6[32:0] > cmp_1_7[32:0]) ? cmp_1_6 : cmp_1_7;
+
+wire [36:0] cmp_3_0 = (cmp_2_0[32:0] > cmp_2_1[32:0]) ? cmp_2_0 : cmp_2_1;
+wire [36:0] cmp_3_1 = (cmp_2_2[32:0] > cmp_2_3[32:0]) ? cmp_2_2 : cmp_2_3;
+
+wire [3:0] freq = (cmp_3_0[32:0] > cmp_3_1[32:0]) ? cmp_3_0[36:33] : cmp_3_1[36:33];
+wire signed [4:0] test = $signed(3)*$signed(-3);
 always@(posedge clk or posedge rst)
 begin
     if(rst)
@@ -325,8 +339,6 @@ begin
             f_Y[i] <= 64'd0;
             f_WR[i] <= 32'd0;
             f_WI[i] <= 32'd0;
-            //f_A[i] <= 32'd0;
-            //f_B[i] <= 32'd0;
         end
     end
     else if(counter_fft == 4'd1)

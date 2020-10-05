@@ -25,7 +25,7 @@ print("//sum_5")
 
 print("wire [41:0] signed sum_5_0 = sum_4_0 + sum_4_1;")
 '''
-
+'''
 for i in range(0,16):
     print("wire signed [37:0] sum_1_{index} = mul[{index2}] + mul[{index3}];".format(index=i,index2=i*2,index3=i*2+1))
 print("//sum_2")
@@ -42,7 +42,7 @@ for i in range(0,2):
 print("//sum_5")
 
 print("wire signed [41:0] SUM = sum_4_0 + sum_4_1;")
-
+'''
 
 #for i in range(0,8):
 #    print('''
@@ -57,3 +57,7 @@ print("wire signed [41:0] SUM = sum_4_0 + sum_4_1;")
 #        f_Y[{i}] <= f_B[{x}];
 #        f_WR[{i}] <= W_r_{y};
 #        f_WI[{i}] <= W_i_{y}; '''.format(i=i,x=i,y=(i-4)*2))
+
+
+for i in range(0,16):
+    print("wire signed [32:0] pow2_add_{i}= ($signed(fft_d{i}[31:16])*$signed(fft_d{i}[31:16])) + ($signed(fft_d{i}[15:0])*$signed(fft_d{i}[15:0]));".format(i=i))

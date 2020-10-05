@@ -16,16 +16,16 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 305406.250000 322593.750000
-cursor 313500.000000
+zoom 0.000000 8794.457806
+cursor 500.000000
 marker 0.000000
 
 ; user define markers
 ; userMarker time_pos marker_name color linestyle
 ; visible top row signal index
-top 0
+top 7
 ; marker line index
-markerPos 34
+markerPos 43
 
 ; event list
 ; addEvent event_name event_expression
@@ -48,41 +48,55 @@ curSTATUS ByChange
 addGroup "G1"
 activeDirFile "" "/home/lin/github/CIC_2013_grad/sim/FAS.fsdb"
 addSignal -h 15 /testfixture1/DUT/clk
-addSignal -h 15 -holdScope rst
-addSignal -h 15 -holdScope data[15:0]
-addSignal -h 15 -holdScope data_valid
-addSignal -h 15 -holdScope SUM[41:0]
-addSignal -h 15 -holdScope fir_d[15:0]
-addGroup "G2"
-addSignal -h 15 /testfixture1/DUT/fft_run
-addSignal -h 15 -UNSIGNED -UDEC -holdScope counter_fir[5:0]
-addSignal -h 15 -holdScope fft_valid
-addSignal -h 15 -holdScope fir_valid
-addSignal -h 15 /testfixture1/DUT/genblk1[0]/fb/fft_a[31:0]
-addSignal -h 15 -holdScope fft_b[31:0]
-addSignal -h 15 -holdScope W_R[31:0]
-addSignal -h 15 -holdScope W_I[31:0]
-addSignal -h 15 -holdScope X[31:0]
-addSignal -h 15 -holdScope Y[31:0]
-addSignal -h 15 /testfixture1/DUT/SUM[41:0]
+addSignal -h 15 -holdScope counter_fft[3:0]
 addSignal -h 15 -holdScope fft_d0[31:0]
 addSignal -h 15 -holdScope fft_d1[31:0]
-addSignal -h 15 -holdScope counter_fft[2:0]
-addSignal -h 15 -holdScope counter_p[3:0]
-addGroup "G3"
-addSignal -h 15 /testfixture1/DUT/genblk1[4]/fb/X[31:0]
-addSignal -h 15 -holdScope Y[31:0]
-addSignal -h 15 -holdScope a[15:0]
-addSignal -h 15 -holdScope b[15:0]
-addSignal -h 15 -holdScope c[15:0]
-addSignal -h 15 -holdScope d[15:0]
-addSignal -h 15 -holdScope fft_a[31:0]
-addSignal -h 15 -holdScope fft_b[31:0]
-addSignal -h 15 -holdScope fft_a_R[16:0]
-addSignal -h 15 -holdScope fft_a_I[16:0]
-addSignal -h 15 -holdScope fft_b_R[48:0]
-addSignal -h 15 -holdScope fft_b_I[48:0]
-addGroup "G4"
+addSignal -h 15 -holdScope fft_d2[31:0]
+addSignal -h 15 -holdScope fft_d3[31:0]
+addSignal -h 15 -holdScope fft_d4[31:0]
+addSignal -h 15 -holdScope fft_d5[31:0]
+addSignal -h 15 -holdScope fft_d6[31:0]
+addSignal -h 15 -holdScope fft_d7[31:0]
+addSignal -h 15 -holdScope fft_d8[31:0]
+addSignal -h 15 -holdScope fft_d9[31:0]
+addSignal -h 15 -holdScope fft_d10[31:0]
+addSignal -h 15 -holdScope fft_d11[31:0]
+addSignal -h 15 -holdScope fft_d12[31:0]
+addSignal -h 15 -holdScope fft_d13[31:0]
+addSignal -h 15 -holdScope fft_d14[31:0]
+addSignal -h 15 -holdScope fft_d15[31:0]
+addSignal -h 15 -holdScope pow2_add_0[32:0]
+addSignal -h 15 -holdScope pow2_add_1[32:0]
+addSignal -h 15 -holdScope pow2_add_2[32:0]
+addSignal -h 15 -holdScope pow2_add_3[32:0]
+addSignal -h 15 -holdScope pow2_add_4[32:0]
+addSignal -h 15 -holdScope pow2_add_5[32:0]
+addSignal -h 15 -holdScope pow2_add_6[32:0]
+addSignal -h 15 -holdScope pow2_add_7[32:0]
+addSignal -h 15 -holdScope pow2_add_8[32:0]
+addSignal -h 15 -holdScope pow2_add_9[32:0]
+addSignal -h 15 -holdScope pow2_add_10[32:0]
+addSignal -h 15 -holdScope pow2_add_11[32:0]
+addSignal -h 15 -holdScope pow2_add_12[32:0]
+addSignal -h 15 -holdScope pow2_add_13[32:0]
+addSignal -h 15 -holdScope pow2_add_14[32:0]
+addSignal -h 15 -holdScope pow2_add_15[32:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_0[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_1[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_2[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_3[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_4[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_5[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_6[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_1_7[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_2_0[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_2_1[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_2_2[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_2_3[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_3_0[36:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cmp_3_1[36:0]
+addSignal -h 15 -holdScope freq[3:0]
+addGroup "G2"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
@@ -93,15 +107,10 @@ getSignalForm close
 
 "/testfixture1"
 "/testfixture1/DUT"
-"/testfixture1/DUT/genblk1[4]"
 
 SCOPE_LIST_BEGIN
 "/testfixture1"
 "/testfixture1/DUT"
-"/testfixture1/DUT/genblk1[0]"
-"/testfixture1/DUT/genblk1[0]/fb"
-"/testfixture1/DUT/genblk1[4]"
-"/testfixture1/DUT/genblk1[4]/fb"
 SCOPE_LIST_END
 
 GETSIGNALFORM_SCOPE_HIERARCHY_END

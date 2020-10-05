@@ -3,6 +3,5 @@
 // Do not modify this file
 //
 testfixture1.v
-../syn/FAS_syn.v
--v
-../../tsmc13_neg.v
+../src/FAS.v
++access+r

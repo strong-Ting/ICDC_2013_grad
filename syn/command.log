@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version Q-2019.12 for linux64 -- Nov 26, 2019
-#@ # Date:   Sun Oct  4 22:40:38 2020
+#@ # Date:   Mon Oct  5 11:02:14 2020
 #@ # Run by: lin@DESKTOP-OFJ877F
 #@ 
 
@@ -6750,15 +6750,3 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 #@ 
 #@ #Synthesis all design
 #@ compile -map_effort high -area_effort high
-#@ compile -map_effort high -area_effort high -inc
-#@ 
-#@ write -format ddc     -hierarchy -output "FAS_syn.ddc"
-#@ write_sdf FAS_syn.sdf
-#@ write_file -format verilog -hierarchy -output FAS_syn.v
-#@ report_area > area.log
-#@ report_timing > timing.log
-#@ report_qor   >  FAS_syn.qor
-#@ 
-#@ # -- End source /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
-
-exit
