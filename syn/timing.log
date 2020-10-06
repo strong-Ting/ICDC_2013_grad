@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : FAS
 Version: Q-2019.12
-Date   : Mon Oct  5 11:44:17 2020
+Date   : Tue Oct  6 10:33:11 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,10 +14,9 @@ Date   : Mon Oct  5 11:44:17 2020
 Operating Conditions: slow   Library: slow
 Wire Load Model Mode: top
 
-  Startpoint: data_buffer_reg[0][1]
+  Startpoint: f_X_reg[2][44]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: fir_d_reg[5]
-            (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: R_59 (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -29,93 +28,51 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             1.00       1.00
-  data_buffer_reg[0][1]/CK (DFFRX4)                       0.00 #     1.00 r
-  data_buffer_reg[0][1]/Q (DFFRX4)                        0.54       1.54 f
-  mult_79/a[1] (FAS_DW_mult_tc_87)                        0.00       1.54 f
-  mult_79/U242/Y (NAND2X1)                                0.31       1.84 r
-  mult_79/U238/Y (INVX3)                                  0.13       1.98 f
-  mult_79/U314/Y (AOI21X4)                                0.18       2.15 r
-  mult_79/U364/Y (OAI21X4)                                0.15       2.31 f
-  mult_79/U304/Y (AOI21X4)                                0.19       2.49 r
-  mult_79/U231/Y (INVX8)                                  0.09       2.59 f
-  mult_79/U385/Y (AOI21X4)                                0.19       2.78 r
-  mult_79/U384/Y (XOR2X4)                                 0.21       2.99 r
-  mult_79/product[11] (FAS_DW_mult_tc_87)                 0.00       2.99 r
-  add_30_root_add_147/A[11] (FAS_DW01_add_74)             0.00       2.99 r
-  add_30_root_add_147/U338/Y (NOR2X4)                     0.16       3.16 f
-  add_30_root_add_147/U404/Y (INVX3)                      0.18       3.33 r
-  add_30_root_add_147/U405/Y (NAND2X2)                    0.11       3.44 f
-  add_30_root_add_147/U365/Y (OA21X4)                     0.23       3.68 f
-  add_30_root_add_147/U364/Y (XOR2X4)                     0.15       3.83 f
-  add_30_root_add_147/SUM[12] (FAS_DW01_add_74)           0.00       3.83 f
-  add_14_root_add_147/A[12] (FAS_DW01_add_68)             0.00       3.83 f
-  add_14_root_add_147/U339/Y (NAND2X2)                    0.18       4.00 r
-  add_14_root_add_147/U405/Y (OA21X4)                     0.22       4.22 r
-  add_14_root_add_147/U404/Y (OAI2BB1X4)                  0.09       4.31 f
-  add_14_root_add_147/U356/Y (INVX6)                      0.10       4.41 r
-  add_14_root_add_147/U413/Y (OAI2BB1X4)                  0.09       4.50 f
-  add_14_root_add_147/U477/Y (AOI21X4)                    0.15       4.65 r
-  add_14_root_add_147/U478/Y (XOR2X4)                     0.19       4.85 r
-  add_14_root_add_147/SUM[14] (FAS_DW01_add_68)           0.00       4.85 r
-  add_6_root_add_147/A[14] (FAS_DW01_add_83)              0.00       4.85 r
-  add_6_root_add_147/U266/Y (NOR2X8)                      0.13       4.98 f
-  add_6_root_add_147/U389/Y (INVX4)                       0.09       5.07 r
-  add_6_root_add_147/U371/Y (NAND2X6)                     0.07       5.13 f
-  add_6_root_add_147/U427/Y (XOR2X4)                      0.19       5.33 r
-  add_6_root_add_147/SUM[14] (FAS_DW01_add_83)            0.00       5.33 r
-  add_2_root_add_147/A[14] (FAS_DW01_add_80)              0.00       5.33 r
-  add_2_root_add_147/U478/Y (OR2X8)                       0.22       5.55 r
-  add_2_root_add_147/U277/Y (NAND2X8)                     0.07       5.61 f
-  add_2_root_add_147/U482/Y (OAI21X4)                     0.17       5.78 r
-  add_2_root_add_147/U501/Y (AOI21X4)                     0.16       5.94 f
-  add_2_root_add_147/U522/Y (OAI21X4)                     0.20       6.14 r
-  add_2_root_add_147/U440/Y (AND2X8)                      0.17       6.30 r
-  add_2_root_add_147/U464/Y (NOR2X8)                      0.06       6.37 f
-  add_2_root_add_147/U117/Y (OAI21X4)                     0.19       6.56 r
-  add_2_root_add_147/U500/Y (AOI21X4)                     0.16       6.71 f
-  add_2_root_add_147/U96/Y (OAI21X4)                      0.20       6.92 r
-  add_2_root_add_147/U284/Y (INVX6)                       0.10       7.01 f
-  add_2_root_add_147/U495/Y (OAI21X4)                     0.13       7.15 r
-  add_2_root_add_147/U79/Y (XNOR2X4)                      0.19       7.34 f
-  add_2_root_add_147/SUM[25] (FAS_DW01_add_80)            0.00       7.34 f
-  add_1_root_add_0_root_add_147/B[25] (FAS_DW01_add_79)
-                                                          0.00       7.34 f
-  add_1_root_add_0_root_add_147/U525/Y (NAND2X4)          0.14       7.47 r
-  add_1_root_add_0_root_add_147/U412/Y (OA21X4)           0.17       7.64 r
-  add_1_root_add_0_root_add_147/U411/Y (OAI2BB1X4)        0.11       7.75 f
-  add_1_root_add_0_root_add_147/U400/Y (BUFX16)           0.13       7.88 f
-  add_1_root_add_0_root_add_147/U421/Y (NAND2X8)          0.07       7.95 r
-  add_1_root_add_0_root_add_147/U422/Y (NAND2X8)          0.07       8.02 f
-  add_1_root_add_0_root_add_147/U52/Y (AOI21X4)           0.21       8.23 r
-  add_1_root_add_0_root_add_147/U349/Y (INVX8)            0.13       8.36 f
-  add_1_root_add_0_root_add_147/U468/Y (AOI21X4)          0.14       8.50 r
-  add_1_root_add_0_root_add_147/U492/Y (XOR2X4)           0.18       8.67 f
-  add_1_root_add_0_root_add_147/SUM[32] (FAS_DW01_add_79)
-                                                          0.00       8.67 f
-  add_0_root_add_0_root_add_147/B[32] (FAS_DW01_add_78)
-                                                          0.00       8.67 f
-  add_0_root_add_0_root_add_147/U356/Y (NAND2X2)          0.14       8.81 r
-  add_0_root_add_0_root_add_147/U355/Y (OAI21X4)          0.11       8.92 f
-  add_0_root_add_0_root_add_147/U367/Y (AOI21X4)          0.16       9.08 r
-  add_0_root_add_0_root_add_147/U372/Y (OAI21X4)          0.10       9.17 f
-  add_0_root_add_0_root_add_147/U314/Y (XOR2X4)           0.13       9.31 r
-  add_0_root_add_0_root_add_147/SUM[35] (FAS_DW01_add_78)
-                                                          0.00       9.31 r
-  U10826/Y (BUFX20)                                       0.18       9.48 r
-  U10244/Y (CLKINVX20)                                    0.09       9.57 f
-  U11012/Y (CLKMX2X2)                                     0.23       9.80 r
-  fir_d_reg[5]/D (DFFSRHQX2)                              0.00       9.80 r
-  data arrival time                                                  9.80
+  f_X_reg[2][44]/CK (DFFRX2)                              0.00 #     1.00 r
+  f_X_reg[2][44]/Q (DFFRX2)                               0.67       1.67 f
+  U6044/Y (OAI21XL)                                       0.54       2.21 r
+  U9890/Y (NAND2X2)                                       0.26       2.47 f
+  U26443/Y (NAND2X2)                                      0.14       2.61 r
+  U6163/Y (XOR2X1)                                        0.30       2.92 r
+  U26444/Y (BUFX12)                                       0.28       3.20 r
+  U5501/Y (NAND2X6)                                       0.23       3.43 f
+  U26770/Y (OAI22X4)                                      0.50       3.93 r
+  U43859/ICO (CMPR42X1)                                   0.36       4.29 r
+  genblk1[2].fb/DP_OP_16J1_131_3752/U3987/ICO (CMPR42X1)
+                                                          0.29       4.58 r
+  genblk1[2].fb/DP_OP_16J1_131_3752/U3979/CO (CMPR42X1)
+                                                          0.63       5.21 r
+  genblk1[2].fb/DP_OP_16J1_131_3752/U3968/ICO (CMPR42X1)
+                                                          0.27       5.48 r
+  genblk1[2].fb/DP_OP_16J1_131_3752/U3960/CO (CMPR42X1)
+                                                          0.32       5.79 r
+  genblk1[2].fb/DP_OP_16J1_131_3752/U3950/S (CMPR42X1)
+                                                          0.81       6.60 f
+  U4479/Y (NOR2X1)                                        0.40       7.01 r
+  U25415/Y (NOR2X2)                                       0.25       7.25 f
+  U25417/Y (NAND2X2)                                      0.25       7.51 r
+  U25418/Y (NOR2X2)                                       0.16       7.67 f
+  U25429/Y (AOI21X4)                                      0.25       7.92 r
+  U10346/Y (INVX12)                                       0.18       8.10 f
+  U32265/Y (AOI21X1)                                      0.26       8.36 r
+  U11508/Y (XOR2X1)                                       0.31       8.67 r
+  U32266/Y (BUFX8)                                        0.29       8.96 r
+  U32267/Y (INVX4)                                        0.23       9.19 f
+  U10626/Y (OAI21X2)                                      0.29       9.47 r
+  U10661/Y (INVX3)                                        0.10       9.58 f
+  U6899/Y (OAI21X1)                                       0.23       9.81 r
+  R_59/D (DFFSX1)                                         0.00       9.81 r
+  data arrival time                                                  9.81
 
   clock clk (rise edge)                                  10.00      10.00
   clock network delay (ideal)                             1.00      11.00
   clock uncertainty                                      -1.00      10.00
-  fir_d_reg[5]/CK (DFFSRHQX2)                             0.00      10.00 r
-  library setup time                                     -0.20       9.80
-  data required time                                                 9.80
+  R_59/CK (DFFSX1)                                        0.00      10.00 r
+  library setup time                                     -0.19       9.81
+  data required time                                                 9.81
   --------------------------------------------------------------------------
-  data required time                                                 9.80
-  data arrival time                                                 -9.80
+  data required time                                                 9.81
+  data arrival time                                                 -9.81
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 
