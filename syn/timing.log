@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : FAS
 Version: Q-2019.12
-Date   : Tue Oct  6 10:33:11 2020
+Date   : Wed Oct  7 16:58:18 2020
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,10 @@ Date   : Tue Oct  6 10:33:11 2020
 Operating Conditions: slow   Library: slow
 Wire Load Model Mode: top
 
-  Startpoint: f_X_reg[2][44]
+  Startpoint: f_X_reg[1][39]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: R_59 (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: f_X_reg[5][12]
+            (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -28,51 +29,45 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             1.00       1.00
-  f_X_reg[2][44]/CK (DFFRX2)                              0.00 #     1.00 r
-  f_X_reg[2][44]/Q (DFFRX2)                               0.67       1.67 f
-  U6044/Y (OAI21XL)                                       0.54       2.21 r
-  U9890/Y (NAND2X2)                                       0.26       2.47 f
-  U26443/Y (NAND2X2)                                      0.14       2.61 r
-  U6163/Y (XOR2X1)                                        0.30       2.92 r
-  U26444/Y (BUFX12)                                       0.28       3.20 r
-  U5501/Y (NAND2X6)                                       0.23       3.43 f
-  U26770/Y (OAI22X4)                                      0.50       3.93 r
-  U43859/ICO (CMPR42X1)                                   0.36       4.29 r
-  genblk1[2].fb/DP_OP_16J1_131_3752/U3987/ICO (CMPR42X1)
-                                                          0.29       4.58 r
-  genblk1[2].fb/DP_OP_16J1_131_3752/U3979/CO (CMPR42X1)
-                                                          0.63       5.21 r
-  genblk1[2].fb/DP_OP_16J1_131_3752/U3968/ICO (CMPR42X1)
-                                                          0.27       5.48 r
-  genblk1[2].fb/DP_OP_16J1_131_3752/U3960/CO (CMPR42X1)
-                                                          0.32       5.79 r
-  genblk1[2].fb/DP_OP_16J1_131_3752/U3950/S (CMPR42X1)
-                                                          0.81       6.60 f
-  U4479/Y (NOR2X1)                                        0.40       7.01 r
-  U25415/Y (NOR2X2)                                       0.25       7.25 f
-  U25417/Y (NAND2X2)                                      0.25       7.51 r
-  U25418/Y (NOR2X2)                                       0.16       7.67 f
-  U25429/Y (AOI21X4)                                      0.25       7.92 r
-  U10346/Y (INVX12)                                       0.18       8.10 f
-  U32265/Y (AOI21X1)                                      0.26       8.36 r
-  U11508/Y (XOR2X1)                                       0.31       8.67 r
-  U32266/Y (BUFX8)                                        0.29       8.96 r
-  U32267/Y (INVX4)                                        0.23       9.19 f
-  U10626/Y (OAI21X2)                                      0.29       9.47 r
-  U10661/Y (INVX3)                                        0.10       9.58 f
-  U6899/Y (OAI21X1)                                       0.23       9.81 r
-  R_59/D (DFFSX1)                                         0.00       9.81 r
-  data arrival time                                                  9.81
+  f_X_reg[1][39]/CK (DFFRX2)                              0.00 #     1.00 r
+  f_X_reg[1][39]/Q (DFFRX2)                               0.68       1.68 f
+  U7324/Y (OAI21X2)                                       0.18       1.87 r
+  U27858/Y (NAND2X2)                                      0.16       2.03 f
+  U7566/Y (NAND2X1)                                       0.20       2.23 r
+  U10842/Y (XOR2X2)                                       0.26       2.49 r
+  U13013/Y (BUFX12)                                       0.33       2.82 r
+  U10620/Y (AND2X6)                                       0.21       3.02 r
+  U9043/Y (INVX16)                                        0.13       3.15 f
+  U5865/Y (OAI22X1)                                       0.46       3.61 r
+  U44997/CO (CMPR42X1)                                    0.73       4.34 r
+  genblk1[1].fb/DP_OP_16J1_131_3752/U1312/CO (CMPR42X2)
+                                                          0.75       5.09 f
+  genblk1[1].fb/DP_OP_16J1_131_3752/U1303/CO (CMPR42X2)
+                                                          0.58       5.67 r
+  U5174/Y (CLKINVX1)                                      0.13       5.81 f
+  U7873/Y (NOR2BX2)                                       0.19       6.00 f
+  U26711/Y (CLKINVX1)                                     0.17       6.17 r
+  U26713/Y (NAND2X1)                                      0.17       6.34 f
+  U26716/Y (OAI21X2)                                      0.32       6.67 r
+  U13661/Y (AOI21X4)                                      0.16       6.83 f
+  U8660/Y (OA21X4)                                        0.37       7.20 f
+  U33462/Y (OAI21X1)                                      0.29       7.49 r
+  U4567/Y (XNOR2X1)                                       0.40       7.88 r
+  U33464/Y (CLKBUFX8)                                     0.43       8.32 r
+  U3574/Y (NAND2XL)                                       0.24       8.55 f
+  U14304/Y (OAI211X1)                                     0.24       8.79 r
+  f_X_reg[5][12]/D (DFFRX2)                               0.00       8.79 r
+  data arrival time                                                  8.79
 
-  clock clk (rise edge)                                  10.00      10.00
-  clock network delay (ideal)                             1.00      11.00
-  clock uncertainty                                      -1.00      10.00
-  R_59/CK (DFFSX1)                                        0.00      10.00 r
-  library setup time                                     -0.19       9.81
-  data required time                                                 9.81
+  clock clk (rise edge)                                   9.00       9.00
+  clock network delay (ideal)                             1.00      10.00
+  clock uncertainty                                      -1.00       9.00
+  f_X_reg[5][12]/CK (DFFRX2)                              0.00       9.00 r
+  library setup time                                     -0.21       8.79
+  data required time                                                 8.79
   --------------------------------------------------------------------------
-  data required time                                                 9.81
-  data arrival time                                                 -9.81
+  data required time                                                 8.79
+  data arrival time                                                 -8.79
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 

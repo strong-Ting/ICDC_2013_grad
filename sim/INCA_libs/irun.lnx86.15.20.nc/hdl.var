@@ -6,5 +6,3 @@ DEFINE RUNMODEDEFAULT 1
 DEFINE LIB_MAP ($LIB_MAP, + => worklib )
 define ELAB_SNAPSHOT
 define SNAPSHOT worklib.testfixture1:v
-define ELAB_SNAPSHOT
-define SNAPSHOT worklib.testfixture1:v

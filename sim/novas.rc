@@ -334,9 +334,9 @@ ColorPrint = FALSE
 VirtualFileEditorDialog = 641,330,637,403
 saveSigDlg = 2484,323,551,386
 restoreSigDlg = 2484,297,551,438
-openFileDlg = 467,182,602,483
 QwUserAskDlg = 788,374,324,114
-qWaveSignalDialog = 368,184,800,479
+openFileDlg = 985,301,602,483
+qWaveSignalDialog = 363,251,800,479
 [Session Cache]
 1 = string (session file name)
 2 = string (session file name)
@@ -550,7 +550,7 @@ waveform_vertical_scroll_bar = TRUE
 scope_to_save_with_macro
 open_file_dir
 open_rc_file_dir
-getSignalForm = 368 184 800 479 245 381 505 183
+getSignalForm = 363 251 800 479 245 381 505 183
 viewPort = 0 23 1536 801 183 65
 signalSpacing = 5
 digitalSignalHeight = 15

@@ -53,7 +53,7 @@ initial $sdf_annotate(`SDFFILE, DUT);
 initial begin
 $fsdbDumpfile("FAS.fsdb");
 $fsdbDumpvars;
-$fsdbDumpMDA;
+//$fsdbDumpMDA;
 end
 
 

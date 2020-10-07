@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version Q-2019.12 for linux64 -- Nov 26, 2019
-#@ # Date:   Tue Oct  6 10:17:28 2020
+#@ # Date:   Wed Oct  7 16:49:07 2020
 #@ # Run by: lin@DESKTOP-OFJ877F
 #@ 
 
@@ -6720,7 +6720,7 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 
 #@ # operating conditions and boundary conditions #
 #@ 
-#@ set cycle  10         ;	#clock period defined by designer
+#@ set cycle 9         ;	#clock period defined by designer
 #@ 
 #@ create_clock -period $cycle [get_ports  clk]
 #@ set_dont_touch_network      [get_clocks clk]
@@ -6755,10 +6755,11 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 #@ #Synthesis all design
 #@ #compile -map_effort medium -area_effort medium
 #@ #compile -map_effort medium -area_effort medium -inc
-#@ compile_ultra -retime
+#@ #compile_ultra -retime
+#@ compile_ultra
 #@ compile_ultra -inc
 #@ 
-#@ write -format ddc     -hierarchy -output "FAS_syn.ddc"
+#@ write -format ddc -hierarchy -output "FAS_syn.ddc"
 #@ write_sdf FAS_syn.sdf
 #@ write_file -format verilog -hierarchy -output FAS_syn.v
 #@ report_area > area.log
@@ -6767,7 +6768,4 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 #@ 
 #@ # -- End source /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 
-ls
-cd ..
-ls
 exit
