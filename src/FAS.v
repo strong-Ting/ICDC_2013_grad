@@ -12,6 +12,10 @@ output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_
 output done;
 output [3:0] freq;
 
+wire fft_valid;
+wire [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
+wire [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
+
 parameter signed [19:0] FIR_C00 = 20'hFFF9E ;     //The FIR_coefficient value 0: -1.495361e-003
 parameter signed [19:0] FIR_C01 = 20'hFFF86 ;     //The FIR_coefficient value 1: -1.861572e-003
 parameter signed [19:0] FIR_C02 = 20'hFFFA7 ;     //The FIR_coefficient value 2: -1.358032e-003
@@ -140,14 +144,6 @@ wire signed [40:0] sum_4_1 = sum_3_2 + sum_3_3;
 wire signed [41:0] SUM = sum_4_0 + sum_4_1;
 
 reg [5:0] counter_fir; //32
-reg [3:0] counter_p; // counter_parallel 1 to 16
-reg [3:0] counter_fft;
-reg fft_run;
-
-reg signed [31:0] y_buffer [0:15];
-
-
-
 
 //cout 32
 always@(posedge clk or posedge rst)
@@ -157,115 +153,28 @@ begin
     else if(data_valid) counter_fir <= counter_fir + 6'd1;
 end
 
-//count 16 fir 
-always@(posedge clk or posedge rst)
-begin
-    if(rst) counter_p <= 4'd0;
-    else if(fir_valid) counter_p <= counter_p + 4'd1;
-end
-
-//count fft , fft_run
-always@(posedge clk or posedge rst)
-begin
-    if(rst) 
-    begin
-        counter_fft <= 4'd0;
-        fft_run <= 1'd0;
-    end
-    else if(counter_fft == 4'd12)
-    begin
-        counter_fft <= 4'd0;
-        fft_run <= 1'd0;
-    end
-    else if(counter_p == 4'd15 || fft_run == 1'd1) 
-    begin
-        counter_fft <= counter_fft + 4'd1;
-        fft_run <= 1'd1;
-    end
-    
-end
-
 //output logic
 //fir_valid
 wire fir_valid = (data_valid && counter_fir == 6'd33) ? 1'd1 : 1'd0;
 
-//fft_valid
-wire fft_valid = (counter_fft == 4'd10) ? 1'd1 : 1'd0;
-
 //done
-wire done = (counter_fft == 4'd12) ? 1'd1 : 1'd0;
+reg done,buffer;
+always@(posedge clk or posedge rst)
+begin
+	if(rst) buffer <= 1'd0; 
+	else if(fft_valid) buffer <= 1'd1;
+	else buffer <= 1'd0;
+end
+always@(posedge clk or posedge rst)
+begin
+	if(rst) done <= 1'd0; 
+	else done <= buffer;
+end
 
 //fir_d
 wire [15:0] fir_d = (SUM[41] == 1'd1) ? {SUM[41],SUM[30:16]} + 16'd1 : {SUM[41],SUM[30:16]};
 
-
-//y_buffer
-always@(posedge clk or posedge rst)
-begin
-    if(rst) 
-    begin
-        for(i=0;i<16;i=i+1)
-        begin
-            y_buffer[i] <= 32'd0;
-        end
-    end
-    else 
-    begin
-        y_buffer[15] <= { {8{fir_d[15]}},fir_d,8'd0};
-        for(i=1;i<16;i=i+1)
-        begin
-            y_buffer[i-1] <= y_buffer[i];
-        end
-    end
-end
-
-
-parameter signed [31:0] W_r_0 = 32'h00010000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 0: 001
-parameter signed [31:0] W_r_1 = 32'h0000EC83;      //The real part of the reference table about COS(x)+i*SIN(x) value , 1: 9.238739e-001
-parameter signed [31:0] W_r_2 = 32'h0000B504;      //The real part of the reference table about COS(x)+i*SIN(x) value , 2: 7.070923e-001
-parameter signed [31:0] W_r_3 = 32'h000061F7;      //The real part of the reference table about COS(x)+i*SIN(x) value , 3: 3.826752e-001
-parameter signed [31:0] W_r_4 = 32'h00000000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 4: 000
-parameter signed [31:0] W_r_5 = 32'hFFFF9E09;      //The real part of the reference table about COS(x)+i*SIN(x) value , 5: -3.826752e-001
-parameter signed [31:0] W_r_6 = 32'hFFFF4AFC;      //The real part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
-parameter signed [31:0] W_r_7 = 32'hFFFF137D;      //The real part of the reference table about COS(x)+i*SIN(x) value , 7: -9.238739e-001
-
-
-
-parameter signed [31:0] W_i_0 = 32'h00000000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 0: 000
-parameter signed [31:0] W_i_1 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 1: -3.826752e-001
-parameter signed [31:0] W_i_2 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 2: -7.070923e-001
-parameter signed [31:0] W_i_3 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 3: -9.238739e-001
-parameter signed [31:0] W_i_4 = 32'hFFFF0000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 4: -01
-parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 5: -9.238739e-001
-parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
-parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
-
-
-reg [63:0] f_X[7:0];
-reg [63:0] f_Y[7:0];
-reg [31:0] f_WR[7:0];
-reg [31:0] f_WI[7:0];
-wire [63:0] f_A[7:0];
-wire [63:0] f_B[7:0];
-
-wire [31:0] fft_d0 = {f_A[0][55:40],f_A[0][23:8]};
-wire [31:0] fft_d8 = {f_B[0][55:40],f_B[0][23:8]};
-wire [31:0] fft_d4 = {f_A[1][55:40],f_A[1][23:8]};
-wire [31:0] fft_d12 = {f_B[1][55:40],f_B[1][23:8]};
-wire [31:0] fft_d2 = {f_A[2][55:40],f_A[2][23:8]};
-wire [31:0] fft_d10 = {f_B[2][55:40],f_B[2][23:8]};
-wire [31:0] fft_d6 = {f_A[3][55:40],f_A[3][23:8]};
-wire [31:0] fft_d14 = {f_B[3][55:40],f_B[3][23:8]};
-wire [31:0] fft_d1 = {f_A[4][55:40],f_A[4][23:8]};
-wire [31:0] fft_d9 = {f_B[4][55:40],f_B[4][23:8]};
-wire [31:0] fft_d5 = {f_A[5][55:40],f_A[5][23:8]};
-wire [31:0] fft_d13 = {f_B[5][55:40],f_B[5][23:8]};
-wire [31:0] fft_d3 = {f_A[6][55:40],f_A[6][23:8]};
-wire [31:0] fft_d11 = {f_B[6][55:40],f_B[6][23:8]};
-wire [31:0] fft_d7 = {f_A[7][55:40],f_A[7][23:8]};
-wire [31:0] fft_d15 = {f_B[7][55:40],f_B[7][23:8]};
-
-
+//analysis
 wire signed [32:0] pow2_add_0= ($signed(fft_d0[31:16])*$signed(fft_d0[31:16])) + ($signed(fft_d0[15:0])*$signed(fft_d0[15:0]));
 wire signed [32:0] pow2_add_1= ($signed(fft_d1[31:16])*$signed(fft_d1[31:16])) + ($signed(fft_d1[15:0])*$signed(fft_d1[15:0]));
 wire signed [32:0] pow2_add_2= ($signed(fft_d2[31:16])*$signed(fft_d2[31:16])) + ($signed(fft_d2[15:0])*$signed(fft_d2[15:0]));
@@ -301,6 +210,140 @@ wire [36:0] cmp_3_0 = (cmp_2_0[32:0] > cmp_2_1[32:0]) ? cmp_2_0 : cmp_2_1;
 wire [36:0] cmp_3_1 = (cmp_2_2[32:0] > cmp_2_3[32:0]) ? cmp_2_2 : cmp_2_3;
 
 wire [3:0] freq = (cmp_3_0[32:0] > cmp_3_1[32:0]) ? cmp_3_0[36:33] : cmp_3_1[36:33];
+
+
+FFT ff0(.clk(clk),
+		.rst(rst),
+		.data_valid(fir_valid),
+		.data(fir_d),
+		.fft_valid(fft_valid),
+		.fft_d0(fft_d0),
+		.fft_d1(fft_d1),
+		.fft_d2(fft_d2),
+		.fft_d3(fft_d3),
+		.fft_d4(fft_d4),
+		.fft_d5(fft_d5),
+		.fft_d6(fft_d6),
+		.fft_d7(fft_d7),
+		.fft_d8(fft_d8),
+		.fft_d9(fft_d9),
+		.fft_d10(fft_d10),
+		.fft_d11(fft_d11),
+		.fft_d12(fft_d12),
+		.fft_d13(fft_d13),
+		.fft_d14(fft_d14),
+		.fft_d15(fft_d15) );
+
+endmodule
+
+module FFT(clk,rst,data_valid,data,fft_valid,fft_d0,fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8,
+fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15);
+input clk,rst;
+input data_valid;
+input [15:0] data;
+output fft_valid;
+output [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
+output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
+
+reg [3:0] counter_p; // counter_parallel 1 to 16
+reg [3:0] counter_fft;
+reg fft_run;
+reg signed [31:0] y_buffer [0:15];
+
+parameter signed [31:0] W_r_0 = 32'h00010000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 0: 001
+parameter signed [31:0] W_r_1 = 32'h0000EC83;      //The real part of the reference table about COS(x)+i*SIN(x) value , 1: 9.238739e-001
+parameter signed [31:0] W_r_2 = 32'h0000B504;      //The real part of the reference table about COS(x)+i*SIN(x) value , 2: 7.070923e-001
+parameter signed [31:0] W_r_3 = 32'h000061F7;      //The real part of the reference table about COS(x)+i*SIN(x) value , 3: 3.826752e-001
+parameter signed [31:0] W_r_4 = 32'h00000000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 4: 000
+parameter signed [31:0] W_r_5 = 32'hFFFF9E09;      //The real part of the reference table about COS(x)+i*SIN(x) value , 5: -3.826752e-001
+parameter signed [31:0] W_r_6 = 32'hFFFF4AFC;      //The real part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
+parameter signed [31:0] W_r_7 = 32'hFFFF137D;      //The real part of the reference table about COS(x)+i*SIN(x) value , 7: -9.238739e-001
+
+parameter signed [31:0] W_i_0 = 32'h00000000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 0: 000
+parameter signed [31:0] W_i_1 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 1: -3.826752e-001
+parameter signed [31:0] W_i_2 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 2: -7.070923e-001
+parameter signed [31:0] W_i_3 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 3: -9.238739e-001
+parameter signed [31:0] W_i_4 = 32'hFFFF0000;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 4: -01
+parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 5: -9.238739e-001
+parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
+parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
+
+reg [63:0] f_X[7:0];
+reg [63:0] f_Y[7:0];
+reg [31:0] f_WR[7:0];
+reg [31:0] f_WI[7:0];
+wire [63:0] f_A[7:0];
+wire [63:0] f_B[7:0];
+
+wire [31:0] fft_d0 = {f_A[0][55:40],f_A[0][23:8]};
+wire [31:0] fft_d8 = {f_B[0][55:40],f_B[0][23:8]};
+wire [31:0] fft_d4 = {f_A[1][55:40],f_A[1][23:8]};
+wire [31:0] fft_d12 = {f_B[1][55:40],f_B[1][23:8]};
+wire [31:0] fft_d2 = {f_A[2][55:40],f_A[2][23:8]};
+wire [31:0] fft_d10 = {f_B[2][55:40],f_B[2][23:8]};
+wire [31:0] fft_d6 = {f_A[3][55:40],f_A[3][23:8]};
+wire [31:0] fft_d14 = {f_B[3][55:40],f_B[3][23:8]};
+wire [31:0] fft_d1 = {f_A[4][55:40],f_A[4][23:8]};
+wire [31:0] fft_d9 = {f_B[4][55:40],f_B[4][23:8]};
+wire [31:0] fft_d5 = {f_A[5][55:40],f_A[5][23:8]};
+wire [31:0] fft_d13 = {f_B[5][55:40],f_B[5][23:8]};
+wire [31:0] fft_d3 = {f_A[6][55:40],f_A[6][23:8]};
+wire [31:0] fft_d11 = {f_B[6][55:40],f_B[6][23:8]};
+wire [31:0] fft_d7 = {f_A[7][55:40],f_A[7][23:8]};
+wire [31:0] fft_d15 = {f_B[7][55:40],f_B[7][23:8]};
+
+//fft_valid
+wire fft_valid = (counter_fft == 4'd10) ? 1'd1 : 1'd0;
+
+//count 16 fir 
+always@(posedge clk or posedge rst)
+begin
+    if(rst) counter_p <= 4'd0;
+    else if(data_valid) counter_p <= counter_p + 4'd1;
+end
+
+//count fft , fft_run
+always@(posedge clk or posedge rst)
+begin
+    if(rst) 
+    begin
+        counter_fft <= 4'd0;
+        fft_run <= 1'd0;
+    end
+    else if(counter_fft == 4'd12)
+    begin
+        counter_fft <= 4'd0;
+        fft_run <= 1'd0;
+    end
+    else if(counter_p == 4'd15 || fft_run == 1'd1) 
+    begin
+        counter_fft <= counter_fft + 4'd1;
+        fft_run <= 1'd1;
+    end
+    
+end
+
+integer i;
+//y_buffer
+always@(posedge clk or posedge rst)
+begin
+    if(rst) 
+    begin
+        for(i=0;i<16;i=i+1)
+        begin
+            y_buffer[i] <= 32'd0;
+        end
+    end
+    else 
+    begin
+        y_buffer[15] <= { {8{data[15]}},data,8'd0};
+        for(i=1;i<16;i=i+1)
+        begin
+            y_buffer[i-1] <= y_buffer[i];
+        end
+    end
+end
+
 
 always@(posedge clk or posedge rst)
 begin
@@ -497,7 +540,9 @@ generate
     end
 endgenerate
 
+
 endmodule
+
 
 module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
 input [63:0] X;

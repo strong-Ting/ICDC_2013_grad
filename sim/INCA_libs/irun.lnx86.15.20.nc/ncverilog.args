@@ -2,9 +2,9 @@
 // File created by:  ncverilog
 // Do not modify this file
 //
--sv
-testfixture1.v
+testfixture2.v
 ../syn/FAS_syn.v
 -v
 ../../tsmc13_neg.v
++define+SDF
 +access+r
