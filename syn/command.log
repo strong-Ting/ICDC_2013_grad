@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version Q-2019.12 for linux64 -- Nov 26, 2019
-#@ # Date:   Sat Nov 21 15:14:46 2020
+#@ # Date:   Sun Nov 22 17:30:36 2020
 #@ # Run by: lin@DESKTOP-OFJ877F
 #@ 
 
@@ -6768,3 +6768,4 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 #@ 
 #@ # -- End source /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 
+exit

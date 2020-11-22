@@ -248,7 +248,7 @@ output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_
 reg [3:0] counter_p; // counter_parallel 1 to 16
 reg [3:0] counter_fft;
 reg fft_run;
-reg signed [31:0] y_buffer [0:15];
+reg signed [15:0] y_buffer [0:15];
 
 parameter signed [31:0] W_r_0 = 32'h00010000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 0: 001
 parameter signed [31:0] W_r_1 = 32'h0000EC83;      //The real part of the reference table about COS(x)+i*SIN(x) value , 1: 9.238739e-001
@@ -268,29 +268,29 @@ parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the refere
 parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
 parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
 
-reg [63:0] f_X[7:0];
-reg [63:0] f_Y[7:0];
+reg [47:0] f_X[7:0];
+reg [47:0] f_Y[7:0];
 reg [31:0] f_WR[7:0];
 reg [31:0] f_WI[7:0];
-wire [63:0] f_A[7:0];
-wire [63:0] f_B[7:0];
+wire [47:0] f_A[7:0];
+wire [47:0] f_B[7:0];
 
-wire [31:0] fft_d0 = {f_A[0][55:40],f_A[0][23:8]};
-wire [31:0] fft_d8 = {f_B[0][55:40],f_B[0][23:8]};
-wire [31:0] fft_d4 = {f_A[1][55:40],f_A[1][23:8]};
-wire [31:0] fft_d12 = {f_B[1][55:40],f_B[1][23:8]};
-wire [31:0] fft_d2 = {f_A[2][55:40],f_A[2][23:8]};
-wire [31:0] fft_d10 = {f_B[2][55:40],f_B[2][23:8]};
-wire [31:0] fft_d6 = {f_A[3][55:40],f_A[3][23:8]};
-wire [31:0] fft_d14 = {f_B[3][55:40],f_B[3][23:8]};
-wire [31:0] fft_d1 = {f_A[4][55:40],f_A[4][23:8]};
-wire [31:0] fft_d9 = {f_B[4][55:40],f_B[4][23:8]};
-wire [31:0] fft_d5 = {f_A[5][55:40],f_A[5][23:8]};
-wire [31:0] fft_d13 = {f_B[5][55:40],f_B[5][23:8]};
-wire [31:0] fft_d3 = {f_A[6][55:40],f_A[6][23:8]};
-wire [31:0] fft_d11 = {f_B[6][55:40],f_B[6][23:8]};
-wire [31:0] fft_d7 = {f_A[7][55:40],f_A[7][23:8]};
-wire [31:0] fft_d15 = {f_B[7][55:40],f_B[7][23:8]};
+wire [31:0] fft_d0 = {f_A[0][47:32],f_A[0][23:8]};
+wire [31:0] fft_d8 = {f_B[0][47:32],f_B[0][23:8]};
+wire [31:0] fft_d4 = {f_A[1][47:32],f_A[1][23:8]};
+wire [31:0] fft_d12 = {f_B[1][47:32],f_B[1][23:8]};
+wire [31:0] fft_d2 = {f_A[2][47:32],f_A[2][23:8]};
+wire [31:0] fft_d10 = {f_B[2][47:32],f_B[2][23:8]};
+wire [31:0] fft_d6 = {f_A[3][47:32],f_A[3][23:8]};
+wire [31:0] fft_d14 = {f_B[3][47:32],f_B[3][23:8]};
+wire [31:0] fft_d1 = {f_A[4][47:32],f_A[4][23:8]};
+wire [31:0] fft_d9 = {f_B[4][47:32],f_B[4][23:8]};
+wire [31:0] fft_d5 = {f_A[5][47:32],f_A[5][23:8]};
+wire [31:0] fft_d13 = {f_B[5][47:32],f_B[5][23:8]};
+wire [31:0] fft_d3 = {f_A[6][47:32],f_A[6][23:8]};
+wire [31:0] fft_d11 = {f_B[6][47:32],f_B[6][23:8]};
+wire [31:0] fft_d7 = {f_A[7][47:32],f_A[7][23:8]};
+wire [31:0] fft_d15 = {f_B[7][47:32],f_B[7][23:8]};
 
 //fft_valid
 wire fft_valid = (counter_fft == 4'd10) ? 1'd1 : 1'd0;
@@ -331,12 +331,12 @@ begin
     begin
         for(i=0;i<16;i=i+1)
         begin
-            y_buffer[i] <= 32'd0;
+            y_buffer[i] <= 16'd0;
         end
     end
     else 
     begin
-        y_buffer[15] <= { {8{data[15]}},data,8'd0};
+        y_buffer[15] <= data;
         for(i=1;i<16;i=i+1)
         begin
             y_buffer[i-1] <= y_buffer[i];
@@ -351,51 +351,51 @@ begin
     begin
         for(i=1;i<8;i=i+1)
         begin
-            f_X[i] <= 64'd0;
-            f_Y[i] <= 64'd0;
+            f_X[i] <= 48'd0;
+            f_Y[i] <= 48'd0;
             f_WR[i] <= 32'd0;
             f_WI[i] <= 32'd0;
         end
     end
     else if(counter_fft == 4'd1)
     begin
-        f_X[0] <= {y_buffer[0],32'd0};
-        f_Y[0] <= {y_buffer[8],32'd0};
+        f_X[0] <= {y_buffer[0],8'd0,24'd0};
+        f_Y[0] <= {y_buffer[8],8'd0,24'd0};
         f_WR[0] <= W_r_0;
         f_WI[0] <= W_i_0; 
 
-        f_X[1] <= {y_buffer[1],32'd0};
-        f_Y[1] <= {y_buffer[9],32'd0};
+        f_X[1] <= {y_buffer[1],8'd0,24'd0};
+        f_Y[1] <= {y_buffer[9],8'd0,24'd0};
         f_WR[1] <= W_r_1;
         f_WI[1] <= W_i_1; 
 
-        f_X[2] <= {y_buffer[2],32'd0};
-        f_Y[2] <= {y_buffer[10],32'd0};
+        f_X[2] <= {y_buffer[2],8'd0,24'd0};
+        f_Y[2] <= {y_buffer[10],8'd0,24'd0};
         f_WR[2] <= W_r_2;
         f_WI[2] <= W_i_2; 
 
-        f_X[3] <= {y_buffer[3],32'd0};
-        f_Y[3] <= {y_buffer[11],32'd0};
+        f_X[3] <= {y_buffer[3],8'd0,24'd0};
+        f_Y[3] <= {y_buffer[11],8'd0,24'd0};
         f_WR[3] <= W_r_3;
         f_WI[3] <= W_i_3; 
 
-        f_X[4] <= {y_buffer[4],32'd0};
-        f_Y[4] <= {y_buffer[12],32'd0};
+        f_X[4] <= {y_buffer[4],8'd0,24'd0};
+        f_Y[4] <= {y_buffer[12],8'd0,24'd0};
         f_WR[4] <= W_r_4;
         f_WI[4] <= W_i_4; 
 
-        f_X[5] <= {y_buffer[5],32'd0};
-        f_Y[5] <= {y_buffer[13],32'd0};
+        f_X[5] <= {y_buffer[5],8'd0,24'd0};
+        f_Y[5] <= {y_buffer[13],8'd0,24'd0};
         f_WR[5] <= W_r_5;
         f_WI[5] <= W_i_5; 
 
-        f_X[6] <= {y_buffer[6],32'd0};
-        f_Y[6] <= {y_buffer[14],32'd0};
+        f_X[6] <= {y_buffer[6],8'd0,24'd0};
+        f_Y[6] <= {y_buffer[14],8'd0,24'd0};
         f_WR[6] <= W_r_6;
         f_WI[6] <= W_i_6; 
 
-        f_X[7] <= {y_buffer[7],32'd0};
-        f_Y[7] <= {y_buffer[15],32'd0};
+        f_X[7] <= {y_buffer[7],8'd0,24'd0};
+        f_Y[7] <= {y_buffer[15],8'd0,24'd0};
         f_WR[7] <= W_r_7;
         f_WI[7] <= W_i_7; 
     end
@@ -545,6 +545,39 @@ endmodule
 
 
 module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
+input [47:0] X;
+input [47:0] Y;
+input signed [31:0] W_R;
+input signed [31:0] W_I;
+output signed [47:0] fft_a;
+output signed [47:0] fft_b;
+
+wire signed [23:0] a = X[47:24];
+wire signed [23:0] b = X[23:0];
+wire signed [23:0] c = Y[47:24];
+wire signed [23:0] d = Y[23:0];
+
+wire signed [24:0] fft_a_R = a + c;
+wire signed [24:0] fft_a_I = b + d;
+
+wire signed [24:0] a_minus_c = a - c;
+wire signed [24:0] d_minus_b = d - b;
+wire signed [24:0] b_minus_d = b - d;
+
+wire signed [48:0] fft_b_R = ((a_minus_c*W_R) + (d_minus_b*W_I));
+wire signed [48:0] fft_b_I = ((a_minus_c*W_I) + (b_minus_d*W_R));
+
+assign fft_a[47:24] = {fft_a_R[24],fft_a_R[23:0]}; 
+assign fft_a[23:0] =  {fft_a_I[24],fft_a_I[23:0]};
+
+assign fft_b[47:24] = {fft_b_R[48],fft_b_R[38:16]};
+assign fft_b[23:0] =  {fft_b_I[48],fft_b_I[38:16]};
+
+endmodule
+
+
+/*
+module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
 input [63:0] X;
 input [63:0] Y;
 input signed [31:0] W_R;
@@ -574,3 +607,4 @@ assign fft_b[63:32] = {fft_b_R[64],fft_b_R[46:16]};
 assign fft_b[31:0] =  {fft_b_I[64],fft_b_I[46:16]};
 
 endmodule
+*/

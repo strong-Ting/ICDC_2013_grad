@@ -45,9 +45,9 @@ FAS DUT(.data_valid(en), .data(data), .clk(clk), .rst(reset), .fir_d(fir_d), .fi
  	.fft_d9(fft_d9), .fft_d10(fft_d10), .fft_d11(fft_d11), .fft_d12(fft_d12), .fft_d13(fft_d13), .fft_d14(fft_d14), .fft_d15(fft_d15) );
 
 
-//`ifdef SDFFILE
+`ifdef SDF
 initial $sdf_annotate(`SDFFILE, DUT);
-//`endif
+`endif
 
 
 initial begin
