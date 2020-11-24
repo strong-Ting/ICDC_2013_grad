@@ -1,43 +1,45 @@
 ncverilog: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s039: Started on Nov 22, 2020 at 17:30:10 CST
+TOOL:	ncverilog	15.20-s039: Started on Nov 24, 2020 at 11:36:47 CST
 ncverilog
-	testfixture2.v
+	testfixture1.v
 	../src/FAS.v
 	+access+r
-file: testfixture2.v
-	module worklib.testfixture1:v
-		errors: 0, warnings: 0
+Recompiling... reason: file '../src/FAS.v' is newer than expected.
+	expected: Tue Nov 24 11:35:44 2020
+	actual:   Tue Nov 24 11:36:44 2020
 file: ../src/FAS.v
-	module worklib.FAS:v
-		errors: 0, warnings: 0
 	module worklib.FFT:v
 		errors: 0, warnings: 0
 	module worklib.fft_butterFly:v
+		errors: 0, warnings: 0
+	module worklib.twiddle:v
+		errors: 0, warnings: 0
+	module worklib.shifter:v
 		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.FAS:v <0x6b42b05e>
-			streams: 106, words: 44965
-		worklib.FFT:v <0x343626af>
-			streams:  34, words: 47991
-		worklib.fft_butterFly:v <0x2d8b469c>
-			streams:   9, words:  2937
-		worklib.testfixture1:v <0x4549a2be>
-			streams:  23, words: 29287
+		worklib.FFT:v <0x62320ba9>
+			streams:   8, words:  1778
+		worklib.fft_butterFly:v <0x0bdd85b3>
+			streams:  12, words:  2629
+		worklib.shifter:v <0x750eedfd>
+			streams:   6, words:  8174
+		worklib.twiddle:v <0x5be5e571>
+			streams:   1, words:  1630
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                  Instances  Unique
-		Modules:                 11       4
-		Registers:               53      53
-		Scalar wires:             7       -
-		Vectored wires:         264       -
+		Modules:                  6       6
+		Registers:               51      51
+		Scalar wires:             6       -
+		Vectored wires:         137       -
 		Always blocks:           16      16
 		Initial blocks:           9       9
-		Cont. assignments:      185     128
-		Pseudo assignments:      35       7
+		Cont. assignments:      113     116
+		Pseudo assignments:       5       5
 		Simulation timescale:  10ps
 	Writing initial simulation snapshot: worklib.testfixture1:v
 Loading snapshot worklib.testfixture1:v .................... Done
@@ -50,93 +52,30 @@ FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
 *Verdi* : Create FSDB file 'FAS.fsdb'
 *Verdi* : Begin traversing the scopes, layer (0).
 *Verdi* : End of traversing.
-FFT dataout on pattern           0 ~          15, PASS!!
-FFT dataout on pattern          16 ~          31, PASS!!
-FFT dataout on pattern          32 ~          47, PASS!!
-FFT dataout on pattern          48 ~          63, PASS!!
-FFT dataout on pattern          64 ~          79, PASS!!
+*Verdi* : Begin traversing the MDAs, layer (0).
+*Verdi* : Enable +mda and +packedmda dumping.
+*Verdi* : End of traversing the MDAs.
 FIR dataout on pattern           0 ~         100 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern          80 ~          95, PASS!!
-FFT dataout on pattern          96 ~         111, PASS!!
-FFT dataout on pattern         112 ~         127, PASS!!
-FFT dataout on pattern         128 ~         143, PASS!!
-FFT dataout on pattern         144 ~         159, PASS!!
-FFT dataout on pattern         160 ~         175, PASS!!
 FIR dataout on pattern         100 ~         200 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         176 ~         191, PASS!!
-FFT dataout on pattern         192 ~         207, PASS!!
-FFT dataout on pattern         208 ~         223, PASS!!
-FFT dataout on pattern         224 ~         239, PASS!!
-FFT dataout on pattern         240 ~         255, PASS!!
-FFT dataout on pattern         256 ~         271, PASS!!
-FFT dataout on pattern         272 ~         287, PASS!!
 FIR dataout on pattern         200 ~         300 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         288 ~         303, PASS!!
-FFT dataout on pattern         304 ~         319, PASS!!
-FFT dataout on pattern         320 ~         335, PASS!!
-FFT dataout on pattern         336 ~         351, PASS!!
-FFT dataout on pattern         352 ~         367, PASS!!
-FFT dataout on pattern         368 ~         383, PASS!!
 FIR dataout on pattern         300 ~         400 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         384 ~         399, PASS!!
-FFT dataout on pattern         400 ~         415, PASS!!
-FFT dataout on pattern         416 ~         431, PASS!!
-FFT dataout on pattern         432 ~         447, PASS!!
-FFT dataout on pattern         448 ~         463, PASS!!
-FFT dataout on pattern         464 ~         479, PASS!!
 FIR dataout on pattern         400 ~         500 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         480 ~         495, PASS!!
-FFT dataout on pattern         496 ~         511, PASS!!
-FFT dataout on pattern         512 ~         527, PASS!!
-FFT dataout on pattern         528 ~         543, PASS!!
-FFT dataout on pattern         544 ~         559, PASS!!
-FFT dataout on pattern         560 ~         575, PASS!!
 FIR dataout on pattern         500 ~         600 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         576 ~         591, PASS!!
-FFT dataout on pattern         592 ~         607, PASS!!
-FFT dataout on pattern         608 ~         623, PASS!!
-FFT dataout on pattern         624 ~         639, PASS!!
-FFT dataout on pattern         640 ~         655, PASS!!
-FFT dataout on pattern         656 ~         671, PASS!!
-FFT dataout on pattern         672 ~         687, PASS!!
-FFT dataout on pattern         688 ~         703, PASS!!
-FFT dataout on pattern         704 ~         719, PASS!!
-FFT dataout on pattern         720 ~         735, PASS!!
-FFT dataout on pattern         736 ~         751, PASS!!
-FFT dataout on pattern         752 ~         767, PASS!!
-FFT dataout on pattern         768 ~         783, PASS!!
 FIR dataout on pattern         700 ~         800 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         784 ~         799, PASS!!
-FFT dataout on pattern         800 ~         815, PASS!!
-FFT dataout on pattern         816 ~         831, PASS!!
-FFT dataout on pattern         832 ~         847, PASS!!
-FFT dataout on pattern         848 ~         863, PASS!!
-FFT dataout on pattern         864 ~         879, PASS!!
 FIR dataout on pattern         800 ~         900 !!, PASS !!
 -----------------------------------------------------
-FFT dataout on pattern         880 ~         895, PASS!!
-FFT dataout on pattern         896 ~         911, PASS!!
-FFT dataout on pattern         912 ~         927, PASS!!
-FFT dataout on pattern         928 ~         943, PASS!!
-FFT dataout on pattern         944 ~         959, PASS!!
-FFT dataout on pattern         960 ~         975, PASS!!
-FFT dataout on pattern         976 ~         991, PASS!!
-FFT dataout on pattern         992 ~        1007, PASS!!
-FFT dataout on pattern        1008 ~        1023, PASS!!
 -----------------------------------------------------
-
-Congratulations! All data have been generated successfully!
-
--------------------------PASS------------------------
-
-Simulation complete via $finish(1) at time 10710 NS + 0
-./testfixture2.v:242       #(`CYCLE/2); $finish;
+Error!!! Somethings' wrong with your code ...!!
+-------------------------FAIL------------------------
+-----------------------------------------------------
+Simulation complete via $finish(1) at time 12 US + 0
+./testfixture1.v:207  $finish;
 ncsim> exit
-TOOL:	ncverilog	15.20-s039: Exiting on Nov 22, 2020 at 17:30:15 CST  (total: 00:00:05)
+TOOL:	ncverilog	15.20-s039: Exiting on Nov 24, 2020 at 11:36:52 CST  (total: 00:00:05)
