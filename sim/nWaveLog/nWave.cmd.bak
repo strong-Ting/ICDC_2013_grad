@@ -1,6 +1,10 @@
+wvResizeWindow -win $_nWave1 1536 23 1344 817
 wvRestoreSignal -win $_nWave1 "/home/lin/github/CIC_2013_grad/sim/signal.rc" \
            -overWriteAutoAlias on -appendSignals on
-wvSelectSignal -win $_nWave1 {( "G2" 9 )} 
+wvResizeWindow -win $_nWave1 0 23 1536 801
+wvResizeWindow -win $_nWave1 1536 23 1344 817
+wvResizeWindow -win $_nWave1 222 295 1536 801
+wvResizeWindow -win $_nWave1 0 23 1536 841
 wvDisplayGridCount -win $_nWave1 -off
 wvGetSignalClose -win $_nWave1
 wvReloadFile -win $_nWave1

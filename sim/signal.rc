@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_Q-2020.03
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 23 1536 801 183 65
+viewPort 0 23 1536 841 183 65
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 34165.284360 49315.284360
-cursor 36500.000000
+zoom 49725.460123 67553.913162
+cursor 55500.000000
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 26
+markerPos 20
 
 ; event list
 ; addEvent event_name event_expression
@@ -49,32 +49,25 @@ addGroup "G1"
 activeDirFile "" "/home/lin/github/CIC_2013_grad/sim/FAS.fsdb"
 addSignal -h 15 /testfixture1/clk
 addSignal -h 15 /testfixture1/DUT/rst
-addSignal -h 15 /testfixture1/DUT/ff0/shifter8_I[0:7]
-addSignal -expanded -h 15 -holdScope shifter8_R[0:7]
-addSignal -h 15 -holdScope shifter8_R[0][23:0]
-addSignal -h 15 -holdScope shifter8_R[1][23:0]
-addSignal -h 15 -holdScope shifter8_R[2][23:0]
-addSignal -h 15 -holdScope shifter8_R[3][23:0]
-addSignal -h 15 -holdScope shifter8_R[4][23:0]
-addSignal -h 15 -holdScope shifter8_R[5][23:0]
-addSignal -h 15 -holdScope shifter8_R[6][23:0]
-addSignal -h 15 -holdScope shifter8_R[7][23:0]
-addSignal -h 15 -holdScope data[15:0]
+addSignal -h 15 /testfixture1/DUT/ff0/data[15:0]
 addSignal -h 15 -holdScope data_valid
+addSignal -h 15 -UNSIGNED -UDEC -holdScope counter32[4:0]
 addGroup "G2"
-addSignal -h 15 /testfixture1/DUT/ff0/out_ai0[23:0]
-addSignal -h 15 -holdScope out_ar0[23:0]
-addSignal -h 15 -holdScope out_bi0[23:0]
-addSignal -h 15 -holdScope out_br0[23:0]
-addSignal -h 15 -holdScope counter32[4:0]
-addSignal -h 15 -holdScope W_index[2:0]
-addSignal -h 15 -holdScope W_R[31:0]
-addSignal -h 15 -holdScope W_I[31:0]
-addSignal -h 15 /testfixture1/DUT/ff0/f0/xr[23:0]
-addSignal -h 15 -holdScope xi[23:0]
-addSignal -h 15 -holdScope yr[23:0]
-addSignal -h 15 -holdScope yi[23:0]
+addSignal -h 15 /testfixture1/DUT/ff0/f0/din_br[23:0]
+addSignal -h 15 -holdScope din_bi[23:0]
+addSignal -h 15 -holdScope state[1:0]
+addSignal -h 15 -holdScope dout_ar[23:0]
+addSignal -h 15 -holdScope dout_ai[23:0]
+addSignal -h 15 -holdScope dout_br[23:0]
+addSignal -h 15 -holdScope dout_bi[23:0]
 addGroup "G3"
+addSignal -h 15 /testfixture1/DUT/ff0/f1/dout_br[23:0]
+addSignal -h 15 -holdScope dout_bi[23:0]
+addSignal -h 15 /testfixture1/DUT/ff0/f2/din_br[23:0]
+addSignal -h 15 -holdScope din_bi[23:0]
+addSignal -h 15 /testfixture1/DUT/ff0/f3/din_br[23:0]
+addSignal -h 15 -holdScope din_bi[23:0]
+addGroup "G4"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
@@ -86,12 +79,18 @@ getSignalForm close
 "/testfixture1"
 "/testfixture1/DUT"
 "/testfixture1/DUT/ff0"
+"/testfixture1/DUT/ff0/f0"
 
 SCOPE_LIST_BEGIN
 "/testfixture1"
 "/testfixture1/DUT"
 "/testfixture1/DUT/ff0"
 "/testfixture1/DUT/ff0/f0"
+"/testfixture1/DUT/ff0/delay8"
+"/testfixture1/DUT/ff0/t0"
+"/testfixture1/DUT/ff0/f1"
+"/testfixture1/DUT/ff0/f2"
+"/testfixture1/DUT/ff0/f3"
 SCOPE_LIST_END
 
 GETSIGNALFORM_SCOPE_HIERARCHY_END

@@ -245,10 +245,364 @@ output fft_valid;
 output [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
 
-reg [3:0] counter_p; // counter_parallel 1 to 16
-reg [3:0] counter_fft;
-reg fft_run;
-reg signed [15:0] y_buffer [0:15];
+reg [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
+reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
+reg fft_valid;
+
+
+wire[15:0] data;
+wire [23:0] dout_ar [3:0];
+wire [23:0] dout_ai [3:0];
+wire [23:0] dout_br [3:0];
+wire [23:0] dout_bi [3:0];
+wire [23:0] d8in_R,d8in_I,d8out_R,d8out_I,
+			d4in_R,d4in_I,d4out_R,d4out_I,
+			d2in_R,d2in_I,d2out_R,d2out_I,
+			d1in_R,d1in_I,d1out_R,d1out_I;
+
+
+wire [31:0] W_R[3:0];
+wire [31:0] W_I[3:0];
+reg [2:0] W_index [3:0];
+reg [1:0] state[3:0];
+
+//counter
+reg [4:0] counter32;
+wire [4:0] counter32_next;
+assign counter32_next = (data_valid) ? counter32+5'd1 : counter32;
+always@(posedge clk or posedge rst)
+begin
+	if(rst) counter32 <= 5'd0;
+	else counter32 <= counter32_next;
+end
+
+
+always@(*)
+begin
+	case(counter32)
+	5'd16: W_index[0] = 3'd0;
+	5'd17: W_index[0] = 3'd1;
+	5'd18: W_index[0] = 3'd2;
+	5'd19: W_index[0] = 3'd3;
+	5'd20: W_index[0] = 3'd4;
+	5'd21: W_index[0] = 3'd5;
+	5'd22: W_index[0] = 3'd6;
+	5'd23: W_index[0] = 3'd7;
+	default: W_index[0] = 3'd0;
+	endcase
+end
+
+always@(*)
+begin
+	case(counter32)
+	5'd16: W_index[1] = 3'd0;
+	5'd17: W_index[1] = 3'd2;
+	5'd18: W_index[1] = 3'd4;
+	5'd19: W_index[1] = 3'd6;
+	5'd24: W_index[1] = 3'd0;
+	5'd25: W_index[1] = 3'd2;
+	5'd26: W_index[1] = 3'd4;
+	5'd27: W_index[1] = 3'd6;
+	default: W_index[1] = 3'd0;
+	endcase
+end
+
+always@(*)
+begin
+	case(counter32)
+	5'd16: W_index[2] = 3'd0;
+	5'd17: W_index[2] = 3'd4;
+	5'd20: W_index[2] = 3'd0;
+	5'd21: W_index[2] = 3'd4;
+	5'd24: W_index[2] = 3'd0;
+	5'd25: W_index[2] = 3'd4;
+	5'd28: W_index[2] = 3'd0;
+	5'd29: W_index[2] = 3'd4;
+	default: W_index[2] = 3'd0;
+	endcase
+end
+
+always@(*)
+begin
+	case(counter32)
+	5'd16: W_index[3] = 3'd0;
+	5'd18: W_index[3] = 3'd0;
+	5'd20: W_index[3] = 3'd0;
+	5'd22: W_index[3] = 3'd0;
+	5'd24: W_index[3] = 3'd0;
+	5'd26: W_index[3] = 3'd0;
+	5'd28: W_index[3] = 3'd0;
+	5'd30: W_index[3] = 3'd0;
+	default: W_index[3] = 3'd0;
+	endcase
+end
+
+always@(*)
+begin
+	if(counter32<5'd8) state[0] = 2'd0;
+	else if(counter32 >= 5'd8 && counter32 < 5'd16) state[0] = 2'd1;
+	else if(counter32 >= 5'd16 && counter32 < 5'd24) state[0] = 2'd2;
+	else state[0] <= 2'd3;
+end
+
+always@(*)
+begin
+	if(counter32<5'd12) state[1] = 2'd0;
+	else if(counter32 >= 5'd12 && counter32 < 5'd16) state[1] = 2'd1;
+	else if(counter32 >= 5'd16 && counter32 < 5'd20) state[1] = 2'd2;
+	else if(counter32 >= 5'd20 && counter32 < 5'd24) state[1] = 2'd1;
+	else if(counter32 >= 5'd24 && counter32 < 5'd28) state[1] = 2'd2;
+	else state[1] <= 2'd3;
+end
+
+always@(*)
+begin
+	if(counter32<5'd14) state[2] = 2'd0;
+	else if(counter32 >= 5'd14 && counter32 < 5'd16) state[2] = 2'd1;
+	else if(counter32 >= 5'd16 && counter32 < 5'd18) state[2] = 2'd2;
+	else if(counter32 >= 5'd18 && counter32 < 5'd20) state[2] = 2'd1;
+	else if(counter32 >= 5'd20 && counter32 < 5'd22) state[2] = 2'd2;
+	else if(counter32 >= 5'd22 && counter32 < 5'd24) state[2] = 2'd1;
+	else if(counter32 >= 5'd24 && counter32 < 5'd26) state[2] = 2'd2;
+	else if(counter32 >= 5'd26 && counter32 < 5'd28) state[2] = 2'd1;
+	else if(counter32 >= 5'd28 && counter32 < 5'd30) state[2] = 2'd2;
+	else state[2] <= 2'd3;
+end
+
+always@(*)
+begin
+	if(counter32<5'd15) state[3] = 2'd0;
+	else if(/*counter32 >= 5'd15 &&*/ counter32 < 5'd31 && counter32[0] == 1'd1) state[3] = 2'd1;
+	else if(/*counter32 >= 5'd15 &&*/ counter32 < 5'd31 && counter32[0] == 1'd0) state[3] = 2'd2;
+	else state[3] <= 2'd3;
+end
+
+shifter #(.WIDTH(24),.delay(8)) 
+		delay8( .clk(clk),
+				.rst(rst),
+				.dataIn_R(dout_ar[0]),
+				.dataIn_I(dout_ai[0]),
+				.dataOut_R(d8out_R),
+				.dataOut_I(d8out_I)
+);
+fft_butterFly f0(  	.state(state[0]),
+					.din_ar(d8out_R),
+				   	.din_ai(d8out_I),
+					.din_br({data,8'd0}),
+					.din_bi(24'd0),
+					.W_R(W_R[0]),
+					.W_I(W_I[0]),
+					.dout_ar(dout_ar[0]),
+					.dout_ai(dout_ai[0]),
+					.dout_br(dout_br[0]),
+					.dout_bi(dout_bi[0])
+);
+twiddle t0( .index(W_index[0]),
+			.W_R(W_R[0]),
+			.W_I(W_I[0])
+);
+
+shifter #(.WIDTH(24),.delay(4)) 
+		delay4( .clk(clk),
+				.rst(rst),
+				.dataIn_R(dout_ar[1]),
+				.dataIn_I(dout_ai[1]),
+				.dataOut_R(d4out_R),
+				.dataOut_I(d4out_I)
+);
+fft_butterFly f1(  	.state(state[1]),
+					.din_ar(d4out_R),
+				   	.din_ai(d4out_I),
+					.din_br(dout_br[0]),
+					.din_bi(dout_bi[0]),
+					.W_R(W_R[1]),
+					.W_I(W_I[1]),
+					.dout_ar(dout_ar[1]),
+					.dout_ai(dout_ai[1]),
+					.dout_br(dout_br[1]),
+					.dout_bi(dout_bi[1])
+);
+twiddle t1( .index(W_index[1]),
+			.W_R(W_R[1]),
+			.W_I(W_I[1])
+);
+
+shifter #(.WIDTH(24),.delay(2)) 
+		delay2( .clk(clk),
+				.rst(rst),
+				.dataIn_R(dout_ar[2]),
+				.dataIn_I(dout_ai[2]),
+				.dataOut_R(d2out_R),
+				.dataOut_I(d2out_I)
+);
+fft_butterFly f2(  	.state(state[2]),
+					.din_ar(d2out_R),
+				   	.din_ai(d2out_I),
+					.din_br(dout_br[1]),
+					.din_bi(dout_bi[1]),
+					.W_R(W_R[2]),
+					.W_I(W_I[2]),
+					.dout_ar(dout_ar[2]),
+					.dout_ai(dout_ai[2]),
+					.dout_br(dout_br[2]),
+					.dout_bi(dout_bi[2])
+);
+twiddle t2( .index(W_index[2]),
+			.W_R(W_R[2]),
+			.W_I(W_I[2])
+);
+
+shifter #(.WIDTH(24),.delay(1)) 
+		delay1( .clk(clk),
+				.rst(rst),
+				.dataIn_R(dout_ar[3]),
+				.dataIn_I(dout_ai[3]),
+				.dataOut_R(d1out_R),
+				.dataOut_I(d1out_I)
+);
+fft_butterFly f3(  	.state(state[3]),
+					.din_ar(d1out_R),
+				   	.din_ai(d1out_I),
+					.din_br(dout_br[2]),
+					.din_bi(dout_bi[2]),
+					.W_R(W_R[3]),
+					.W_I(W_I[3]),
+					.dout_ar(dout_ar[3]),
+					.dout_ai(dout_ai[3]),
+					.dout_br(dout_br[3]),
+					.dout_bi(dout_bi[3])
+);
+twiddle t3( .index(W_index[3]),
+			.W_R(W_R[3]),
+			.W_I(W_I[3])
+);
+
+wire [31:0] fft_out = {dout_br[3][23:8],dout_bi[3][23:8]}; 
+always@(posedge clk or posedge rst)
+begin
+	if(rst) 
+	begin
+		fft_d1 <= 32'd0;
+		fft_d2 <= 32'd0;
+		fft_d3 <= 32'd0;
+		fft_d4 <= 32'd0;
+		fft_d5 <= 32'd0;
+		fft_d6 <= 32'd0;
+		fft_d7 <= 32'd0;
+		fft_d8 <= 32'd0;
+		fft_d9 <= 32'd0;
+		fft_d10 <= 32'd0;
+		fft_d11 <= 32'd0;
+		fft_d12 <= 32'd0;
+		fft_d13 <= 32'd0;
+		fft_d14 <= 32'd0;
+		fft_d15 <= 32'd0;
+		fft_d0 <= 32'd0;
+	end
+	else 
+	begin
+		case (counter32)
+		5'd15: fft_d0 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd16: fft_d8 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd17: fft_d4 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd18: fft_d12 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd19: fft_d2 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd20: fft_d10 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd21: fft_d6 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd22: fft_d14 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd23: fft_d1 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd24: fft_d9 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd25: fft_d5 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd26: fft_d13 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd27: fft_d3 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd28: fft_d11 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd29: fft_d7 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd30: fft_d15 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		endcase
+	end
+end
+
+always@(posedge clk or posedge rst)
+begin
+	if(rst) fft_valid <= 1'd0;
+	else if(counter32 == 5'd30) fft_valid <= 1'd1;
+	else fft_valid <= 1'd0;
+end
+
+endmodule
+
+
+module fft_butterFly(state,din_ar,din_ai,din_br,din_bi,W_R,W_I,dout_ar,dout_ai,dout_br,dout_bi);
+input [1:0] state;
+input [23:0] din_ar,din_ai,din_br,din_bi;
+input signed [31:0] W_R;
+input signed [31:0] W_I;
+output signed [23:0] dout_ar,dout_ai,dout_br,dout_bi;
+
+reg [23:0] dout_ar,dout_ai,dout_br,dout_bi;
+reg signed [23:0] a,b,c,d;
+reg signed [48:0] inter,mul_r,mul_i;
+
+always@(*)
+begin
+	dout_ar = din_br;
+	dout_ai = din_bi;
+	dout_br = 24'd0;
+	dout_bi = 24'd0;
+	case(state)
+	2'd0: 
+	begin
+		dout_ar = din_br;
+		dout_ai = din_bi;
+	end
+	2'd1: 
+	begin
+		a = din_ar + din_br;
+		b = din_ai + din_bi;
+
+		c = din_ar - din_br;
+		d = din_ai - din_bi;
+
+		dout_br = a;
+		dout_bi = b;
+
+		dout_ar = c;
+		dout_ai = d;
+	end
+	2'd2: 
+	begin
+		dout_ar = din_br;
+		dout_ai = din_bi;
+
+		a = din_ar;
+		b = din_ai;
+
+		inter = b*(W_R-W_I);
+		mul_r = W_R*(a-b) + inter;
+		mul_i = W_I*(a+b) + inter;
+
+		dout_br = {mul_r[48],mul_r[38:16]};
+		dout_bi = {mul_i[48],mul_i[38:16]};
+	end
+	2'd3: 
+	begin
+		dout_ar = din_br;
+		dout_ai = din_bi;
+	end
+	default:
+	begin
+		dout_ar = din_br;
+		dout_ai = din_bi;
+	end
+	endcase 
+end
+
+endmodule
+
+module twiddle(index,W_R,W_I);
+
+input [2:0] index;
+output [31:0] W_R,W_I;
 
 parameter signed [31:0] W_r_0 = 32'h00010000;      //The real part of the reference table about COS(x)+i*SIN(x) value , 0: 001
 parameter signed [31:0] W_r_1 = 32'h0000EC83;      //The real part of the reference table about COS(x)+i*SIN(x) value , 1: 9.238739e-001
@@ -268,343 +622,91 @@ parameter signed [31:0] W_i_5 = 32'hFFFF137D;      //The imag part of the refere
 parameter signed [31:0] W_i_6 = 32'hFFFF4AFC;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 6: -7.070923e-001
 parameter signed [31:0] W_i_7 = 32'hFFFF9E09;      //The imag part of the reference table about COS(x)+i*SIN(x) value , 7: -3.826752e-001
 
-reg [47:0] f_X[7:0];
-reg [47:0] f_Y[7:0];
-reg [31:0] f_WR[7:0];
-reg [31:0] f_WI[7:0];
-wire [47:0] f_A[7:0];
-wire [47:0] f_B[7:0];
+reg [31:0] W_R,W_I;
 
-wire [31:0] fft_d0 = {f_A[0][47:32],f_A[0][23:8]};
-wire [31:0] fft_d8 = {f_B[0][47:32],f_B[0][23:8]};
-wire [31:0] fft_d4 = {f_A[1][47:32],f_A[1][23:8]};
-wire [31:0] fft_d12 = {f_B[1][47:32],f_B[1][23:8]};
-wire [31:0] fft_d2 = {f_A[2][47:32],f_A[2][23:8]};
-wire [31:0] fft_d10 = {f_B[2][47:32],f_B[2][23:8]};
-wire [31:0] fft_d6 = {f_A[3][47:32],f_A[3][23:8]};
-wire [31:0] fft_d14 = {f_B[3][47:32],f_B[3][23:8]};
-wire [31:0] fft_d1 = {f_A[4][47:32],f_A[4][23:8]};
-wire [31:0] fft_d9 = {f_B[4][47:32],f_B[4][23:8]};
-wire [31:0] fft_d5 = {f_A[5][47:32],f_A[5][23:8]};
-wire [31:0] fft_d13 = {f_B[5][47:32],f_B[5][23:8]};
-wire [31:0] fft_d3 = {f_A[6][47:32],f_A[6][23:8]};
-wire [31:0] fft_d11 = {f_B[6][47:32],f_B[6][23:8]};
-wire [31:0] fft_d7 = {f_A[7][47:32],f_A[7][23:8]};
-wire [31:0] fft_d15 = {f_B[7][47:32],f_B[7][23:8]};
-
-//fft_valid
-wire fft_valid = (counter_fft == 4'd10) ? 1'd1 : 1'd0;
-
-//count 16 fir 
-always@(posedge clk or posedge rst)
+always@(*)
 begin
-    if(rst) counter_p <= 4'd0;
-    else if(data_valid) counter_p <= counter_p + 4'd1;
+	case(index)
+	3'd0: 
+	begin
+		W_R = W_r_0; 
+		W_I = W_i_0;
+	end
+	3'd1: 
+	begin
+		W_R = W_r_1; 
+		W_I = W_i_1;
+	end
+	3'd2: 
+	begin
+		W_R = W_r_2; 
+		W_I = W_i_2;
+	end
+	3'd3: 
+	begin
+		W_R = W_r_3; 
+		W_I = W_i_3;
+	end
+	3'd4: 
+	begin
+		W_R = W_r_4; 
+		W_I = W_i_4;
+	end
+	3'd5: 
+	begin
+		W_R = W_r_5; 
+		W_I = W_i_5;
+	end
+	3'd6: 
+	begin
+		W_R = W_r_6; 
+		W_I = W_i_6;
+	end
+	3'd7: 
+	begin
+		W_R = W_r_7; 
+		W_I = W_i_7;
+	end
+	endcase
 end
 
-//count fft , fft_run
-always@(posedge clk or posedge rst)
-begin
-    if(rst) 
-    begin
-        counter_fft <= 4'd0;
-        fft_run <= 1'd0;
-    end
-    else if(counter_fft == 4'd12)
-    begin
-        counter_fft <= 4'd0;
-        fft_run <= 1'd0;
-    end
-    else if(counter_p == 4'd15 || fft_run == 1'd1) 
-    begin
-        counter_fft <= counter_fft + 4'd1;
-        fft_run <= 1'd1;
-    end
-    
-end
+
+endmodule
+
+module shifter#(parameter WIDTH=24,parameter delay=8)
+(clk,rst,dataIn_R,dataIn_I,dataOut_R,dataOut_I);
+input clk,rst;
+input [WIDTH-1:0] dataIn_R,dataIn_I;
+output [WIDTH-1:0] dataOut_R,dataOut_I;
+wire [WIDTH-1:0] dataIn_R,dataIn_I,dataOut_R,dataOut_I;
+
+reg [WIDTH-1:0] FIFO_R[delay-1:0];
+reg [WIDTH-1:0] FIFO_I[delay-1:0];
+assign dataOut_R = FIFO_R[delay-1];
+assign dataOut_I = FIFO_I[delay-1];
 
 integer i;
-//y_buffer
 always@(posedge clk or posedge rst)
 begin
     if(rst) 
     begin
-        for(i=0;i<16;i=i+1)
+        for(i=0;i<delay;i=i+1)
         begin
-            y_buffer[i] <= 16'd0;
+            FIFO_R[i] <= {WIDTH{1'b0}};
+			FIFO_I[i] <= {WIDTH{1'b0}};
         end
     end
     else 
     begin
-        y_buffer[15] <= data;
-        for(i=1;i<16;i=i+1)
+		FIFO_R[0] <= dataIn_R;
+		FIFO_I[0] <= dataIn_I;
+		for(i=0;i<(delay-1);i=i+1)
         begin
-            y_buffer[i-1] <= y_buffer[i];
+            FIFO_R[i+1] <= FIFO_R[i];
+			FIFO_I[i+1] <= FIFO_I[i];	
         end
     end
 end
 
 
-always@(posedge clk or posedge rst)
-begin
-    if(rst)
-    begin
-        for(i=1;i<8;i=i+1)
-        begin
-            f_X[i] <= 48'd0;
-            f_Y[i] <= 48'd0;
-            f_WR[i] <= 32'd0;
-            f_WI[i] <= 32'd0;
-        end
-    end
-    else if(counter_fft == 4'd1)
-    begin
-        f_X[0] <= {y_buffer[0],8'd0,24'd0};
-        f_Y[0] <= {y_buffer[8],8'd0,24'd0};
-        f_WR[0] <= W_r_0;
-        f_WI[0] <= W_i_0; 
-
-        f_X[1] <= {y_buffer[1],8'd0,24'd0};
-        f_Y[1] <= {y_buffer[9],8'd0,24'd0};
-        f_WR[1] <= W_r_1;
-        f_WI[1] <= W_i_1; 
-
-        f_X[2] <= {y_buffer[2],8'd0,24'd0};
-        f_Y[2] <= {y_buffer[10],8'd0,24'd0};
-        f_WR[2] <= W_r_2;
-        f_WI[2] <= W_i_2; 
-
-        f_X[3] <= {y_buffer[3],8'd0,24'd0};
-        f_Y[3] <= {y_buffer[11],8'd0,24'd0};
-        f_WR[3] <= W_r_3;
-        f_WI[3] <= W_i_3; 
-
-        f_X[4] <= {y_buffer[4],8'd0,24'd0};
-        f_Y[4] <= {y_buffer[12],8'd0,24'd0};
-        f_WR[4] <= W_r_4;
-        f_WI[4] <= W_i_4; 
-
-        f_X[5] <= {y_buffer[5],8'd0,24'd0};
-        f_Y[5] <= {y_buffer[13],8'd0,24'd0};
-        f_WR[5] <= W_r_5;
-        f_WI[5] <= W_i_5; 
-
-        f_X[6] <= {y_buffer[6],8'd0,24'd0};
-        f_Y[6] <= {y_buffer[14],8'd0,24'd0};
-        f_WR[6] <= W_r_6;
-        f_WI[6] <= W_i_6; 
-
-        f_X[7] <= {y_buffer[7],8'd0,24'd0};
-        f_Y[7] <= {y_buffer[15],8'd0,24'd0};
-        f_WR[7] <= W_r_7;
-        f_WI[7] <= W_i_7; 
-    end
-    else if(counter_fft == 4'd3)
-    begin
-        f_X[0] <= f_A[0];
-        f_Y[0] <= f_A[4];
-        f_WR[0] <= W_r_0;
-        f_WI[0] <= W_i_0; 
-
-        f_X[1] <= f_A[1];
-        f_Y[1] <= f_A[5];
-        f_WR[1] <= W_r_2;
-        f_WI[1] <= W_i_2; 
-
-        f_X[2] <= f_A[2];
-        f_Y[2] <= f_A[6];
-        f_WR[2] <= W_r_4;
-        f_WI[2] <= W_i_4; 
-
-        f_X[3] <= f_A[3];
-        f_Y[3] <= f_A[7];
-        f_WR[3] <= W_r_6;
-        f_WI[3] <= W_i_6; 
-
-        f_X[4] <= f_B[0];
-        f_Y[4] <= f_B[4];
-        f_WR[4] <= W_r_0;
-        f_WI[4] <= W_i_0; 
-
-        f_X[5] <= f_B[1];
-        f_Y[5] <= f_B[5];
-        f_WR[5] <= W_r_2;
-        f_WI[5] <= W_i_2; 
-
-        f_X[6] <= f_B[2];
-        f_Y[6] <= f_B[6];
-        f_WR[6] <= W_r_4;
-        f_WI[6] <= W_i_4; 
-
-        f_X[7] <= f_B[3];
-        f_Y[7] <= f_B[7];
-        f_WR[7] <= W_r_6;
-        f_WI[7] <= W_i_6;
-    end
-    else if(counter_fft == 4'd5)
-    begin
-        f_X[0] <= f_A[0];
-        f_Y[0] <= f_A[2];
-        f_WR[0] <= W_r_0;
-        f_WI[0] <= W_i_0; 
-
-        f_X[1] <= f_A[1];
-        f_Y[1] <= f_A[3];
-        f_WR[1] <= W_r_4;
-        f_WI[1] <= W_i_4; 
-
-        f_X[2] <= f_B[0];
-        f_Y[2] <= f_B[2];
-        f_WR[2] <= W_r_0;
-        f_WI[2] <= W_i_0; 
-
-        f_X[3] <= f_B[1];
-        f_Y[3] <= f_B[3];
-        f_WR[3] <= W_r_4;
-        f_WI[3] <= W_i_4; 
-
-        f_X[4] <= f_A[4];
-        f_Y[4] <= f_A[6];
-        f_WR[4] <= W_r_0;
-        f_WI[4] <= W_i_0; 
-
-        f_X[5] <= f_A[5];
-        f_Y[5] <= f_A[7];
-        f_WR[5] <= W_r_4;
-        f_WI[5] <= W_i_4; 
-
-        f_X[6] <= f_B[4];
-        f_Y[6] <= f_B[6];
-        f_WR[6] <= W_r_0;
-        f_WI[6] <= W_i_0; 
-
-        f_X[7] <= f_B[5];
-        f_Y[7] <= f_B[7];
-        f_WR[7] <= W_r_4;
-        f_WI[7] <= W_i_4;
-    end
-    else if(counter_fft == 4'd7)
-    begin
-        f_X[0] <= f_A[0];
-        f_Y[0] <= f_A[1];
-        f_WR[0] <= W_r_0;
-        f_WI[0] <= W_i_0; 
-
-        f_X[1] <= f_B[0];
-        f_Y[1] <= f_B[1];
-        f_WR[1] <= W_r_0;
-        f_WI[1] <= W_i_0; 
-
-        f_X[2] <= f_A[2];
-        f_Y[2] <= f_A[3];
-        f_WR[2] <= W_r_0;
-        f_WI[2] <= W_i_0; 
-
-        f_X[3] <= f_B[2];
-        f_Y[3] <= f_B[3];
-        f_WR[3] <= W_r_0;
-        f_WI[3] <= W_i_0; 
-
-        f_X[4] <= f_A[4];
-        f_Y[4] <= f_A[5];
-        f_WR[4] <= W_r_0;
-        f_WI[4] <= W_i_0; 
-
-        f_X[5] <= f_B[4];
-        f_Y[5] <= f_B[5];
-        f_WR[5] <= W_r_0;
-        f_WI[5] <= W_i_0; 
-
-        f_X[6] <= f_A[6];
-        f_Y[6] <= f_A[7];
-        f_WR[6] <= W_r_0;
-        f_WI[6] <= W_i_0; 
-
-        f_X[7] <= f_B[6];
-        f_Y[7] <= f_B[7];
-        f_WR[7] <= W_r_0;
-        f_WI[7] <= W_i_0;
-    end
-end
-
-
-
-genvar j;
-generate
-    for(j=0;j<8;j=j+1)
-    begin
-        fft_butterFly fb(.X(f_X[j]),.Y(f_Y[j]),.W_R(f_WR[j]),.W_I(f_WI[j]),
-                        .fft_a(f_A[j]),
-                        .fft_b(f_B[j])
-                        );
-    end
-endgenerate
-
-
 endmodule
-
-
-module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
-input [47:0] X;
-input [47:0] Y;
-input signed [31:0] W_R;
-input signed [31:0] W_I;
-output signed [47:0] fft_a;
-output signed [47:0] fft_b;
-
-wire signed [23:0] a = X[47:24];
-wire signed [23:0] b = X[23:0];
-wire signed [23:0] c = Y[47:24];
-wire signed [23:0] d = Y[23:0];
-
-wire signed [24:0] fft_a_R = a + c;
-wire signed [24:0] fft_a_I = b + d;
-
-wire signed [24:0] a_minus_c = a - c;
-wire signed [24:0] d_minus_b = d - b;
-wire signed [24:0] b_minus_d = b - d;
-
-wire signed [48:0] fft_b_R = ((a_minus_c*W_R) + (d_minus_b*W_I));
-wire signed [48:0] fft_b_I = ((a_minus_c*W_I) + (b_minus_d*W_R));
-
-assign fft_a[47:24] = {fft_a_R[24],fft_a_R[23:0]}; 
-assign fft_a[23:0] =  {fft_a_I[24],fft_a_I[23:0]};
-
-assign fft_b[47:24] = {fft_b_R[48],fft_b_R[38:16]};
-assign fft_b[23:0] =  {fft_b_I[48],fft_b_I[38:16]};
-
-endmodule
-
-
-/*
-module fft_butterFly(X,Y,W_R,W_I,fft_a,fft_b);
-input [63:0] X;
-input [63:0] Y;
-input signed [31:0] W_R;
-input signed [31:0] W_I;
-output signed [63:0] fft_a;
-output signed [63:0] fft_b;
-
-wire signed [31:0] a = X[63:32];
-wire signed [31:0] b = X[31:0];
-wire signed [31:0] c = Y[63:32];
-wire signed [31:0] d = Y[31:0];
-
-wire signed [32:0] fft_a_R = a + c;
-wire signed [32:0] fft_a_I = b + d;
-
-wire signed [32:0] a_minus_c = a - c;
-wire signed [32:0] d_minus_b = d - b;
-wire signed [32:0] b_minus_d = b - d;
-
-wire signed [64:0] fft_b_R = ((a_minus_c*W_R) + (d_minus_b*W_I));
-wire signed [64:0] fft_b_I = ((a_minus_c*W_I) + (b_minus_d*W_R));
-
-assign fft_a[63:32] = {fft_a_R[32],fft_a_R[30:0]}; 
-assign fft_a[31:0] =  {fft_a_I[32],fft_a_I[30:0]};
-
-assign fft_b[63:32] = {fft_b_R[64],fft_b_R[46:16]};
-assign fft_b[31:0] =  {fft_b_I[64],fft_b_I[46:16]};
-
-endmodule
-*/
