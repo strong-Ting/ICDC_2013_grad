@@ -2,6 +2,6 @@
 // File created by:  ncverilog
 // Do not modify this file
 //
-testfixture1.v
+testfixture2.v
 ../src/FAS.v
 +access+r

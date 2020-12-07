@@ -12,6 +12,7 @@ output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_
 output done;
 output [3:0] freq;
 
+reg [3:0] freq;
 wire fft_valid;
 wire [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 wire [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
@@ -209,8 +210,13 @@ wire [36:0] cmp_2_3 = (cmp_1_6[32:0] > cmp_1_7[32:0]) ? cmp_1_6 : cmp_1_7;
 wire [36:0] cmp_3_0 = (cmp_2_0[32:0] > cmp_2_1[32:0]) ? cmp_2_0 : cmp_2_1;
 wire [36:0] cmp_3_1 = (cmp_2_2[32:0] > cmp_2_3[32:0]) ? cmp_2_2 : cmp_2_3;
 
-wire [3:0] freq = (cmp_3_0[32:0] > cmp_3_1[32:0]) ? cmp_3_0[36:33] : cmp_3_1[36:33];
+wire [3:0] freq_comb = (cmp_3_0[32:0] > cmp_3_1[32:0]) ? cmp_3_0[36:33] : cmp_3_1[36:33];
 
+always@(posedge clk or posedge rst)
+begin
+	if(rst) freq <= 4'd0;
+	else freq <= freq_comb;
+end
 
 FFT ff0(.clk(clk),
 		.rst(rst),
@@ -247,7 +253,7 @@ output [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_
 
 reg [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 reg [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
-reg fft_valid;
+reg fft_valid,fft_first_run;
 
 
 wire[15:0] data;
@@ -276,10 +282,18 @@ begin
 	else counter32 <= counter32_next;
 end
 
-
 always@(*)
 begin
 	case(counter32)
+	5'd0: W_index[0] = 3'd0;
+	5'd1: W_index[0] = 3'd1;
+	5'd2: W_index[0] = 3'd2;
+	5'd3: W_index[0] = 3'd3;
+	5'd4: W_index[0] = 3'd4;
+	5'd5: W_index[0] = 3'd5;
+	5'd6: W_index[0] = 3'd6;
+	5'd7: W_index[0] = 3'd7;
+
 	5'd16: W_index[0] = 3'd0;
 	5'd17: W_index[0] = 3'd1;
 	5'd18: W_index[0] = 3'd2;
@@ -303,6 +317,15 @@ begin
 	5'd25: W_index[1] = 3'd2;
 	5'd26: W_index[1] = 3'd4;
 	5'd27: W_index[1] = 3'd6;
+
+	5'd0: W_index[1] = 3'd0;
+	5'd1: W_index[1] = 3'd2;
+	5'd2: W_index[1] = 3'd4;
+	5'd3: W_index[1] = 3'd6;
+	5'd8: W_index[1] = 3'd0;
+	5'd9: W_index[1] = 3'd2;
+	5'd10: W_index[1] = 3'd4;
+	5'd11: W_index[1] = 3'd6;
 	default: W_index[1] = 3'd0;
 	endcase
 end
@@ -318,6 +341,15 @@ begin
 	5'd25: W_index[2] = 3'd4;
 	5'd28: W_index[2] = 3'd0;
 	5'd29: W_index[2] = 3'd4;
+
+	5'd0: W_index[2] = 3'd0;
+	5'd1: W_index[2] = 3'd4;
+	5'd4: W_index[2] = 3'd0;
+	5'd5: W_index[2] = 3'd4;
+	5'd8: W_index[2] = 3'd0;
+	5'd9: W_index[2] = 3'd4;
+	5'd12: W_index[2] = 3'd0;
+	5'd13: W_index[2] = 3'd4;
 	default: W_index[2] = 3'd0;
 	endcase
 end
@@ -339,42 +371,27 @@ end
 
 always@(*)
 begin
-	if(counter32<5'd8) state[0] = 2'd0;
-	else if(counter32 >= 5'd8 && counter32 < 5'd16) state[0] = 2'd1;
-	else if(counter32 >= 5'd16 && counter32 < 5'd24) state[0] = 2'd2;
-	else state[0] <= 2'd3;
+	if(counter32[3] == 1'd1) state[0] = 2'd1;
+	else state[0] = 2'd2;
+
 end
 
 always@(*)
 begin
-	if(counter32<5'd12) state[1] = 2'd0;
-	else if(counter32 >= 5'd12 && counter32 < 5'd16) state[1] = 2'd1;
-	else if(counter32 >= 5'd16 && counter32 < 5'd20) state[1] = 2'd2;
-	else if(counter32 >= 5'd20 && counter32 < 5'd24) state[1] = 2'd1;
-	else if(counter32 >= 5'd24 && counter32 < 5'd28) state[1] = 2'd2;
-	else state[1] <= 2'd3;
+	if(counter32[2] == 1'd1) state[1] = 2'd1;
+	else state[1] = 2'd2;
 end
 
 always@(*)
 begin
-	if(counter32<5'd14) state[2] = 2'd0;
-	else if(counter32 >= 5'd14 && counter32 < 5'd16) state[2] = 2'd1;
-	else if(counter32 >= 5'd16 && counter32 < 5'd18) state[2] = 2'd2;
-	else if(counter32 >= 5'd18 && counter32 < 5'd20) state[2] = 2'd1;
-	else if(counter32 >= 5'd20 && counter32 < 5'd22) state[2] = 2'd2;
-	else if(counter32 >= 5'd22 && counter32 < 5'd24) state[2] = 2'd1;
-	else if(counter32 >= 5'd24 && counter32 < 5'd26) state[2] = 2'd2;
-	else if(counter32 >= 5'd26 && counter32 < 5'd28) state[2] = 2'd1;
-	else if(counter32 >= 5'd28 && counter32 < 5'd30) state[2] = 2'd2;
-	else state[2] <= 2'd3;
+	if(counter32[1] == 1'd1) state[2] = 2'd1;
+	else state[2] = 2'd2;
 end
 
 always@(*)
 begin
-	if(counter32<5'd15) state[3] = 2'd0;
-	else if(/*counter32 >= 5'd15 &&*/ counter32 < 5'd31 && counter32[0] == 1'd1) state[3] = 2'd1;
-	else if(/*counter32 >= 5'd15 &&*/ counter32 < 5'd31 && counter32[0] == 1'd0) state[3] = 2'd2;
-	else state[3] <= 2'd3;
+	if(counter32[0] == 1'd1) state[3] = 2'd1;
+	else state[3] = 2'd2;
 end
 
 shifter #(.WIDTH(24),.delay(8)) 
@@ -518,14 +535,40 @@ begin
 		5'd28: fft_d11 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
 		5'd29: fft_d7 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
 		5'd30: fft_d15 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+
+		5'd31: fft_d0 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd0: fft_d8 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd1: fft_d4 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd2: fft_d12 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd3: fft_d2 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd4: fft_d10 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd5: fft_d6 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd6: fft_d14 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd7: fft_d1 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd8: fft_d9 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd9: fft_d5 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd10: fft_d13 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd11: fft_d3 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd12: fft_d11 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd13: fft_d7 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
+		5'd14: fft_d15 <= {dout_br[3][23:8],dout_bi[3][23:8]}; 
 		endcase
 	end
 end
 
 always@(posedge clk or posedge rst)
 begin
-	if(rst) fft_valid <= 1'd0;
-	else if(counter32 == 5'd30) fft_valid <= 1'd1;
+	if(rst)
+	begin
+		fft_valid <= 1'd0;
+		fft_first_run <= 1'd0;
+	end
+	else if(counter32 == 5'd30) 
+	begin
+		fft_valid <= 1'd1;
+		fft_first_run <= 1'd1;
+	end
+	else if(counter32 == 5'd14 && fft_first_run == 1'd1) fft_valid <= 1'd1;
 	else fft_valid <= 1'd0;
 end
 

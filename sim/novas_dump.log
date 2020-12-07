@@ -63,13 +63,13 @@ IMPERAS_PORT_FILE=.vsp_ovp_gdb_port
 TCL_LIBRARY=/usr/cad/cadence/INCISIV/cur/tools/inca/files/tcl/library
 Runtime command line arguments:
 argv[0]=ncverilog
-argv[1]=testfixture1.v
+argv[1]=testfixture2.v
 argv[2]=../src/FAS.v
 argv[3]=+access+r
 68 profile - 100
-          CPU/Mem usage: 0.010 sys,  0.020 user,  59.35M sys,  0.00M vm
+          CPU/Mem usage: 0.060 sys,  0.050 user,  59.38M sys,  0.00M vm
 69 VC callback profile - scalar:0 vector:0
-70 Sun Dec  6 22:59:45 2020
+70 Mon Dec  7 22:43:55 2020
 71 pliAppInit
 72 FSDB_GATE is disabled.
 73 Enable Parallel Dumping.
@@ -79,74 +79,46 @@ argv[3]=+access+r
 77 argv[0]: FAS.fsdb
 78 FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
 79 (C) 1996 - 2020 by Synopsys, Inc.
-80 sps_call_fsdbDumpfile at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture1.v(54)
+80 sps_call_fsdbDumpfile at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(54)
 81 argv[0]: FAS.fsdb
 82 *Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
 83 *Verdi* : Create FSDB file 'FAS.fsdb'
-84 sps_call_fsdbDumpvars at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture1.v(55)
+84 sps_call_fsdbDumpvars at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(55)
 85 *Verdi* : Begin traversing the scopes, layer (0).
 86 *Verdi* : End of traversing.
 87 fsdbDumpvars traverse var: profile - 
-          CPU/Mem usage: 0.010 sys,  0.040 user,  141.91M sys,  0.00M vm
-                   incr: 0.000 sys,  0.010 user,  3.69M sys,  0.00M vm
-                   accu: 0.000 sys,  0.010 user,  3.69M sys,  0.00M vm
-              accu incr: 0.000 sys,  0.010 user,  3.69M sys,  0.00M vm
+          CPU/Mem usage: 0.060 sys,  0.080 user,  141.92M sys,  0.00M vm
+                   incr: 0.000 sys,  0.020 user,  3.70M sys,  0.00M vm
+                   accu: 0.000 sys,  0.020 user,  3.70M sys,  0.00M vm
+              accu incr: 0.000 sys,  0.020 user,  3.70M sys,  0.00M vm
 
-          Count usage: 297 var,  249 idcode,  249 callback
-                 incr: 297 var,  249 idcode,  249 callback
-                 accu: 297 var,  249 idcode,  249 callback
-            accu incr: 297 var,  249 idcode,  249 callback
+          Count usage: 299 var,  252 idcode,  252 callback
+                 incr: 299 var,  252 idcode,  252 callback
+                 accu: 299 var,  252 idcode,  252 callback
+            accu incr: 299 var,  252 idcode,  252 callback
 88 VC callback profile - scalar:0 vector:0
-89 Sun Dec  6 22:59:45 2020
+89 Mon Dec  7 22:43:55 2020
 90 fsdbDumpvars: profile - 
-          CPU/Mem usage: 0.010 sys,  0.040 user,  142.97M sys,  0.00M vm
+          CPU/Mem usage: 0.060 sys,  0.080 user,  142.97M sys,  0.00M vm
                    incr: 0.000 sys,  0.000 user,  1.05M sys,  0.00M vm
-                   accu: 0.000 sys,  0.010 user,  4.75M sys,  0.00M vm
+                   accu: 0.000 sys,  0.020 user,  4.75M sys,  0.00M vm
               accu incr: 0.000 sys,  0.000 user,  1.05M sys,  0.00M vm
 
-          Count usage: 297 var,  249 idcode,  249 callback
+          Count usage: 299 var,  252 idcode,  252 callback
                  incr: 0 var,  0 idcode,  0 callback
-                 accu: 297 var,  249 idcode,  249 callback
+                 accu: 299 var,  252 idcode,  252 callback
             accu incr: 0 var,  0 idcode,  0 callback
-91 VC callback profile - scalar:16 vector:233
-92 Sun Dec  6 22:59:45 2020
-93 sps_call_fsdbDumpMDA at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture1.v(56)
-94 *Verdi* : Begin traversing the MDAs, layer (0).
-95 *Verdi* : Enable +mda and +packedmda dumping.
-96 *Verdi* : End of traversing the MDAs.
-97 fsdbDumpMDA traverse var: profile - 
-          CPU/Mem usage: 0.010 sys,  0.060 user,  143.24M sys,  0.00M vm
-                   incr: 0.000 sys,  0.020 user,  0.27M sys,  0.00M vm
-                   accu: 0.000 sys,  0.020 user,  0.27M sys,  0.00M vm
-              accu incr: 0.000 sys,  0.020 user,  0.27M sys,  0.00M vm
-
-          Count usage: 4535 var,  4465 idcode,  4469 callback
-                 incr: 4238 var,  4216 idcode,  4220 callback
-                 accu: 4238 var,  4216 idcode,  4220 callback
-            accu incr: 4238 var,  4216 idcode,  4220 callback
-98 VC callback profile - scalar:16 vector:233
-99 Sun Dec  6 22:59:45 2020
-100 fsdbDumpMDA: profile - 
-          CPU/Mem usage: 0.010 sys,  0.060 user,  143.38M sys,  0.00M vm
-                   incr: 0.000 sys,  0.000 user,  0.14M sys,  0.00M vm
-                   accu: 0.000 sys,  0.020 user,  0.41M sys,  0.00M vm
-              accu incr: 0.000 sys,  0.000 user,  0.14M sys,  0.00M vm
-
-          Count usage: 4535 var,  4465 idcode,  4469 callback
-                 incr: 0 var,  0 idcode,  0 callback
-                 accu: 4238 var,  4216 idcode,  4220 callback
-            accu incr: 0 var,  0 idcode,  0 callback
-101 VC callback profile - scalar:16 vector:4471
-102 Sun Dec  6 22:59:45 2020
-103 End of simulation at 1103500
-104 VC callback profile - scalar:4823 vector:219642
-105 Sun Dec  6 22:59:45 2020
-106 Begin FSDB profile info:
-107 FSDB Writer : bc1(4823) bcn(219642) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.051376) io wait(0.000000) theadpool wait(0.000000)
+91 VC callback profile - scalar:17 vector:235
+92 Mon Dec  7 22:43:55 2020
+93 End of simulation at 1071500
+94 VC callback profile - scalar:4957 vector:170250
+95 Mon Dec  7 22:43:55 2020
+96 Begin FSDB profile info:
+97 FSDB Writer : bc1(4957) bcn(170250) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.040497) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
-108 End FSDB profile info
-109 Parallel profile    -  Flush:4 Expand:0 ProduceWait:0 ConsumerWait:1 BlockUsed:3
-110                        ProduceTime:0.236038566 ConsumerTime:0.040524245 Buffer:64MB
-111 SimExit
-112 Sim process exit
+98 End FSDB profile info
+99 Parallel profile    -  Flush:3 Expand:0 ProduceWait:0 ConsumerWait:0 BlockUsed:3
+100                        ProduceTime:0.255130809 ConsumerTime:0.028339595 Buffer:64MB
+101 SimExit
+102 Sim process exit

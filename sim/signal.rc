@@ -16,7 +16,7 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 49725.460123 67553.913162
+zoom 0.000000 35656.906078
 cursor 55500.000000
 marker 0.000000
 
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 20
+markerPos 12
 
 ; event list
 ; addEvent event_name event_expression
@@ -56,17 +56,9 @@ addGroup "G2"
 addSignal -h 15 /testfixture1/DUT/ff0/f0/din_br[23:0]
 addSignal -h 15 -holdScope din_bi[23:0]
 addSignal -h 15 -holdScope state[1:0]
-addSignal -h 15 -holdScope dout_ar[23:0]
-addSignal -h 15 -holdScope dout_ai[23:0]
-addSignal -h 15 -holdScope dout_br[23:0]
-addSignal -h 15 -holdScope dout_bi[23:0]
 addGroup "G3"
-addSignal -h 15 /testfixture1/DUT/ff0/f1/dout_br[23:0]
-addSignal -h 15 -holdScope dout_bi[23:0]
-addSignal -h 15 /testfixture1/DUT/ff0/f2/din_br[23:0]
-addSignal -h 15 -holdScope din_bi[23:0]
-addSignal -h 15 /testfixture1/DUT/ff0/f3/din_br[23:0]
-addSignal -h 15 -holdScope din_bi[23:0]
+addSignal -h 15 /testfixture1/DUT/ff0/fft_out[31:0]
+addSignal -h 15 -holdScope fft_valid
 addGroup "G4"
 
 ; getSignalForm Scope Hierarchy Status
