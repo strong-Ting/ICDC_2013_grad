@@ -1,2 +1,1 @@
-SOFTINCLUDE /usr/cad/cadence/INCISIV/cur/tools/inca/files/cds.lib
 define worklib ../worklib

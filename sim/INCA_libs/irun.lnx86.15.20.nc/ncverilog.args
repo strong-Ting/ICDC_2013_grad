@@ -3,5 +3,8 @@
 // Do not modify this file
 //
 testfixture2.v
-../src/FAS.v
+../syn/FAS_syn.v
+-v
+../../tsmc13_neg.v
++define+SDF
 +access+r

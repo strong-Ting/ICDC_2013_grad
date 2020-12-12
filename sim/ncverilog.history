@@ -523,3 +523,100 @@ s522(07Dec2020:15:20:34):  ncverilog testfixture2.v ../src/FAS.v +access+r
 s523(07Dec2020:15:20:44):  ncverilog testfixture1.v ../src/FAS.v +access+r 
 s524(07Dec2020:15:20:56):  ncverilog testfixture2.v ../src/FAS.v +access+r 
 s525(07Dec2020:22:43:49):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s526(08Dec2020:11:07:06):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s527(08Dec2020:11:07:21):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s528(08Dec2020:11:07:44):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s529(08Dec2020:11:09:38):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s530(08Dec2020:11:10:01):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s531(08Dec2020:11:10:11):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s532(08Dec2020:11:18:10):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s533(08Dec2020:11:18:21):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s534(08Dec2020:11:24:19):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s535(08Dec2020:11:24:35):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s536(08Dec2020:11:26:34):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s537(08Dec2020:11:26:43):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s538(08Dec2020:11:33:47):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s539(08Dec2020:11:34:06):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s540(08Dec2020:11:35:48):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s541(08Dec2020:11:35:58):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s542(08Dec2020:11:37:30):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s543(08Dec2020:11:42:41):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s544(08Dec2020:11:42:51):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s545(11Dec2020:16:31:34):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s546(11Dec2020:16:31:45):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s547(11Dec2020:16:40:51):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s548(11Dec2020:16:41:18):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s549(11Dec2020:16:42:10):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s550(11Dec2020:16:42:27):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s551(11Dec2020:16:42:37):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s552(11Dec2020:16:45:44):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s553(11Dec2020:16:46:40):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s554(11Dec2020:16:46:49):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s555(11Dec2020:16:59:37):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s556(11Dec2020:17:00:06):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s557(11Dec2020:17:00:27):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s558(11Dec2020:17:01:25):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s559(11Dec2020:17:03:46):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s560(11Dec2020:17:03:57):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s561(11Dec2020:17:05:02):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s562(11Dec2020:17:05:12):  ncverilog testfixture2.v ../src/FAS.v +access+r 
+s563(11Dec2020:17:08:21):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s564(11Dec2020:17:10:18):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s565(11Dec2020:17:11:21):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s566(11Dec2020:17:11:37):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s567(12Dec2020:21:56:53):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s568(12Dec2020:21:57:52):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s569(12Dec2020:22:38:18):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s570(12Dec2020:22:38:59):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s571(12Dec2020:22:40:01):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s572(12Dec2020:22:40:04):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s573(12Dec2020:22:40:57):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s574(12Dec2020:22:41:09):  ncverilog testfixture1.v ../src/FAS.v +access+r 
+s575(12Dec2020:22:41:14):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s576(12Dec2020:22:59:09):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s577(12Dec2020:22:59:20):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s578(12Dec2020:23:01:06):  ncverilog testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s579(12Dec2020:23:01:26):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s580(12Dec2020:23:01:53):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s581(12Dec2020:23:02:10):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s582(12Dec2020:23:02:42):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +access+r 
+s583(12Dec2020:23:02:59):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s584(12Dec2020:23:04:37):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s585(12Dec2020:23:04:50):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s586(12Dec2020:23:05:18):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s587(12Dec2020:23:05:27):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s588(12Dec2020:23:06:20):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s589(12Dec2020:23:06:24):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s590(12Dec2020:23:06:47):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s591(12Dec2020:23:09:48):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s592(12Dec2020:23:10:18):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s593(12Dec2020:23:10:48):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s594(12Dec2020:23:12:49):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s595(12Dec2020:23:13:08):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s596(12Dec2020:23:13:23):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s597(12Dec2020:23:13:37):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s598(12Dec2020:23:15:02):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s599(12Dec2020:23:15:26):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s600(12Dec2020:23:17:50):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s601(12Dec2020:23:18:59):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s602(12Dec2020:23:39:07):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s603(12Dec2020:23:40:46):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s604(12Dec2020:23:41:06):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s605(12Dec2020:23:41:22):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s606(12Dec2020:23:49:55):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s607(12Dec2020:23:50:05):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s608(12Dec2020:23:51:47):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s609(13Dec2020:00:13:00):  ncverilog -sv testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s610(13Dec2020:00:13:27):  ncverilog -sv testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s611(13Dec2020:00:13:50):  ncverilog testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s612(13Dec2020:00:14:08):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s613(13Dec2020:00:14:51):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s614(13Dec2020:00:15:24):  ncverilog testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s615(13Dec2020:00:19:31):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s616(13Dec2020:00:19:41):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s617(13Dec2020:00:21:05):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s618(13Dec2020:00:21:16):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s619(13Dec2020:00:21:30):  ncverilog -sv testfixture2.v ../src/FAS.v +access+r 
+s620(13Dec2020:00:21:38):  ncverilog -sv testfixture1.v ../src/FAS.v +access+r 
+s621(13Dec2020:00:33:12):  ncverilog testfixture1.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 
+s622(13Dec2020:00:33:38):  ncverilog testfixture2.v ../syn/FAS_syn.v -v ../../tsmc13_neg.v +define+SDF +access+r 

@@ -2,7 +2,7 @@
 set_host_options -max_cores 4
 #Read All Files
 #read_verilog ../src/FAS.v
-analyze -format verilog ../src/FAS.v
+analyze -format sverilog ../src/FAS.v
 elaborate FAS
 current_design FAS
 link
