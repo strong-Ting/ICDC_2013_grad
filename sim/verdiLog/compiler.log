@@ -1,0 +1,21 @@
+*design* DebussyLib (btIdent Verdi_Q-2020.03)
+Command arguments:
+    +define+verilog
+    /home/lin/github/CIC_2013_grad/src/FAS.v
+
+
+*Error* illegal memory W_R
+"/home/lin/github/CIC_2013_grad/src/FAS.v", 402: 
+
+*Error* illegal memory W_I
+"/home/lin/github/CIC_2013_grad/src/FAS.v", 403: 
+Highest level modules:
+FAS
+
+
+*Error* illegal output port on instance 'ff0' port 'dout_r'
+"/home/lin/github/CIC_2013_grad/src/FAS.v", 206: 
+
+*Error* illegal output port on instance 'ff0' port 'dout_i'
+"/home/lin/github/CIC_2013_grad/src/FAS.v", 207: 
+Total	4 error(s),   0 warning(s)

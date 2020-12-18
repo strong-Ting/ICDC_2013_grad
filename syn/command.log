@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version Q-2019.12 for linux64 -- Nov 26, 2019
-#@ # Date:   Sun Dec 13 00:22:16 2020
+#@ # Date:   Fri Dec 18 12:52:02 2020
 #@ # Run by: lin@DESKTOP-OFJ877F
 #@ 
 
@@ -6720,7 +6720,7 @@ source -echo -verbose /home/lin/github/CIC_2013_grad/syn/DC_syn.tcl
 
 #@ # operating conditions and boundary conditions #
 #@ 
-#@ set cycle 8         ;	#clock period defined by designer
+#@ set cycle 9         ;	#clock period defined by designer
 #@ 
 #@ create_clock -period $cycle [get_ports  clk]
 #@ set_dont_touch_network      [get_clocks clk]

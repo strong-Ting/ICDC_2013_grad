@@ -17,7 +17,11 @@ maxproc			39834
 (Special)Runtime environment variables:
 
 Runtime environment variables:
+AMD_ENTRYPOINT=vs/server/remoteExtensionHostProcess
+BROWSER=/home/lin/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin/helpers/browser.sh
+COLORTERM=truecolor
 DISPLAY=140.125.44.75:0
+GIT_ASKPASS=/home/lin/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/extensions/git/dist/askpass.sh
 GROUP=lin
 HISTCONTROL=ignoredups
 HISTSIZE=1000
@@ -37,23 +41,30 @@ MAIL=/var/spool/mail/lin
 MANPATH=/usr/cad/synopsys/synthesis/cur/doc/syn/man
 NAME=DESKTOP-OFJ877F
 OSTYPE=linux
-PATH=/usr/cad/synopsys/vcs/cur/bin:/usr/cad/synopsys/vcs/cur/linux/bin:/usr/cad/synopsys/vcs/cur/linux/util:/usr/cad/synopsys/vcs/cur/linux/flexlm:/usr/cad/synopsys/verdi/cur/bin:/usr/cad/synopsys/verdi/cur/nLint/bin:/usr/bin/X11:/usr/cad/synopsys/coreConsultant/cur/bin:/usr/cad/synopsys/synthesis/cur/amd64/syn/bin:/usr/cad/synopsys/lc/cur/bin:/usr/cad/cadence/INCISIV/cur/tools/bin:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/bin:/usr/cad/cadence/INCISIV/cur/tools/dfII/bin:/home/lin/.local/bin:/home/lin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program:Files:(x86)/Common:Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program:Files/Git/cmd:/mnt/c/Users/lin/AppData/Roaming/nvm:/mnt/c/Program:Files/nodejs:/mnt/c/Program:Files/PuTTY/:/mnt/c/ctags-2020-07-18_e9fad9cf-x64:/mnt/d/Mathlab/runtime/win64:/mnt/d/Mathlab/bin:/mnt/c/Program:Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/lin/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/lin/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/lin/AppData/Local/Programs/Microsoft:VS:Code/bin:/mnt/c/altera/13.1/modelsim_ase/win32aloem:/mnt/c/iverilog/bin:/mnt/c/iverilog/gtkwave/bin:/mnt/c/Users/lin/AppData/Local/nvs/:/mnt/c/intelFPGA_lite/20.1/modelsim_ase/win32aloem:/var/lib/snapd/snap/bin
+PATH=/usr/cad/synopsys/vcs/cur/bin:/usr/cad/synopsys/vcs/cur/linux/bin:/usr/cad/synopsys/vcs/cur/linux/util:/usr/cad/synopsys/vcs/cur/linux/flexlm:/usr/cad/synopsys/verdi/cur/bin:/usr/cad/synopsys/verdi/cur/nLint/bin:/usr/bin/X11:/usr/cad/synopsys/coreConsultant/cur/bin:/usr/cad/synopsys/synthesis/cur/amd64/syn/bin:/usr/cad/synopsys/lc/cur/bin:/usr/cad/cadence/INCISIV/cur/tools/bin:/usr/cad/cadence/INCISIV/cur/tools/vtools/vfault/bin:/usr/cad/cadence/INCISIV/cur/tools/dfII/bin:/home/lin/.local/bin:/home/lin/bin:/home/lin/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/bin:/home/lin/.local/bin:/home/lin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program:Files:(x86)/Common:Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program:Files/Git/cmd:/mnt/c/Users/lin/AppData/Roaming/nvm:/mnt/c/Program:Files/nodejs:/mnt/c/Program:Files/PuTTY/:/mnt/c/ctags-2020-07-18_e9fad9cf-x64:/mnt/d/Mathlab/runtime/win64:/mnt/d/Mathlab/bin:/mnt/c/Program:Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/lin/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/lin/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/lin/AppData/Local/Programs/Microsoft:VS:Code/bin:/mnt/c/altera/13.1/modelsim_ase/win32aloem:/mnt/c/iverilog/bin:/mnt/c/iverilog/gtkwave/bin:/mnt/c/Users/lin/AppData/Local/nvs/:/mnt/c/Users/lin/AppData/Roaming/nvm:/mnt/c/Program:Files/nodejs:/mnt/c/ctags-2020-07-18_e9fad9cf-x64:/mnt/c/intelFPGA_lite/20.1/modelsim_ase/win32aloem:/var/lib/snapd/snap/bin
+PIPE_LOGGING=true
 PWD=/home/lin/github/CIC_2013_grad/sim
 SHELL=/bin/bash
 SHLIB_PATH=/usr/cad/synopsys/verdi/cur/etc/lib/libstdc++/LINUX64/
-SHLVL=3
+SHLVL=8
 SYNTHESIS=/usr/cad/synopsys/synthesis/cur
 SYN_MAN_DIR=/usr/cad/synopsys/synthesis/cur/doc/syn/man
 TERM=xterm-256color
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.52.1
 USER=lin
+USES_VSCODE_SERVER_SPAWN=true
 VCS_CC=gcc
 VCS_HOME=/usr/cad/synopsys/vcs/cur
 VENDOR=unknown
-WSLENV=WT_SESSION::WT_PROFILE_ID
+VERBOSE_LOGGING=true
+VSCODE_GIT_ASKPASS_MAIN=/home/lin/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/extensions/git/dist/askpass-main.js
+VSCODE_GIT_ASKPASS_NODE=/home/lin/.vscode-server/bin/ea3859d4ba2f3e577a159bc91e3074c5d85c0523/node
+VSCODE_GIT_IPC_HANDLE=/tmp/vscode-git-eb68478c1b.sock
+VSCODE_IPC_HOOK_CLI=/tmp/vscode-ipc-27cafc1c-0072-41da-870f-bb4506017335.sock
+WSLENV=VSCODE_WSL_EXT_LOCATION/up
 WSL_DISTRO_NAME=CentOS8
-WSL_INTEROP=/run/WSL/876_interop
-WT_PROFILE_ID={61c54bbd-c2c6-5271-96e7-009a87ff44bf}
-WT_SESSION=b5b11cc3-9053-487e-aff6-95b9473b38db
+WSL_INTEROP=/run/WSL/148_interop
 XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
 _IRUNROOT_=/usr/cad/cadence/INCISIV/cur/tools
 CDS_ARCH=lnx86
@@ -63,66 +74,67 @@ IMPERAS_PORT_FILE=.vsp_ovp_gdb_port
 TCL_LIBRARY=/usr/cad/cadence/INCISIV/cur/tools/inca/files/tcl/library
 Runtime command line arguments:
 argv[0]=ncverilog
-argv[1]=testfixture2.v
-argv[2]=../syn/FAS_syn.v
-argv[3]=-v
-argv[4]=../../tsmc13_neg.v
-argv[5]=+define+SDF
-argv[6]=+access+r
-71 profile - 100
-          CPU/Mem usage: 0.080 sys,  0.030 user,  71.09M sys,  0.00M vm
-72 VC callback profile - scalar:0 vector:0
-73 Sun Dec 13 00:33:45 2020
-74 pliAppInit
-75 FSDB_GATE is disabled.
-76 Enable Parallel Dumping.
-77 pliAppMiscSet: New Sim Round
-78 pliEntryInit
-79 LIBSSCORE=found /usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX/libsscore_ius152.so through $LD_LIBRARY_PATH setting.
-80 argv[0]: FAS.fsdb
-81 FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
-82 (C) 1996 - 2020 by Synopsys, Inc.
-83 sps_call_fsdbDumpfile at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(54)
-84 argv[0]: FAS.fsdb
-85 *Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
-86 *Verdi* : Create FSDB file 'FAS.fsdb'
-87 sps_call_fsdbDumpvars at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(55)
-88 *Verdi* : Begin traversing the scopes, layer (0).
-89 Cell instance `testfixture1.DUT.\data_buffer_reg[0][15] '.
-90 *Verdi* : End of traversing.
-91 fsdbDumpvars traverse var: profile - 
-          CPU/Mem usage: 0.100 sys,  1.940 user,  174.02M sys,  0.00M vm
-                   incr: 0.020 sys,  1.900 user,  24.07M sys,  0.00M vm
-                   accu: 0.020 sys,  1.900 user,  24.07M sys,  0.00M vm
-              accu incr: 0.020 sys,  1.900 user,  24.07M sys,  0.00M vm
+argv[1]=-sv
+argv[2]=testfixture2.v
+argv[3]=../syn/FAS_syn.v
+argv[4]=-v
+argv[5]=../../tsmc13_neg.v
+argv[6]=+define+SDF
+argv[7]=+access+r
+83 profile - 100
+          CPU/Mem usage: 0.060 sys,  0.040 user,  71.62M sys,  0.00M vm
+84 VC callback profile - scalar:0 vector:0
+85 Fri Dec 18 13:01:30 2020
+86 pliAppInit
+87 FSDB_GATE is disabled.
+88 Enable Parallel Dumping.
+89 pliAppMiscSet: New Sim Round
+90 pliEntryInit
+91 LIBSSCORE=found /usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX/libsscore_ius152.so through $LD_LIBRARY_PATH setting.
+92 argv[0]: FAS.fsdb
+93 FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
+94 (C) 1996 - 2020 by Synopsys, Inc.
+95 sps_call_fsdbDumpfile at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(54)
+96 argv[0]: FAS.fsdb
+97 *Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+98 *Verdi* : Create FSDB file 'FAS.fsdb'
+99 sps_call_fsdbDumpvars at 0 : /home/lin/github/CIC_2013_grad/sim/testfixture2.v(55)
+100 *Verdi* : Begin traversing the scopes, layer (0).
+101 Cell instance `testfixture1.DUT.\data_buffer_reg[2][15] '.
+102 *Verdi* : End of traversing.
+103 fsdbDumpvars traverse var: profile - 
+          CPU/Mem usage: 0.080 sys,  1.180 user,  175.10M sys,  0.00M vm
+                   incr: 0.020 sys,  1.130 user,  24.60M sys,  0.00M vm
+                   accu: 0.020 sys,  1.130 user,  24.60M sys,  0.00M vm
+              accu incr: 0.020 sys,  1.130 user,  24.60M sys,  0.00M vm
 
-          Count usage: 104699 var,  36819 idcode,  36819 callback
-                 incr: 104699 var,  36819 idcode,  36819 callback
-                 accu: 104699 var,  36819 idcode,  36819 callback
-            accu incr: 104699 var,  36819 idcode,  36819 callback
-92 VC callback profile - scalar:0 vector:0
-93 Sun Dec 13 00:33:47 2020
-94 fsdbDumpvars: profile - 
-          CPU/Mem usage: 0.100 sys,  1.960 user,  176.13M sys,  0.00M vm
-                   incr: 0.000 sys,  0.020 user,  2.11M sys,  0.00M vm
-                   accu: 0.020 sys,  1.920 user,  26.17M sys,  0.00M vm
-              accu incr: 0.000 sys,  0.020 user,  2.11M sys,  0.00M vm
+          Count usage: 106085 var,  37133 idcode,  37133 callback
+                 incr: 106085 var,  37133 idcode,  37133 callback
+                 accu: 106085 var,  37133 idcode,  37133 callback
+            accu incr: 106085 var,  37133 idcode,  37133 callback
+104 VC callback profile - scalar:0 vector:0
+105 Fri Dec 18 13:01:31 2020
+106 fsdbDumpvars: profile - 
+          CPU/Mem usage: 0.090 sys,  1.180 user,  177.20M sys,  0.00M vm
+                   incr: 0.010 sys,  0.000 user,  2.11M sys,  0.00M vm
+                   accu: 0.030 sys,  1.130 user,  26.71M sys,  0.00M vm
+              accu incr: 0.010 sys,  0.000 user,  2.11M sys,  0.00M vm
 
-          Count usage: 104699 var,  36819 idcode,  36819 callback
+          Count usage: 106085 var,  37133 idcode,  37133 callback
                  incr: 0 var,  0 idcode,  0 callback
-                 accu: 104699 var,  36819 idcode,  36819 callback
+                 accu: 106085 var,  37133 idcode,  37133 callback
             accu incr: 0 var,  0 idcode,  0 callback
-95 VC callback profile - scalar:36791 vector:28
-96 Sun Dec 13 00:33:47 2020
-97 End of simulation at 10770000
-98 VC callback profile - scalar:16659850 vector:6579
-99 Sun Dec 13 00:33:55 2020
-100 Begin FSDB profile info:
-101 FSDB Writer : bc1(16659850) bcn(6579) mtf/stf(0/1)
-FSDB Writer elapsed time : flush(2.012814) io wait(0.000000) theadpool wait(0.000000)
+107 VC callback profile - scalar:37105 vector:28
+108 Fri Dec 18 13:01:31 2020
+109 End of simulation at 10770000
+110 VC callback profile - scalar:17352380 vector:6579
+111 Fri Dec 18 13:01:39 2020
+112 Begin FSDB profile info:
+113 FSDB Writer : bc1(17352380) bcn(6579) mtf/stf(0/1)
+FSDB Writer elapsed time : flush(2.000710) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
-102 End FSDB profile info
-103 Parallel profile    -  Flush:3 Expand:0 ProduceWait:0 ConsumerWait:62 BlockUsed:80
-104                        ProduceTime:11.096774555 ConsumerTime:4.633252265 Buffer:64MB
-105 SimExit
-106 Sim process exit
+114 End FSDB profile info
+115 Parallel profile    -  Flush:3 Expand:0 ProduceWait:0 ConsumerWait:63 BlockUsed:83
+116                        ProduceTime:9.497462309 ConsumerTime:4.673807834 Buffer:64MB
+117 SimExit
+118 Sim process exit
