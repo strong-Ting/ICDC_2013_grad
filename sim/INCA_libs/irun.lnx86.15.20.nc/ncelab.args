@@ -1,10 +1,8 @@
 //
-// File created by:  ncverilog
+// File created by:  irun
 // Do not modify this file
 //
-+define+SDF
 +access+r
--noshowtop
 -ACCESS
 +r
 -MESSAGES

@@ -23,4 +23,4 @@ write_file -format verilog -hierarchy -output FAS_syn.v
 report_area > area.log
 report_timing > timing.log
 report_qor   >  FAS_syn.qor
-
+exit

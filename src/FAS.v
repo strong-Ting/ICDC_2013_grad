@@ -13,7 +13,8 @@ output done;
 output [3:0] freq;
 
 reg [3:0] freq;
-reg fft_valid,done;
+wire fft_valid;
+reg done;
 
 wire [31:0] fft_d1, fft_d2, fft_d3, fft_d4, fft_d5, fft_d6, fft_d7, fft_d8;
 wire [31:0] fft_d9, fft_d10, fft_d11, fft_d12, fft_d13, fft_d14, fft_d15, fft_d0;
@@ -192,6 +193,8 @@ FFT ff0(.clk(clk),
 		.din_r({fir_d,8'd0}),
 		.din_i(24'd0),
 		.dout_num(counter),
+		.dout_valid(),
+		.done(fft_valid),
 		.dout_r(dout_r),
 		.dout_i(dout_i)
 		 );
@@ -212,22 +215,7 @@ begin
 		fft_data[counter_reverse] <= {dout_r[23:8],dout_i[23:8]}; 
 	end
 end
-reg fft_first_run;
-always@(posedge clk or posedge rst)
-begin
-	if(rst)
-	begin
-		fft_valid <= 1'd0;
-		fft_first_run <= 1'd0;
-	end
-	else if(counter == 5'd15 && fft_first_run == 1'd1) fft_valid <= 1'd1;
-	else if(counter == 5'd15) 
-	begin
-		fft_valid <= 1'd0;
-		fft_first_run <= 1'd1;
-	end
-	else fft_valid <= 1'd0;
-end
+
 
 reg signed [15:0] dr,di;
 always@(posedge clk or posedge rst)
@@ -291,12 +279,13 @@ end
 endmodule
 
 module FFT#(parameter WIDTH = 24,parameter PointLog2 = 4) //result not sort
-(clk,rst,din_valid,din_r,din_i,dout_num,dout_r,dout_i);
+(clk,rst,din_valid,din_r,din_i,dout_num,done,dout_valid,dout_r,dout_i);
 input clk,rst;
 input din_valid;
 input [WIDTH-1:0] din_r,din_i;
 output [PointLog2-1:0] dout_num;
 output [WIDTH-1:0] dout_r,dout_i;
+output done,dout_valid;
 wire [WIDTH-1:0] dout_r,dout_i;
 
 //counter
@@ -304,8 +293,6 @@ wire [PointLog2:0] counter_next;
 reg [PointLog2:0] counter;
 wire [PointLog2-1:0] dout_num = counter[PointLog2-1:0] + {{PointLog2-1{1'd0}},1'd1};
 
-
-wire[15:0] data;
 wire signed [WIDTH-1:0] dout_ar [PointLog2-1:0];
 wire signed [WIDTH-1:0] dout_ai [PointLog2-1:0];
 wire signed [WIDTH-1:0] dout_br [PointLog2-1:0];
@@ -327,6 +314,26 @@ begin
 	if(rst) counter <= {(PointLog2+1){1'b0}};
 	else counter <= counter_next;
 end
+
+reg fft_first_run,done;
+wire dout_valid =  fft_first_run;
+
+always@(posedge clk or posedge rst)
+begin
+	if(rst)
+	begin
+		done <= 1'd0;
+		fft_first_run <= 1'd0;
+	end
+	else if(dout_num == 5'd15 && fft_first_run == 1'd1) done <= 1'd1;
+	else if(dout_num == 5'd15) 
+	begin
+		done <= 1'd0;
+		fft_first_run <= 1'd1;
+	end
+	else done <= 1'd0;
+end
+
 /*
 assign state[0] = counter[3] ? 1'd0 : 1'd1;
 assign state[1] = counter[2] ? 1'd0 : 1'd1;

@@ -1,9 +1,5 @@
 //
-// File created by:  ncverilog
+// File created by:  irun
 // Do not modify this file
 //
--VFILE
-../../tsmc13_neg.v
 -sv
--DEFINE
-SDF

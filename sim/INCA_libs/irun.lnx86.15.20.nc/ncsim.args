@@ -1,14 +1,13 @@
 //
-// File created by:  ncverilog
+// File created by:  irun
 // Do not modify this file
 //
-+define+SDF
 +access+r
 -MESSAGES
 +EMGRLOG
-ncverilog.log
+irun.log
 -XLSTIME
-1608267683
+1612411196
 -XLKEEP
 -XLMODE
 ./INCA_libs/irun.lnx86.15.20.nc
@@ -18,6 +17,6 @@ ncverilog.log
 -HDLVAR
 ./INCA_libs/irun.lnx86.15.20.nc/hdl.var
 -XLNAME
-ncverilog
+irun
 -XLVERSION
-"TOOL:	ncverilog	15.20-s039"
+"TOOL:	irun	15.20-s039"

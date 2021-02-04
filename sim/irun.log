@@ -1,0 +1,111 @@
+irun: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
+TOOL:	irun	15.20-s039: Started on Feb 04, 2021 at 11:59:56 CST
+irun
+	-sv
+	testfixture1.v
+	../src/FAS.v
+	+access+r
+Loading snapshot worklib.testfixture1:v .................... Done
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+*Verdi* Loading libsscore_ius152.so
+ncsim> source /usr/cad/cadence/INCISIV/cur/tools/inca/files/ncsimrc
+ncsim> run
+FSDB Dumper for IUS, Release Verdi_Q-2020.03, Linux, 02/09/2020
+(C) 1996 - 2020 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'FAS.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+*Verdi* : Begin traversing the MDAs, layer (0).
+*Verdi* : Enable +mda and +packedmda dumping.
+*Verdi* : End of traversing the MDAs.
+FFT dataout on pattern           0 ~          15, PASS!!
+FFT dataout on pattern          16 ~          31, PASS!!
+FFT dataout on pattern          32 ~          47, PASS!!
+FFT dataout on pattern          48 ~          63, PASS!!
+FFT dataout on pattern          64 ~          79, PASS!!
+FIR dataout on pattern           0 ~         100 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern          80 ~          95, PASS!!
+FFT dataout on pattern          96 ~         111, PASS!!
+FFT dataout on pattern         112 ~         127, PASS!!
+FFT dataout on pattern         128 ~         143, PASS!!
+FFT dataout on pattern         144 ~         159, PASS!!
+FFT dataout on pattern         160 ~         175, PASS!!
+FIR dataout on pattern         100 ~         200 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         176 ~         191, PASS!!
+FFT dataout on pattern         192 ~         207, PASS!!
+FFT dataout on pattern         208 ~         223, PASS!!
+FFT dataout on pattern         224 ~         239, PASS!!
+FFT dataout on pattern         240 ~         255, PASS!!
+FFT dataout on pattern         256 ~         271, PASS!!
+FIR dataout on pattern         200 ~         300 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         272 ~         287, PASS!!
+FFT dataout on pattern         288 ~         303, PASS!!
+FFT dataout on pattern         304 ~         319, PASS!!
+FFT dataout on pattern         320 ~         335, PASS!!
+FFT dataout on pattern         336 ~         351, PASS!!
+FFT dataout on pattern         352 ~         367, PASS!!
+FFT dataout on pattern         368 ~         383, PASS!!
+FIR dataout on pattern         300 ~         400 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         384 ~         399, PASS!!
+FFT dataout on pattern         400 ~         415, PASS!!
+FFT dataout on pattern         416 ~         431, PASS!!
+FFT dataout on pattern         432 ~         447, PASS!!
+FFT dataout on pattern         448 ~         463, PASS!!
+FFT dataout on pattern         464 ~         479, PASS!!
+FIR dataout on pattern         400 ~         500 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         480 ~         495, PASS!!
+FFT dataout on pattern         496 ~         511, PASS!!
+FFT dataout on pattern         512 ~         527, PASS!!
+FFT dataout on pattern         528 ~         543, PASS!!
+FFT dataout on pattern         544 ~         559, PASS!!
+FFT dataout on pattern         560 ~         575, PASS!!
+FIR dataout on pattern         500 ~         600 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         576 ~         591, PASS!!
+FFT dataout on pattern         592 ~         607, PASS!!
+FFT dataout on pattern         608 ~         623, PASS!!
+FFT dataout on pattern         624 ~         639, PASS!!
+FFT dataout on pattern         640 ~         655, PASS!!
+FFT dataout on pattern         656 ~         671, PASS!!
+FFT dataout on pattern         672 ~         687, PASS!!
+FFT dataout on pattern         688 ~         703, PASS!!
+FFT dataout on pattern         704 ~         719, PASS!!
+FFT dataout on pattern         720 ~         735, PASS!!
+FFT dataout on pattern         736 ~         751, PASS!!
+FFT dataout on pattern         752 ~         767, PASS!!
+FFT dataout on pattern         768 ~         783, PASS!!
+FIR dataout on pattern         700 ~         800 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         784 ~         799, PASS!!
+FFT dataout on pattern         800 ~         815, PASS!!
+FFT dataout on pattern         816 ~         831, PASS!!
+FFT dataout on pattern         832 ~         847, PASS!!
+FFT dataout on pattern         848 ~         863, PASS!!
+FFT dataout on pattern         864 ~         879, PASS!!
+FIR dataout on pattern         800 ~         900 !!, PASS !!
+-----------------------------------------------------
+FFT dataout on pattern         880 ~         895, PASS!!
+FFT dataout on pattern         896 ~         911, PASS!!
+FFT dataout on pattern         912 ~         927, PASS!!
+FFT dataout on pattern         928 ~         943, PASS!!
+FFT dataout on pattern         944 ~         959, PASS!!
+FFT dataout on pattern         960 ~         975, PASS!!
+FFT dataout on pattern         976 ~         991, PASS!!
+FFT dataout on pattern         992 ~        1007, PASS!!
+FFT dataout on pattern        1008 ~        1023, PASS!!
+-----------------------------------------------------
+
+Congratulations! All data have been generated successfully!
+
+-------------------------PASS------------------------
+
+Simulation complete via $finish(1) at time 10770 NS + 0
+./testfixture1.v:241       #(`CYCLE/2); $finish;
+ncsim> exit
+TOOL:	irun	15.20-s039: Exiting on Feb 04, 2021 at 12:00:01 CST  (total: 00:00:05)

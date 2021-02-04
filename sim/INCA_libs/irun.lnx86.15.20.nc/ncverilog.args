@@ -4,8 +4,5 @@
 //
 -sv
 testfixture2.v
-../syn/FAS_syn.v
--v
-../../tsmc13_neg.v
-+define+SDF
+../src/FAS.v
 +access+r

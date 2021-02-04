@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 0.000000 35656.906078
-cursor 55500.000000
+zoom 33767.601181 47364.726181
+cursor 36500.000000
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 12
+markerPos 26
 
 ; event list
 ; addEvent event_name event_expression
@@ -42,24 +42,38 @@ COMPLEX_EVENT_END
 
 ; toolbar current search type
 ; curSTATUS search_type
-curSTATUS ByValue
+curSTATUS ByChange
 
 
 addGroup "G1"
 activeDirFile "" "/home/lin/github/CIC_2013_grad/sim/FAS.fsdb"
-addSignal -h 15 /testfixture1/clk
-addSignal -h 15 /testfixture1/DUT/rst
-addSignal -h 15 /testfixture1/DUT/ff0/data[15:0]
-addSignal -h 15 -holdScope data_valid
-addSignal -h 15 -UNSIGNED -UDEC -holdScope counter32[4:0]
+addSignal -h 15 /testfixture1/DUT/ff0/clk
+addSignal -h 15 -holdScope rst
+addSignal -h 15 -holdScope din_valid
+addSignal -h 15 -holdScope din_r[23:0]
+addSignal -h 15 -holdScope din_i[23:0]
+addSignal -h 15 -holdScope dout_valid
+addSignal -h 15 -holdScope dout_r[23:0]
+addSignal -h 15 -holdScope dout_i[23:0]
+addSignal -h 15 -holdScope dout_num[3:0]
+addSignal -h 15 -holdScope done
+addSignal -h 15 /testfixture1/DUT/fft_d0[31:0]
+addSignal -h 15 -holdScope fft_d1[31:0]
+addSignal -h 15 -holdScope fft_d2[31:0]
+addSignal -h 15 -holdScope fft_d3[31:0]
+addSignal -h 15 -holdScope fft_d4[31:0]
+addSignal -h 15 -holdScope fft_d5[31:0]
+addSignal -h 15 -holdScope fft_d6[31:0]
+addSignal -h 15 -holdScope fft_d7[31:0]
+addSignal -h 15 -holdScope fft_d8[31:0]
+addSignal -h 15 -holdScope fft_d9[31:0]
+addSignal -h 15 -holdScope fft_d10[31:0]
+addSignal -h 15 -holdScope fft_d11[31:0]
+addSignal -h 15 -holdScope fft_d12[31:0]
+addSignal -h 15 -holdScope fft_d13[31:0]
+addSignal -h 15 -holdScope fft_d14[31:0]
+addSignal -h 15 -holdScope fft_d15[31:0]
 addGroup "G2"
-addSignal -h 15 /testfixture1/DUT/ff0/f0/din_br[23:0]
-addSignal -h 15 -holdScope din_bi[23:0]
-addSignal -h 15 -holdScope state[1:0]
-addGroup "G3"
-addSignal -h 15 /testfixture1/DUT/ff0/fft_out[31:0]
-addSignal -h 15 -holdScope fft_valid
-addGroup "G4"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
@@ -71,18 +85,11 @@ getSignalForm close
 "/testfixture1"
 "/testfixture1/DUT"
 "/testfixture1/DUT/ff0"
-"/testfixture1/DUT/ff0/f0"
 
 SCOPE_LIST_BEGIN
 "/testfixture1"
-"/testfixture1/DUT"
 "/testfixture1/DUT/ff0"
-"/testfixture1/DUT/ff0/f0"
-"/testfixture1/DUT/ff0/delay8"
-"/testfixture1/DUT/ff0/t0"
-"/testfixture1/DUT/ff0/f1"
-"/testfixture1/DUT/ff0/f2"
-"/testfixture1/DUT/ff0/f3"
+"/testfixture1/DUT"
 SCOPE_LIST_END
 
 GETSIGNALFORM_SCOPE_HIERARCHY_END

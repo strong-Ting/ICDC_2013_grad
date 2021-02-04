@@ -1,3 +1,3 @@
 Command Line: /usr/cad/synopsys/verdi/cur/platform/LINUXAMD64/bin/Novas -nWave
 uname(Linux DESKTOP-OFJ877F 4.19.104-microsoft-standard #1 SMP Wed Feb 19 06:37:35 UTC 2020 x86_64)
-au time 8126.843600 64.515959 74.304242 delta 260972544 260972544 total 707780608 707780608
+au time 50.949762 2.377552 0.547400 delta 258277376 258277376 total 705085440 705085440
