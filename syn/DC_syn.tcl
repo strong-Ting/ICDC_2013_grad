@@ -1,5 +1,5 @@
 
-set_host_options -max_cores 4
+set_host_options -max_cores 6
 #Read All Files
 #read_verilog ../src/FAS.v
 analyze -format sverilog ../src/FAS.v

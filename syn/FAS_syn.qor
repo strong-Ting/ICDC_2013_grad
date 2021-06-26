@@ -2,22 +2,22 @@
 ****************************************
 Report : qor
 Design : FAS
-Version: Q-2019.12
-Date   : Fri Dec 18 13:00:23 2020
+Version: P-2019.03
+Date   : Thu Mar 11 21:51:44 2021
 ****************************************
 
 
   Timing Path Group 'clk'
   -----------------------------------
   Levels of Logic:              59.00
-  Critical Path Length:          8.65
-  Critical Path Slack:          -0.78
+  Critical Path Length:          8.51
+  Critical Path Slack:          -0.67
   Critical Path Clk Period:      9.00
-  Total Negative Slack:       -314.77
-  No. of Violating Paths:      596.00
-  Worst Hold Violation:         -0.81
-  Total Hold Violation:       -465.69
-  No. of Hold Violations:     1281.00
+  Total Negative Slack:       -259.08
+  No. of Violating Paths:      609.00
+  Worst Hold Violation:         -0.84
+  Total Hold Violation:       -421.18
+  No. of Hold Violations:     1282.00
   -----------------------------------
 
 
@@ -25,12 +25,12 @@ Date   : Fri Dec 18 13:00:23 2020
   -----------------------------------
   Hierarchical Cell Count:          0
   Hierarchical Port Count:          0
-  Leaf Cell Count:              16286
-  Buf/Inv Cell Count:            2820
-  Buf Cell Count:                 461
-  Inv Cell Count:                2359
+  Leaf Cell Count:              16680
+  Buf/Inv Cell Count:            3000
+  Buf Cell Count:                 418
+  Inv Cell Count:                2582
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:     14710
+  Combinational Cell Count:     15104
   Sequential Cell Count:         1576
   Macro Count:                      0
   -----------------------------------
@@ -38,44 +38,44 @@ Date   : Fri Dec 18 13:00:23 2020
 
   Area
   -----------------------------------
-  Combinational Area:   328477.454190
-  Noncombinational Area: 66650.107426
-  Buf/Inv Area:          23035.415368
-  Total Buffer Area:          6857.50
-  Total Inverter Area:       16177.92
+  Combinational Area:   343365.349863
+  Noncombinational Area: 65025.695835
+  Buf/Inv Area:          24841.448935
+  Total Buffer Area:          6300.75
+  Total Inverter Area:       18540.70
   Macro/Black Box Area:      0.000000
-  Net Area:            1781415.732147
+  Net Area:            1817115.905945
   -----------------------------------
-  Cell Area:            395127.561615
-  Design Area:         2176543.293763
+  Cell Area:            408391.045698
+  Design Area:         2225506.951643
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:         20009
-  Nets With Violations:             1
+  Total Number of Nets:         20433
+  Nets With Violations:             0
   Max Trans Violations:             0
-  Max Cap Violations:               1
+  Max Cap Violations:               0
   -----------------------------------
 
 
-  Hostname: DESKTOP-OFJ877F
+  Hostname: dics03.ee.yuntech.edu.tw
 
   Compile CPU Statistics
   -----------------------------------------
   Resource Sharing:                    0.01
-  Logic Optimization:                  0.77
-  Mapping Optimization:              536.69
+  Logic Optimization:                  0.75
+  Mapping Optimization:              505.57
   -----------------------------------------
-  Overall Compile Time:              622.75
-  Overall Compile Wall Clock Time:   195.91
+  Overall Compile Time:              601.16
+  Overall Compile Wall Clock Time:   133.05
 
   --------------------------------------------------------------------
 
-  Design  WNS: 0.78  TNS: 314.77  Number of Violating Paths: 596
+  Design  WNS: 0.67  TNS: 259.08  Number of Violating Paths: 609
 
 
-  Design (Hold)  WNS: 0.81  TNS: 465.69  Number of Violating Paths: 1281
+  Design (Hold)  WNS: 0.84  TNS: 421.18  Number of Violating Paths: 1282
 
   --------------------------------------------------------------------
 

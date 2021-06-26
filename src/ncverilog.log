@@ -1,8 +1,0 @@
-ncverilog: 15.20-s039: (c) Copyright 1995-2017 Cadence Design Systems, Inc.
-TOOL:	ncverilog	15.20-s039: Started on Sep 27, 2020 at 22:57:46 CST
-ncverilog
-	testfixture2.v
-	../src/FAS.v
-	+access+r
-ncverilog: *E,FILEMIS: Cannot find the provided file testfixture2.v.
-TOOL:	ncverilog	15.20-s039: Exiting on Sep 27, 2020 at 22:57:46 CST  (total: 00:00:00)

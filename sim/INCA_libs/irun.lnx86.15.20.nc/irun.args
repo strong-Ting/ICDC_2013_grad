@@ -1,8 +1,0 @@
-//
-// File created by:  irun
-// Do not modify this file
-//
--sv
-testfixture1.v
-../src/FAS.v
-+access+r
